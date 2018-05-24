@@ -23,3 +23,11 @@ As a result, provide a link to github repository. It should contain the code, RE
 P.S.: Make sure everything works with latest version that is on github :)
 
 P.P.S.: Asume that your API will be used by a frontend developer to build frontend on top of that.
+
+Get Users
+
+```bash
+curl 'http://localhost:8080/api/users'
+curl 'http://localhost:8080/api/users/0'
+curl 'http://localhost:8080/api/users/search/by-email?email=admin@gmail.com'
+```

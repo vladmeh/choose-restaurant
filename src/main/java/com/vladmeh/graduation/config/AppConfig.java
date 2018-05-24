@@ -6,7 +6,10 @@ import org.springframework.context.annotation.*;
 import java.sql.SQLException;
 
 /**
- *  https://techdev.io/en/developer-blog/querying-the-embedded-h2-database-of-a-spring-boot-application
+ * @author Vladimir Mikhaylov <vladmeh@gmail.com> on 24.05.2018.
+ * @link https://github.com/vladmeh/graduation-topjava
+ *
+ * https://techdev.io/en/developer-blog/querying-the-embedded-h2-database-of-a-spring-boot-application
  */
 
 @Configuration
