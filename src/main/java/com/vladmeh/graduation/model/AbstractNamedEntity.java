@@ -16,12 +16,12 @@ public abstract class AbstractNamedEntity extends AbstractBaseEntity{
     @NotBlank
     @Size(min = 2, max = 100)
     @Column(name = "name")
-    protected String name;
+    String name;
 
-    protected AbstractNamedEntity() {
+    AbstractNamedEntity() {
     }
 
-    protected AbstractNamedEntity(Long id, String name) {
+    AbstractNamedEntity(Long id, String name) {
         super(id);
         this.name = name;
     }

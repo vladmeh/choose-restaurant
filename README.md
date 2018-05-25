@@ -27,7 +27,23 @@ P.P.S.: Asume that your API will be used by a frontend developer to build fronte
 Get Users
 
 ```bash
-curl 'http://localhost:8080/api/users'
-curl 'http://localhost:8080/api/users/0'
-curl 'http://localhost:8080/api/users/search/by-email?email=admin@gmail.com'
+curl 'http://localhost:8080/api-dev/users'
+curl 'http://localhost:8080/api-dev/users/0'
+curl 'http://localhost:8080/api-dev/users/search/by-email?email=admin@gmail.com'
+```
+
+Create User
+
+```bash
+curl -sid '{"name":"New User","email":"user@local.loc", "password":"12345", "roles" : ["ROLE_USER"]}' -H 'Content-Type:application/json;charset=UTF-8' http://localhost:8080/api-dev/users
+```
+
+Update User
+```bash
+curl -siX PUT -d '{"name":"User 4","email":"user4@local.loc", "password":"12345", "roles" : ["ROLE_USER"]}' -H 'Content-Type:application/json;charset=UTF-8' http://localhost:8080/api-dev/users/4
+```
+
+Delete User
+```bash
+curl -siX DELETE http://localhost:8080/api-dev/users/2
 ```

@@ -1,5 +1,8 @@
 package com.vladmeh.graduation.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.data.jpa.domain.AbstractPersistable;
+
 import javax.persistence.*;
 
 /**
@@ -9,50 +12,18 @@ import javax.persistence.*;
 
 @MappedSuperclass
 @Access(AccessType.FIELD)
-public abstract class AbstractBaseEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    protected Long id;
+public abstract class AbstractBaseEntity extends AbstractPersistable<Long> {
 
-    protected AbstractBaseEntity() {
+    AbstractBaseEntity() {
     }
 
-    protected AbstractBaseEntity(Long id) {
-        this.id = id;
+    AbstractBaseEntity(Long id) {
+        setId(id);
     }
 
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
+    @JsonIgnore
     public boolean isNew() {
-        return getId() == null;
+        return super.isNew();
     }
 
-    @Override
-    public String toString() {
-        return "AbstractBaseEntity{" +
-                "id=" + id +
-                '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof AbstractBaseEntity)) return false;
-
-        AbstractBaseEntity that = (AbstractBaseEntity) o;
-
-        return getId().equals(that.getId());
-    }
-
-    @Override
-    public int hashCode() {
-        return getId() != null ? getId().hashCode() : 0;
-    }
 }
