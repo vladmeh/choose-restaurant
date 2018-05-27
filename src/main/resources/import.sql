@@ -3,6 +3,7 @@ DELETE FROM users;
 DELETE FROM restaurant;
 DELETE FROM menu;
 DELETE FROM menu_dishes;
+DELETE FROM choice_restaurant;
 
 INSERT INTO users (id, email, name, password) VALUES (0, 'user@yandex.ru', 'User', 'password'), (1, 'admin@gmail.com', 'Admin', 'admin');
 INSERT INTO user_roles (role, user_id) VALUES ('ROLE_USER', 0), ('ROLE_ADMIN', 1);
