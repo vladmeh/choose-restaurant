@@ -24,26 +24,40 @@ P.S.: Make sure everything works with latest version that is on github :)
 
 P.P.S.: Asume that your API will be used by a frontend developer to build frontend on top of that.
 
-Get Users
-
+#### Users
 ```bash
+# Get
 curl 'http://localhost:8080/api-dev/users'
 curl 'http://localhost:8080/api-dev/users/0'
 curl 'http://localhost:8080/api-dev/users/search/by-email?email=admin@gmail.com'
-```
 
-Create User
-
-```bash
+# Create
 curl -sid '{"name":"New User","email":"user@local.loc", "password":"12345", "roles" : ["ROLE_USER"]}' -H 'Content-Type:application/json;charset=UTF-8' http://localhost:8080/api-dev/users
-```
 
-Update User
-```bash
+# Update
 curl -siX PUT -d '{"name":"User 4","email":"user4@local.loc", "password":"12345", "roles" : ["ROLE_USER"]}' -H 'Content-Type:application/json;charset=UTF-8' http://localhost:8080/api-dev/users/4
-```
 
-Delete User
-```bash
+# Delete
 curl -siX DELETE http://localhost:8080/api-dev/users/2
 ```
+
+#### Restaurant
+```bash
+# Get
+curl http://localhost:8080/api-dev/restaurants
+curl http://localhost:8080/api-dev/restaurants/0
+curl http://localhost:8080/api-dev/restaurants/search/by-name?name=McDonalds
+
+# Create
+curl -sid '{"id":"","name":"Теремок"}' -H 'Content-Type:application/json;charset=UTF-8' http://localhost:8080/api-dev/restaurants
+curl 'http://localhost:8080/api-dev/restaurants' -i -d '{"name":"Teremok"}' -H 'Content-Type:application/json;charset=UTF-8'
+curl 'http://localhost:8080/api-dev/restaurants' -i -d '{"name":"Теремок"}' -H 'Content-type: application/hal+json;charset=UTF-8'
+
+# Update
+curl -siX PUT -d '{\"name\":\"Васаби\"}' -H 'Content-Type:application/json;charset=UTF-8' http://localhost:8080/api-dev/restaurants/3
+
+# Delete
+curl -siX DELETE http://localhost:8080/api-dev/restaurants/4
+```
+
+

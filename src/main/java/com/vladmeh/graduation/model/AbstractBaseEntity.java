@@ -14,10 +14,10 @@ import javax.persistence.*;
 @Access(AccessType.FIELD)
 public abstract class AbstractBaseEntity extends AbstractPersistable<Long> {
 
-    AbstractBaseEntity() {
+    protected AbstractBaseEntity() {
     }
 
-    AbstractBaseEntity(Long id) {
+    protected AbstractBaseEntity(Long id) {
         setId(id);
     }
 
