@@ -52,6 +52,7 @@ curl http://localhost:8080/api-dev/restaurants/search/by-name?name=McDonalds
 curl -sid '{"id":"","name":"Теремок"}' -H 'Content-Type:application/json;charset=UTF-8' http://localhost:8080/api-dev/restaurants
 curl 'http://localhost:8080/api-dev/restaurants' -i -d '{"name":"Teremok"}' -H 'Content-Type:application/json;charset=UTF-8'
 curl 'http://localhost:8080/api-dev/restaurants' -i -d '{"name":"Теремок"}' -H 'Content-type: application/hal+json;charset=UTF-8'
+curl "http://localhost:8080/api-dev/restaurants" -i -d @data/restaurant.json -H "Content-type:application/json;charset=UTF-8"
 
 # Update
 curl -siX PUT -d '{\"name\":\"Васаби\"}' -H 'Content-Type:application/json;charset=UTF-8' http://localhost:8080/api-dev/restaurants/3
