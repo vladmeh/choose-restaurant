@@ -1,5 +1,6 @@
 package com.vladmeh.graduation.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.BatchSize;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -32,6 +33,7 @@ public class User extends AbstractNamedEntity {
 
     @Column(name = "password", nullable = false)
     @NotBlank
+    @JsonIgnore
     @Size(min = 5, max = 100)
     private String password;
 
