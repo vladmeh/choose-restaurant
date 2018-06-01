@@ -1,9 +1,10 @@
 package com.vladmeh.graduation.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.BatchSize;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -24,6 +25,7 @@ import java.util.Set;
 @Entity
 @Table(name = "users")
 public class User extends AbstractNamedEntity {
+    private static final PasswordEncoder ENCODER = new BCryptPasswordEncoder();
 
     @Column(name = "email", nullable = false, unique = true)
     @Email
@@ -33,7 +35,6 @@ public class User extends AbstractNamedEntity {
 
     @Column(name = "password", nullable = false)
     @NotBlank
-    @JsonIgnore
     @Size(min = 5, max = 100)
     private String password;
 
@@ -85,7 +86,7 @@ public class User extends AbstractNamedEntity {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = ENCODER.encode(password);
     }
 
     public boolean isEnabled() {
