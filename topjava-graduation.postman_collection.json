@@ -1,0 +1,893 @@
+{
+	"variables": [],
+	"info": {
+		"name": "topjava-graduation",
+		"_postman_id": "1fc90e90-bc7d-cf4d-ae72-73ce427f1c36",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"description": "",
+			"item": [
+				{
+					"name": "http://localhost:8080/api-dev/users",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"username": "admin@gmail.com",
+								"password": "admin",
+								"saveHelperData": true,
+								"showPassword": false
+							}
+						},
+						"url": "http://localhost:8080/api-dev/users",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic YWRtaW5AZ21haWwuY29tOmFkbWlu"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"firstName\": \"Vasiya\",\n  \"lastName\": \"Sidorov\",\n  \"twitter\": \"Vasid\",\n  \"bio\": \"Lorem ipsum dolor sit amet\"\n}"
+						},
+						"description": "getAllUsers"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/api-dev/users/0",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"username": "admin@gmail.com",
+								"password": "admin",
+								"saveHelperData": true,
+								"showPassword": false
+							}
+						},
+						"url": "http://localhost:8080/api-dev/users/0",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic YWRtaW5AZ21haWwuY29tOmFkbWlu"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"firstName\": \"Vasiya\",\n  \"lastName\": \"Sidorov\",\n  \"twitter\": \"Vasid\",\n  \"bio\": \"Lorem ipsum dolor sit amet\"\n}"
+						},
+						"description": "getUsers"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/api-dev/users/search/by-email?email=user@yandex.ru",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"username": "admin@gmail.com",
+								"password": "admin",
+								"saveHelperData": true,
+								"showPassword": false
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api-dev/users/search/by-email?email=user@yandex.ru",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api-dev",
+								"users",
+								"search",
+								"by-email"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "user@yandex.ru",
+									"equals": true
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic YWRtaW5AZ21haWwuY29tOmFkbWlu"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"firstName\": \"Vasiya\",\n  \"lastName\": \"Sidorov\",\n  \"twitter\": \"Vasid\",\n  \"bio\": \"Lorem ipsum dolor sit amet\"\n}"
+						},
+						"description": "getUsersByEmail"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/api-dev/users",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"username": "admin@gmail.com",
+								"password": "admin",
+								"saveHelperData": true,
+								"showPassword": false
+							}
+						},
+						"url": "http://localhost:8080/api-dev/users",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic YWRtaW5AZ21haWwuY29tOmFkbWlu",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"New user\",\n\t\"email\": \"user@mail.ru\",\n\t\"password\": \"password\",\n\t\"roles\": [\n\t    \"ROLE_USER\"\n\t]\n}"
+						},
+						"description": "create User"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/api-dev/users/0",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"username": "admin@gmail.com",
+								"password": "admin",
+								"saveHelperData": true,
+								"showPassword": false
+							}
+						},
+						"url": "http://localhost:8080/api-dev/users/0",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic YWRtaW5AZ21haWwuY29tOmFkbWlu",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Vlad\",\n  \"email\": \"user@yandex.ru\",\n  \"password\": \"user\"\n}"
+						},
+						"description": "Update User"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/api-dev/users/0",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"username": "admin@gmail.com",
+								"password": "admin",
+								"saveHelperData": true,
+								"showPassword": false
+							}
+						},
+						"url": "http://localhost:8080/api-dev/users/0",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic YWRtaW5AZ21haWwuY29tOmFkbWlu",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": "Delete User"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Restaurant",
+			"description": "",
+			"item": [
+				{
+					"name": "http://localhost:8080/api-dev/restaurants",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"username": "admin@gmail.com",
+								"password": "admin",
+								"saveHelperData": true,
+								"showPassword": false
+							}
+						},
+						"url": "http://localhost:8080/api-dev/restaurants",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic YWRtaW5AZ21haWwuY29tOmFkbWlu",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"firstName\": \"Vasiya\",\n  \"lastName\": \"Sidorov\",\n  \"twitter\": \"Vasid\",\n  \"bio\": \"Lorem ipsum dolor sit amet\"\n}"
+						},
+						"description": null
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/api-dev/restaurants/search/by-name?name=KFC",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"username": "admin@gmail.com",
+								"password": "admin",
+								"saveHelperData": true,
+								"showPassword": false
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api-dev/restaurants/search/by-name?name=KFC",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api-dev",
+								"restaurants",
+								"search",
+								"by-name"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "KFC",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic YWRtaW5AZ21haWwuY29tOmFkbWlu",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"firstName\": \"Vasiya\",\n  \"lastName\": \"Sidorov\",\n  \"twitter\": \"Vasid\",\n  \"bio\": \"Lorem ipsum dolor sit amet\"\n}"
+						},
+						"description": "Restaurant findByName"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/api-dev/restaurants",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"username": "admin@gmail.com",
+								"password": "admin",
+								"saveHelperData": true,
+								"showPassword": false
+							}
+						},
+						"url": "http://localhost:8080/api-dev/restaurants",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic YWRtaW5AZ21haWwuY29tOmFkbWlu",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\":\"Чайкофф\"\n}"
+						},
+						"description": null
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/api-dev/restaurants/0",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"username": "admin@gmail.com",
+								"password": "admin",
+								"saveHelperData": true,
+								"showPassword": false
+							}
+						},
+						"url": "http://localhost:8080/api-dev/restaurants/0",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"firstName\": \"Vasiya\",\n  \"lastName\": \"Sidorov\",\n  \"twitter\": \"Vasid\",\n  \"bio\": \"Lorem ipsum dolor sit amet\"\n}"
+						},
+						"description": null
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/api-dev/restaurants/0",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"username": "admin@gmail.com",
+								"password": "admin",
+								"saveHelperData": true,
+								"showPassword": false
+							}
+						},
+						"url": "http://localhost:8080/api-dev/restaurants/0",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic YWRtaW5AZ21haWwuY29tOmFkbWlu",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"SubWay\"\n}"
+						},
+						"description": "Update restaurant"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/api-dev/restaurants/3",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"username": "admin@gmail.com",
+								"password": "admin",
+								"saveHelperData": true,
+								"showPassword": false
+							}
+						},
+						"url": "http://localhost:8080/api-dev/restaurants/3",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic YWRtaW5AZ21haWwuY29tOmFkbWlu",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": "Delete restaurant"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Authorized",
+			"description": "",
+			"item": [
+				{
+					"name": "http://localhost:8080/api-dev 200",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"username": "admin@gmail.com",
+								"password": "admin",
+								"saveHelperData": true,
+								"showPassword": false
+							}
+						},
+						"url": "http://localhost:8080/api-dev",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic YWRtaW5AZ21haWwuY29tOmFkbWlu",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"firstName\": \"Vasiya\",\n  \"lastName\": \"Sidorov\",\n  \"twitter\": \"Vasid\",\n  \"bio\": \"Lorem ipsum dolor sit amet\"\n}"
+						},
+						"description": "admin Authorized"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/api-dev 200",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"username": "user@yandex.ru",
+								"password": "user",
+								"saveHelperData": true,
+								"showPassword": false
+							}
+						},
+						"url": "http://localhost:8080/api-dev",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic dXNlckB5YW5kZXgucnU6dXNlcg==",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"firstName\": \"Vasiya\",\n  \"lastName\": \"Sidorov\",\n  \"twitter\": \"Vasid\",\n  \"bio\": \"Lorem ipsum dolor sit amet\"\n}"
+						},
+						"description": "user Authorized"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/api-dev 401",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"username": "admin@gmail.com",
+								"password": "admin",
+								"saveHelperData": true,
+								"showPassword": false
+							}
+						},
+						"url": "http://localhost:8080/api-dev",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic YWRtaW5AZ21haWwuY29tOmFkbWlu",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"firstName\": \"Vasiya\",\n  \"lastName\": \"Sidorov\",\n  \"twitter\": \"Vasid\",\n  \"bio\": \"Lorem ipsum dolor sit amet\"\n}"
+						},
+						"description": "Unauthorized"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Menu",
+			"description": "",
+			"item": [
+				{
+					"name": "http://localhost:8080/api-dev/menu",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"username": "admin@gmail.com",
+								"password": "admin",
+								"saveHelperData": true,
+								"showPassword": false
+							}
+						},
+						"url": "http://localhost:8080/api-dev/menu",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic YWRtaW5AZ21haWwuY29tOmFkbWlu",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"firstName\": \"Vasiya\",\n  \"lastName\": \"Sidorov\",\n  \"twitter\": \"Vasid\",\n  \"bio\": \"Lorem ipsum dolor sit amet\"\n}"
+						},
+						"description": "getAllMenu"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/api-dev/menu/0",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"username": "admin@gmail.com",
+								"password": "admin",
+								"saveHelperData": true,
+								"showPassword": false
+							}
+						},
+						"url": "http://localhost:8080/api-dev/menu/0",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic YWRtaW5AZ21haWwuY29tOmFkbWlu",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"firstName\": \"Vasiya\",\n  \"lastName\": \"Sidorov\",\n  \"twitter\": \"Vasid\",\n  \"bio\": \"Lorem ipsum dolor sit amet\"\n}"
+						},
+						"description": "getMenu"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/api-dev/menu/0/restaurant",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"username": "admin@gmail.com",
+								"password": "admin",
+								"saveHelperData": true,
+								"showPassword": false
+							}
+						},
+						"url": "http://localhost:8080/api-dev/menu/0/restaurant",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic YWRtaW5AZ21haWwuY29tOmFkbWlu",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"firstName\": \"Vasiya\",\n  \"lastName\": \"Sidorov\",\n  \"twitter\": \"Vasid\",\n  \"bio\": \"Lorem ipsum dolor sit amet\"\n}"
+						},
+						"description": "getMenu Restaurant"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/api-dev/menu/search/by-date?date=2018-05-23",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"username": "admin@gmail.com",
+								"password": "admin",
+								"saveHelperData": true,
+								"showPassword": false
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api-dev/menu/search/by-date?date=2018-05-23",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api-dev",
+								"menu",
+								"search",
+								"by-date"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "2018-05-23",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic YWRtaW5AZ21haWwuY29tOmFkbWlu",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"firstName\": \"Vasiya\",\n  \"lastName\": \"Sidorov\",\n  \"twitter\": \"Vasid\",\n  \"bio\": \"Lorem ipsum dolor sit amet\"\n}"
+						},
+						"description": "getMenu byDate"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/api-dev/menu/search/by-restaurant?restaurant=http://localhost:8080/api-dev/restaurant/0",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"username": "admin@gmail.com",
+								"password": "admin",
+								"saveHelperData": true,
+								"showPassword": false
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api-dev/menu/search/by-restaurant?restaurant=http://localhost:8080/api-dev/restaurant/0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api-dev",
+								"menu",
+								"search",
+								"by-restaurant"
+							],
+							"query": [
+								{
+									"key": "restaurant",
+									"value": "http://localhost:8080/api-dev/restaurant/0",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic YWRtaW5AZ21haWwuY29tOmFkbWlu",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"firstName\": \"Vasiya\",\n  \"lastName\": \"Sidorov\",\n  \"twitter\": \"Vasid\",\n  \"bio\": \"Lorem ipsum dolor sit amet\"\n}"
+						},
+						"description": "getAllMenu byRestaurant"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/api-dev/menu",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"username": "admin@gmail.com",
+								"password": "admin",
+								"saveHelperData": true,
+								"showPassword": false
+							}
+						},
+						"url": "http://localhost:8080/api-dev/menu",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic YWRtaW5AZ21haWwuY29tOmFkbWlu",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"date\": \"2018-06-01\",\n  \"restaurant\": \"http://localhost:8080/api-dev/restaurants/0\"\n}"
+						},
+						"description": "create menu"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/api-dev/menu/0",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"username": "admin@gmail.com",
+								"password": "admin",
+								"saveHelperData": true,
+								"showPassword": false
+							}
+						},
+						"url": "http://localhost:8080/api-dev/menu/0",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic YWRtaW5AZ21haWwuY29tOmFkbWlu",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"date\": \"2018-06-02\"\n}"
+						},
+						"description": "update menu"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/api-dev/menu/6",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"username": "admin@gmail.com",
+								"password": "admin",
+								"saveHelperData": true,
+								"showPassword": false
+							}
+						},
+						"url": "http://localhost:8080/api-dev/menu/6",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic YWRtaW5AZ21haWwuY29tOmFkbWlu",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"date\": \"2018-06-02\"\n}"
+						},
+						"description": "delete menu"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
