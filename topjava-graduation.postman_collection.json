@@ -538,7 +538,7 @@
 							"type": "basic",
 							"basic": {
 								"username": "admin@gmail.com",
-								"password": "admin",
+								"password": "admininistrator",
 								"saveHelperData": true,
 								"showPassword": false
 							}
@@ -553,7 +553,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "Basic YWRtaW5AZ21haWwuY29tOmFkbWlu",
+								"value": "Basic YWRtaW5AZ21haWwuY29tOmFkbWluaW5pc3RyYXRvcg==",
 								"description": ""
 							}
 						],
@@ -884,6 +884,328 @@
 							"raw": "{\n  \"date\": \"2018-06-02\"\n}"
 						},
 						"description": "delete menu"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Dishes",
+			"description": "",
+			"item": [
+				{
+					"name": "http://localhost:8080/api-dev/dishes",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"username": "admin@gmail.com",
+								"password": "admin",
+								"saveHelperData": true,
+								"showPassword": false
+							}
+						},
+						"url": "http://localhost:8080/api-dev/dishes",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic YWRtaW5AZ21haWwuY29tOmFkbWlu",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"firstName\": \"Vasiya\",\n  \"lastName\": \"Sidorov\",\n  \"twitter\": \"Vasid\",\n  \"bio\": \"Lorem ipsum dolor sit amet\"\n}"
+						},
+						"description": "get All dishes"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/api-dev/dishes/0",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"username": "admin@gmail.com",
+								"password": "admin",
+								"saveHelperData": true,
+								"showPassword": false
+							}
+						},
+						"url": "http://localhost:8080/api-dev/dishes/0",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic YWRtaW5AZ21haWwuY29tOmFkbWlu",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"firstName\": \"Vasiya\",\n  \"lastName\": \"Sidorov\",\n  \"twitter\": \"Vasid\",\n  \"bio\": \"Lorem ipsum dolor sit amet\"\n}"
+						},
+						"description": "get dishes by id"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/api-dev/dishes/0/menu",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"username": "admin@gmail.com",
+								"password": "admin",
+								"saveHelperData": true,
+								"showPassword": false
+							}
+						},
+						"url": "http://localhost:8080/api-dev/dishes/0/menu",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic YWRtaW5AZ21haWwuY29tOmFkbWlu",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"firstName\": \"Vasiya\",\n  \"lastName\": \"Sidorov\",\n  \"twitter\": \"Vasid\",\n  \"bio\": \"Lorem ipsum dolor sit amet\"\n}"
+						},
+						"description": "get dishes by id menu"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/api-dev/dishes",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"username": "admin@gmail.com",
+								"password": "admin",
+								"saveHelperData": true,
+								"showPassword": false
+							}
+						},
+						"url": "http://localhost:8080/api-dev/dishes",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic YWRtaW5AZ21haWwuY29tOmFkbWlu",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Гамбургер\",\n    \"price\": 80,\n    \"menu\": \"http://localhost:8080/api-dev/menu/0\"\n}"
+						},
+						"description": "create dishes"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/api-dev/dishes/0",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"username": "admin@gmail.com",
+								"password": "admin",
+								"saveHelperData": true,
+								"showPassword": false
+							}
+						},
+						"url": "http://localhost:8080/api-dev/dishes/0",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic YWRtaW5AZ21haWwuY29tOmFkbWlu",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Макчикен\",\n    \"price\": 120\n}"
+						},
+						"description": "update dishes"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/api-dev/dishes/0",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"username": "admin@gmail.com",
+								"password": "admin",
+								"saveHelperData": true,
+								"showPassword": false
+							}
+						},
+						"url": "http://localhost:8080/api-dev/dishes/12",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic YWRtaW5AZ21haWwuY29tOmFkbWlu",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Макчикен\",\n    \"price\": 120\n}"
+						},
+						"description": "delete dishes"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/api-dev/dishes/search/by-menu?menu=http://localhost:8080/api-dev/menu/0",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"username": "admin@gmail.com",
+								"password": "admin",
+								"saveHelperData": true,
+								"showPassword": false
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api-dev/dishes/search/by-menu?menu=http://localhost:8080/api-dev/menu/0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api-dev",
+								"dishes",
+								"search",
+								"by-menu"
+							],
+							"query": [
+								{
+									"key": "menu",
+									"value": "http://localhost:8080/api-dev/menu/0",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic YWRtaW5AZ21haWwuY29tOmFkbWlu",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"firstName\": \"Vasiya\",\n  \"lastName\": \"Sidorov\",\n  \"twitter\": \"Vasid\",\n  \"bio\": \"Lorem ipsum dolor sit amet\"\n}"
+						},
+						"description": "get dishes by menu"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/api-dev/dishes/search/by-date?date=2018-06-03",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"username": "admin@gmail.com",
+								"password": "admin",
+								"saveHelperData": true,
+								"showPassword": false
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api-dev/dishes/search/by-date?date=2018-06-03",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api-dev",
+								"dishes",
+								"search",
+								"by-date"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "2018-06-03",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic YWRtaW5AZ21haWwuY29tOmFkbWlu",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"firstName\": \"Vasiya\",\n  \"lastName\": \"Sidorov\",\n  \"twitter\": \"Vasid\",\n  \"bio\": \"Lorem ipsum dolor sit amet\"\n}"
+						},
+						"description": "get dishes by date"
 					},
 					"response": []
 				}
