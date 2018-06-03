@@ -18,6 +18,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
  * @link https://github.com/vladmeh/graduation-topjava
  *
  * http://www.baeldung.com/spring-security-authentication-with-a-database
+ *
+ * http://www.baeldung.com/spring-security-session
+ * <ul>
+ * <li>ALWAYS – a session will always be created if one doesn’t already exist</li>
+ * <li>IF_REQUIRED – (default) a session will be created only if required</li>
+ * <li>NEVER – the framework will never create a session itself but it will use one if it already exists</li>
+ * <li>STATELESS - no session will be created or used by Spring Security</li>
+ * </ul>
  */
 @Configuration
 @EnableWebSecurity
@@ -57,9 +65,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .httpBasic()
                 .and().csrf().disable();
 
-        //http://www.baeldung.com/spring-security-session
         http.sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED);
         http.headers().frameOptions().disable();
     }
 }
