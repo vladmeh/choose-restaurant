@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 
 /**
@@ -21,6 +22,7 @@ import java.time.LocalDate;
 @RestController
 @RequestMapping(value = "/api/choice", produces = MediaType.APPLICATION_JSON_VALUE)
 public class ChoiceController {
+    private static final LocalTime TIME_LIMIT = LocalTime.parse("11:00");
 
     private final ChoiceService choiceService;
 
@@ -42,6 +44,11 @@ public class ChoiceController {
 
         if (menu == null || !menu.getDate().equals(today)) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        boolean limit = LocalTime.now().isAfter(TIME_LIMIT);
+        if (limit) {
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
 
         choiceService.save(UserPrincipal.user(), menu);
