@@ -10,7 +10,7 @@ import java.time.LocalDate;
  */
 
 @Entity
-@Table(name = "choice_restaurant", uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "choice_restaurant"}, name = "unique_user_choice_idx")})
+@Table(name = "choice_restaurant", uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "choice_date"}, name = "unique_user_choice_date_idx")})
 public class Choice extends AbstractBaseEntity {
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
@@ -23,7 +23,7 @@ public class Choice extends AbstractBaseEntity {
     @NotNull
     private Restaurant restaurant;
 
-    @Column(name = "choice_restaurant", nullable = false)
+    @Column(name = "choice_date", nullable = false)
     @NotNull
     private LocalDate date;
 
