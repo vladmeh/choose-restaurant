@@ -2,7 +2,7 @@
 	"variables": [],
 	"info": {
 		"name": "topjava-graduation",
-		"_postman_id": "1fc90e90-bc7d-cf4d-ae72-73ce427f1c36",
+		"_postman_id": "77dc4c0c-5241-3730-028d-10b2a8ad4dc7",
 		"description": "",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
@@ -156,7 +156,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"New user\",\n\t\"email\": \"user@mail.ru\",\n\t\"password\": \"password\",\n\t\"roles\": [\n\t    \"ROLE_USER\"\n\t]\n}"
+							"raw": "{\n  \"name\": \"New user\",\n  \"email\": \"user@mail.ru\",\n  \"password\": \"password\",\n  \"roles\": [\n      \"ROLE_USER\"\n  ]\n}"
 						},
 						"description": "create User"
 					},
@@ -266,7 +266,7 @@
 							"mode": "raw",
 							"raw": "{\n  \"firstName\": \"Vasiya\",\n  \"lastName\": \"Sidorov\",\n  \"twitter\": \"Vasid\",\n  \"bio\": \"Lorem ipsum dolor sit amet\"\n}"
 						},
-						"description": null
+						"description": ""
 					},
 					"response": []
 				},
@@ -356,7 +356,7 @@
 							"mode": "raw",
 							"raw": "{\n  \"name\":\"Чайкофф\"\n}"
 						},
-						"description": null
+						"description": ""
 					},
 					"response": []
 				},
@@ -385,7 +385,7 @@
 							"mode": "raw",
 							"raw": "{\n  \"firstName\": \"Vasiya\",\n  \"lastName\": \"Sidorov\",\n  \"twitter\": \"Vasid\",\n  \"bio\": \"Lorem ipsum dolor sit amet\"\n}"
 						},
-						"description": null
+						"description": ""
 					},
 					"response": []
 				},
@@ -1023,7 +1023,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"Гамбургер\",\n    \"price\": 80,\n    \"menu\": \"http://localhost:8080/api-dev/menu/0\"\n}"
+							"raw": "{\n  \"name\": \"Гамбургер\",\n    \"price\": 80,\n    \"menu\": \"http://localhost:8080/api-dev/menu/0\"\n}"
 						},
 						"description": "create dishes"
 					},
@@ -1057,7 +1057,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"Макчикен\",\n    \"price\": 120\n}"
+							"raw": "{\n  \"name\": \"Макчикен\",\n    \"price\": 120\n}"
 						},
 						"description": "update dishes"
 					},
@@ -1091,7 +1091,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"Макчикен\",\n    \"price\": 120\n}"
+							"raw": "{\n  \"name\": \"Макчикен\",\n    \"price\": 120\n}"
 						},
 						"description": "delete dishes"
 					},
@@ -1206,6 +1206,80 @@
 							"raw": "{\n  \"firstName\": \"Vasiya\",\n  \"lastName\": \"Sidorov\",\n  \"twitter\": \"Vasid\",\n  \"bio\": \"Lorem ipsum dolor sit amet\"\n}"
 						},
 						"description": "get dishes by date"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Choice",
+			"description": "",
+			"item": [
+				{
+					"name": "http://localhost:8080/api/choice",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"username": "user@yandex.ru",
+								"password": "user",
+								"saveHelperData": true,
+								"showPassword": false
+							}
+						},
+						"url": "http://localhost:8080/api/choice",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic dXNlckB5YW5kZXgucnU6dXNlcg==",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"firstName\": \"Vasiya\",\n  \"lastName\": \"Sidorov\",\n  \"twitter\": \"Vasid\",\n  \"bio\": \"Lorem ipsum dolor sit amet\"\n}"
+						},
+						"description": "choice current"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/api/choice/0",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"username": "user@yandex.ru",
+								"password": "user",
+								"saveHelperData": true,
+								"showPassword": false
+							}
+						},
+						"url": "http://localhost:8080/api/choice/0",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic dXNlckB5YW5kZXgucnU6dXNlcg==",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": "choice restaurant"
 					},
 					"response": []
 				}

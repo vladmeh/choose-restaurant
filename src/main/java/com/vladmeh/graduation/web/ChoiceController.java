@@ -4,6 +4,7 @@ import com.vladmeh.graduation.model.Menu;
 import com.vladmeh.graduation.model.Restaurant;
 import com.vladmeh.graduation.service.ChoiceService;
 import com.vladmeh.graduation.userdetails.UserPrincipal;
+import com.vladmeh.graduation.util.ChoiceStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -50,11 +51,10 @@ public class ChoiceController {
         }
 
         boolean limit = LocalTime.now().isAfter(TIME_LIMIT);
-        if (limit) {
-            return new ResponseEntity<>(HttpStatus.CONFLICT);
-        }
+        ChoiceStatus choiceStatus = limit
+                ? choiceService.saveAfterLimitTime(userPrincipal.getUser(), menu)
+                : choiceService.save(userPrincipal.getUser(), menu);
 
-        choiceService.save(userPrincipal.getUser(), menu);
-        return current(userPrincipal);
+        return new ResponseEntity<>(choiceStatus.getChoice().getRestaurant(), choiceStatus.isCreated() ? HttpStatus.CREATED : (limit ? HttpStatus.CONFLICT : HttpStatus.OK));
     }
 }

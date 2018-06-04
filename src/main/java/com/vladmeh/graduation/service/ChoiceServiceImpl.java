@@ -4,6 +4,7 @@ import com.vladmeh.graduation.model.Choice;
 import com.vladmeh.graduation.model.Menu;
 import com.vladmeh.graduation.model.User;
 import com.vladmeh.graduation.repository.ChoiceRepository;
+import com.vladmeh.graduation.util.ChoiceStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,19 +39,26 @@ public class ChoiceServiceImpl implements ChoiceService {
 
     @Override
     @Transactional
-    public Choice save(User user, Menu menu) {
+    public ChoiceStatus save(User user, Menu menu) {
         LocalDate date = menu.getDate();
-        Choice choice = choiceRepository.getForUserAndDate(user.getId(), date)
+        ChoiceStatus choiceStatus = choiceRepository.getForUserAndDate(user.getId(), date)
                 .map(c -> {
-                    c.setRestaurant(menu.getRestaurant()); //update
-                    return c;
+                    c.setRestaurant(menu.getRestaurant()); //create
+                    return new ChoiceStatus(c, false);
                 })
-                .orElseGet(() -> new Choice(
-                        user, menu.getRestaurant(), date)); //created
+                .orElseGet(() -> new ChoiceStatus(
+                        new Choice(user, menu.getRestaurant(), date), true)); //update
 
-        choiceRepository.save(choice);
+        choiceRepository.save(choiceStatus.getChoice());
 
-        return choice;
+        return choiceStatus;
+    }
+
+    public ChoiceStatus saveAfterLimitTime(User user, Menu menu) {
+        LocalDate date = menu.getDate();
+        return choiceRepository.getForUserAndDate(user.getId(), date)
+                .map(c -> new ChoiceStatus(c, false))
+                .orElseGet(() -> new ChoiceStatus(choiceRepository.save(new Choice(user, menu.getRestaurant(), date)), true));
     }
 
 }

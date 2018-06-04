@@ -3,6 +3,7 @@ package com.vladmeh.graduation.service;
 import com.vladmeh.graduation.model.Choice;
 import com.vladmeh.graduation.model.Menu;
 import com.vladmeh.graduation.model.User;
+import com.vladmeh.graduation.util.ChoiceStatus;
 
 import java.time.LocalDate;
 import java.util.Optional;
@@ -16,5 +17,7 @@ import java.util.Optional;
 public interface ChoiceService {
     Optional<Choice> getForUserAndDate(Long userId, LocalDate date);
 
-    Choice save(User user, Menu menu);
+    ChoiceStatus save(User user, Menu menu);
+
+    ChoiceStatus saveAfterLimitTime(User user, Menu menu);
 }
