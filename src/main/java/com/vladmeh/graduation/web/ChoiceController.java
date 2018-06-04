@@ -1,7 +1,7 @@
 package com.vladmeh.graduation.web;
 
+import com.vladmeh.graduation.model.Menu;
 import com.vladmeh.graduation.model.Restaurant;
-import com.vladmeh.graduation.model.User;
 import com.vladmeh.graduation.service.ChoiceService;
 import com.vladmeh.graduation.userdetails.UserPrincipal;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,8 +37,14 @@ public class ChoiceController {
     }
 
     @PostMapping("/{id}")
-    public ResponseEntity<Restaurant> choice(@PathVariable("id") Restaurant restaurant) {
-        choiceService.save(UserPrincipal.user(), restaurant);
+    public ResponseEntity<Restaurant> choice(@PathVariable("id") Menu menu) {
+        LocalDate today = LocalDate.now();
+
+        if (menu == null || !menu.getDate().equals(today)) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        choiceService.save(UserPrincipal.user(), menu);
         return current();
     }
 }

@@ -1,7 +1,7 @@
 package com.vladmeh.graduation.service;
 
 import com.vladmeh.graduation.model.Choice;
-import com.vladmeh.graduation.model.Restaurant;
+import com.vladmeh.graduation.model.Menu;
 import com.vladmeh.graduation.model.User;
 import com.vladmeh.graduation.repository.ChoiceRepository;
 import org.slf4j.Logger;
@@ -36,11 +36,18 @@ public class ChoiceServiceImpl implements ChoiceService {
         return choiceRepository.getForUserAndDate(userId, date);
     }
 
-
     @Override
     @Transactional
-    public void save(User user, Restaurant restaurant){
-        Choice choice = new Choice(user, restaurant, LocalDate.now());
+    public void save(User user, Menu menu) {
+        LocalDate date = menu.getDate();
+        Choice choice = choiceRepository.getForUserAndDate(user.getId(), date)
+                .map(c -> {
+                    c.setRestaurant(menu.getRestaurant());
+                    return c;
+                })
+                .orElseGet(() -> new Choice(
+                        user, menu.getRestaurant(), date));
+
         choiceRepository.save(choice);
     }
 }
