@@ -16,5 +16,5 @@ import java.util.Optional;
 public interface ChoiceService {
     Optional<Choice> getForUserAndDate(Long userId, LocalDate date);
 
-    void save(User user, Menu menu);
+    Choice save(User user, Menu menu);
 }

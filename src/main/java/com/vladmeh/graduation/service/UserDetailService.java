@@ -15,6 +15,8 @@ import org.springframework.stereotype.Service;
 /**
  * @author Vladimir Mikhaylov <vladmeh@gmail.com> on 24.05.2018.
  * @link https://github.com/vladmeh/graduation-topjava
+ *
+ * @link http://www.baeldung.com/spring-security-authentication-with-a-database
  */
 
 @Service("userService")
@@ -23,13 +25,11 @@ public class UserDetailService implements UserDetailsService {
 
     private final UserRepository userRepository;
 
-
     @Autowired
     public UserDetailService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
-    //http://www.baeldung.com/spring-security-authentication-with-a-database
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         String login = email.toLowerCase();

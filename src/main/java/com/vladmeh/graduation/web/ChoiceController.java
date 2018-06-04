@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -17,6 +18,7 @@ import java.time.LocalTime;
 /**
  * @autor Vladimir Mikhaylov <vladmeh@gmail.com> on 04.06.2018.
  * @link graduation-topjava
+ * @link https://docs.spring.io/spring-security/site/docs/current/reference/html/mvc.html#mvc-authentication-principal
  */
 
 @RestController
@@ -32,14 +34,15 @@ public class ChoiceController {
     }
 
     @GetMapping
-    public ResponseEntity<Restaurant> current() {
-        return choiceService.getForUserAndDate(UserPrincipal.id(), LocalDate.now())
+    public ResponseEntity<Restaurant> current(@AuthenticationPrincipal UserPrincipal userPrincipal) {
+
+        return choiceService.getForUserAndDate(userPrincipal.getUser().getId(), LocalDate.now())
                 .map(choice -> new ResponseEntity<>(choice.getRestaurant(), HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PostMapping("/{id}")
-    public ResponseEntity<Restaurant> choice(@PathVariable("id") Menu menu) {
+    public ResponseEntity<Restaurant> choice(@AuthenticationPrincipal UserPrincipal userPrincipal, @PathVariable("id") Menu menu) {
         LocalDate today = LocalDate.now();
 
         if (menu == null || !menu.getDate().equals(today)) {
@@ -51,7 +54,7 @@ public class ChoiceController {
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
 
-        choiceService.save(UserPrincipal.user(), menu);
-        return current();
+        choiceService.save(userPrincipal.getUser(), menu);
+        return current(userPrincipal);
     }
 }

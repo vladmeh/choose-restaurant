@@ -38,7 +38,7 @@ public class ChoiceServiceImpl implements ChoiceService {
 
     @Override
     @Transactional
-    public void save(User user, Menu menu) {
+    public Choice save(User user, Menu menu) {
         LocalDate date = menu.getDate();
         Choice choice = choiceRepository.getForUserAndDate(user.getId(), date)
                 .map(c -> {
@@ -49,5 +49,8 @@ public class ChoiceServiceImpl implements ChoiceService {
                         user, menu.getRestaurant(), date)); //created
 
         choiceRepository.save(choice);
+
+        return choice;
     }
+
 }
