@@ -20,12 +20,12 @@ import java.time.LocalDate;
 
 @RestController
 @RequestMapping(value = "/api/choice", produces = MediaType.APPLICATION_JSON_VALUE)
-public class choiceController {
+public class ChoiceController {
 
     private final ChoiceService choiceService;
 
     @Autowired
-    public choiceController(ChoiceService choiceService) {
+    public ChoiceController(ChoiceService choiceService) {
         this.choiceService = choiceService;
     }
 
