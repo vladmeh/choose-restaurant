@@ -42,11 +42,11 @@ public class ChoiceServiceImpl implements ChoiceService {
         LocalDate date = menu.getDate();
         Choice choice = choiceRepository.getForUserAndDate(user.getId(), date)
                 .map(c -> {
-                    c.setRestaurant(menu.getRestaurant());
+                    c.setRestaurant(menu.getRestaurant()); //update
                     return c;
                 })
                 .orElseGet(() -> new Choice(
-                        user, menu.getRestaurant(), date));
+                        user, menu.getRestaurant(), date)); //created
 
         choiceRepository.save(choice);
     }
