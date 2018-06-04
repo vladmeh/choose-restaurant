@@ -12,7 +12,7 @@
 			"description": "",
 			"item": [
 				{
-					"name": "http://localhost:8080/api-dev/users",
+					"name": "http://localhost:8080/api/users",
 					"request": {
 						"auth": {
 							"type": "basic",
@@ -23,16 +23,18 @@
 								"showPassword": false
 							}
 						},
-						"url": "http://localhost:8080/api-dev/users",
+						"url": "http://localhost:8080/api/users",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Content-Type",
-								"value": "application/json"
+								"value": "application/json",
+								"description": ""
 							},
 							{
 								"key": "Authorization",
-								"value": "Basic YWRtaW5AZ21haWwuY29tOmFkbWlu"
+								"value": "Basic YWRtaW5AZ21haWwuY29tOmFkbWlu",
+								"description": ""
 							}
 						],
 						"body": {
@@ -44,7 +46,7 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/api-dev/users/0",
+					"name": "http://localhost:8080/api/users/0",
 					"request": {
 						"auth": {
 							"type": "basic",
@@ -55,16 +57,18 @@
 								"showPassword": false
 							}
 						},
-						"url": "http://localhost:8080/api-dev/users/0",
+						"url": "http://localhost:8080/api/users/0",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Content-Type",
-								"value": "application/json"
+								"value": "application/json",
+								"description": ""
 							},
 							{
 								"key": "Authorization",
-								"value": "Basic YWRtaW5AZ21haWwuY29tOmFkbWlu"
+								"value": "Basic YWRtaW5AZ21haWwuY29tOmFkbWlu",
+								"description": ""
 							}
 						],
 						"body": {
@@ -76,7 +80,7 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/api-dev/users/search/by-email?email=user@yandex.ru",
+					"name": "http://localhost:8080/api/users/search/by-email?email=user@yandex.ru",
 					"request": {
 						"auth": {
 							"type": "basic",
@@ -88,14 +92,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api-dev/users/search/by-email?email=user@yandex.ru",
+							"raw": "http://localhost:8080/api/users/search/by-email?email=user@yandex.ru",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"api-dev",
+								"api",
 								"users",
 								"search",
 								"by-email"
@@ -104,7 +108,8 @@
 								{
 									"key": "email",
 									"value": "user@yandex.ru",
-									"equals": true
+									"equals": true,
+									"description": ""
 								}
 							],
 							"variable": []
@@ -113,11 +118,13 @@
 						"header": [
 							{
 								"key": "Content-Type",
-								"value": "application/json"
+								"value": "application/json",
+								"description": ""
 							},
 							{
 								"key": "Authorization",
-								"value": "Basic YWRtaW5AZ21haWwuY29tOmFkbWlu"
+								"value": "Basic YWRtaW5AZ21haWwuY29tOmFkbWlu",
+								"description": ""
 							}
 						],
 						"body": {
@@ -129,7 +136,7 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/api-dev/users",
+					"name": "http://localhost:8080/api/users",
 					"request": {
 						"auth": {
 							"type": "basic",
@@ -140,7 +147,7 @@
 								"showPassword": false
 							}
 						},
-						"url": "http://localhost:8080/api-dev/users",
+						"url": "http://localhost:8080/api/users",
 						"method": "POST",
 						"header": [
 							{
@@ -163,7 +170,7 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/api-dev/users/0",
+					"name": "http://localhost:8080/api/users/0",
 					"request": {
 						"auth": {
 							"type": "basic",
@@ -174,7 +181,7 @@
 								"showPassword": false
 							}
 						},
-						"url": "http://localhost:8080/api-dev/users/0",
+						"url": "http://localhost:8080/api/users/0",
 						"method": "PUT",
 						"header": [
 							{
@@ -197,7 +204,7 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/api-dev/users/0",
+					"name": "http://localhost:8080/api/users/0",
 					"request": {
 						"auth": {
 							"type": "basic",
@@ -208,7 +215,7 @@
 								"showPassword": false
 							}
 						},
-						"url": "http://localhost:8080/api-dev/users/0",
+						"url": "http://localhost:8080/api/users/0",
 						"method": "DELETE",
 						"header": [
 							{
@@ -237,7 +244,7 @@
 			"description": "",
 			"item": [
 				{
-					"name": "http://localhost:8080/api-dev/restaurants",
+					"name": "http://localhost:8080/api/restaurants",
 					"request": {
 						"auth": {
 							"type": "basic",
@@ -248,7 +255,7 @@
 								"showPassword": false
 							}
 						},
-						"url": "http://localhost:8080/api-dev/restaurants",
+						"url": "http://localhost:8080/api/restaurants",
 						"method": "GET",
 						"header": [
 							{
@@ -271,7 +278,7 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/api-dev/restaurants/search/by-name?name=KFC",
+					"name": "http://localhost:8080/api/restaurants/search/by-name?name=KFC",
 					"request": {
 						"auth": {
 							"type": "basic",
@@ -283,14 +290,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api-dev/restaurants/search/by-name?name=KFC",
+							"raw": "http://localhost:8080/api/restaurants/search/by-name?name=KFC",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"api-dev",
+								"api",
 								"restaurants",
 								"search",
 								"by-name"
@@ -327,7 +334,7 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/api-dev/restaurants",
+					"name": "http://localhost:8080/api/restaurants/0",
 					"request": {
 						"auth": {
 							"type": "basic",
@@ -338,7 +345,41 @@
 								"showPassword": false
 							}
 						},
-						"url": "http://localhost:8080/api-dev/restaurants",
+						"url": "http://localhost:8080/api/restaurants/0",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic YWRtaW5AZ21haWwuY29tOmFkbWlu",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"firstName\": \"Vasiya\",\n  \"lastName\": \"Sidorov\",\n  \"twitter\": \"Vasid\",\n  \"bio\": \"Lorem ipsum dolor sit amet\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/api/restaurants",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"username": "admin@gmail.com",
+								"password": "admin",
+								"saveHelperData": true,
+								"showPassword": false
+							}
+						},
+						"url": "http://localhost:8080/api/restaurants",
 						"method": "POST",
 						"header": [
 							{
@@ -356,12 +397,12 @@
 							"mode": "raw",
 							"raw": "{\n  \"name\":\"Чайкофф\"\n}"
 						},
-						"description": ""
+						"description": "Create restaurant"
 					},
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/api-dev/restaurants/0",
+					"name": "http://localhost:8080/api/restaurants/0",
 					"request": {
 						"auth": {
 							"type": "basic",
@@ -372,36 +413,7 @@
 								"showPassword": false
 							}
 						},
-						"url": "http://localhost:8080/api-dev/restaurants/0",
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"firstName\": \"Vasiya\",\n  \"lastName\": \"Sidorov\",\n  \"twitter\": \"Vasid\",\n  \"bio\": \"Lorem ipsum dolor sit amet\"\n}"
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "http://localhost:8080/api-dev/restaurants/0",
-					"request": {
-						"auth": {
-							"type": "basic",
-							"basic": {
-								"username": "admin@gmail.com",
-								"password": "admin",
-								"saveHelperData": true,
-								"showPassword": false
-							}
-						},
-						"url": "http://localhost:8080/api-dev/restaurants/0",
+						"url": "http://localhost:8080/api/restaurants/0",
 						"method": "PUT",
 						"header": [
 							{
@@ -424,7 +436,7 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/api-dev/restaurants/3",
+					"name": "http://localhost:8080/api/restaurants/0",
 					"request": {
 						"auth": {
 							"type": "basic",
@@ -435,7 +447,7 @@
 								"showPassword": false
 							}
 						},
-						"url": "http://localhost:8080/api-dev/restaurants/3",
+						"url": "http://localhost:8080/api/restaurants/0",
 						"method": "DELETE",
 						"header": [
 							{
@@ -464,7 +476,7 @@
 			"description": "",
 			"item": [
 				{
-					"name": "http://localhost:8080/api-dev 200",
+					"name": "http://localhost:8080/api 200",
 					"request": {
 						"auth": {
 							"type": "basic",
@@ -475,7 +487,7 @@
 								"showPassword": false
 							}
 						},
-						"url": "http://localhost:8080/api-dev",
+						"url": "http://localhost:8080/api",
 						"method": "GET",
 						"header": [
 							{
@@ -495,10 +507,92 @@
 						},
 						"description": "admin Authorized"
 					},
-					"response": []
+					"response": [
+						{
+							"id": "bdb5c741-6e13-45d8-9a56-18f5aac038ea",
+							"name": "http://localhost:8080/api",
+							"originalRequest": {
+								"url": "http://localhost:8080/api",
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									},
+									{
+										"key": "Authorization",
+										"value": "Basic YWRtaW5AZ21haWwuY29tOmFkbWlu",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"firstName\": \"Vasiya\",\n  \"lastName\": \"Sidorov\",\n  \"twitter\": \"Vasid\",\n  \"bio\": \"Lorem ipsum dolor sit amet\"\n}"
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "text",
+							"header": [
+								{
+									"name": "cache-control",
+									"key": "cache-control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate",
+									"description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
+								},
+								{
+									"name": "content-type",
+									"key": "content-type",
+									"value": "application/hal+json;charset=UTF-8",
+									"description": "The mime type of this content"
+								},
+								{
+									"name": "date",
+									"key": "date",
+									"value": "Mon, 04 Jun 2018 23:15:40 GMT",
+									"description": "The date and time that the message was sent"
+								},
+								{
+									"name": "expires",
+									"key": "expires",
+									"value": "0",
+									"description": "Gives the date/time after which the response is considered stale"
+								},
+								{
+									"name": "pragma",
+									"key": "pragma",
+									"value": "no-cache",
+									"description": "Implementation-specific headers that may have various effects anywhere along the request-response chain."
+								},
+								{
+									"name": "transfer-encoding",
+									"key": "transfer-encoding",
+									"value": "chunked",
+									"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+								},
+								{
+									"name": "x-content-type-options",
+									"key": "x-content-type-options",
+									"value": "nosniff",
+									"description": "The only defined value, \"nosniff\", prevents Internet Explorer from MIME-sniffing a response away from the declared content-type"
+								},
+								{
+									"name": "x-xss-protection",
+									"key": "x-xss-protection",
+									"value": "1; mode=block",
+									"description": "Cross-site scripting (XSS) filter"
+								}
+							],
+							"cookie": [],
+							"responseTime": 101,
+							"body": "{\r\n  \"_links\" : {\r\n    \"dishes\" : {\r\n      \"href\" : \"http://localhost:8080/api/dishes{?page,size,sort}\",\r\n      \"templated\" : true\r\n    },\r\n    \"restaurant\" : {\r\n      \"href\" : \"http://localhost:8080/api/restaurants{?page,size,sort}\",\r\n      \"templated\" : true\r\n    },\r\n    \"user\" : {\r\n      \"href\" : \"http://localhost:8080/api/users{?page,size,sort}\",\r\n      \"templated\" : true\r\n    },\r\n    \"menu\" : {\r\n      \"href\" : \"http://localhost:8080/api/menu{?page,size,sort}\",\r\n      \"templated\" : true\r\n    },\r\n    \"profile\" : {\r\n      \"href\" : \"http://localhost:8080/api/profile\"\r\n    }\r\n  }\r\n}"
+						}
+					]
 				},
 				{
-					"name": "http://localhost:8080/api-dev 200",
+					"name": "http://localhost:8080/api 200",
 					"request": {
 						"auth": {
 							"type": "basic",
@@ -509,7 +603,7 @@
 								"showPassword": false
 							}
 						},
-						"url": "http://localhost:8080/api-dev",
+						"url": "http://localhost:8080/api",
 						"method": "GET",
 						"header": [
 							{
@@ -532,7 +626,7 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/api-dev 401",
+					"name": "http://localhost:8080/api 401",
 					"request": {
 						"auth": {
 							"type": "basic",
@@ -543,7 +637,7 @@
 								"showPassword": false
 							}
 						},
-						"url": "http://localhost:8080/api-dev",
+						"url": "http://localhost:8080/api",
 						"method": "GET",
 						"header": [
 							{
@@ -572,7 +666,7 @@
 			"description": "",
 			"item": [
 				{
-					"name": "http://localhost:8080/api-dev/menu",
+					"name": "http://localhost:8080/api/menu",
 					"request": {
 						"auth": {
 							"type": "basic",
@@ -583,7 +677,7 @@
 								"showPassword": false
 							}
 						},
-						"url": "http://localhost:8080/api-dev/menu",
+						"url": "http://localhost:8080/api/menu",
 						"method": "GET",
 						"header": [
 							{
@@ -606,7 +700,7 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/api-dev/menu/0",
+					"name": "http://localhost:8080/api/menu/0",
 					"request": {
 						"auth": {
 							"type": "basic",
@@ -617,7 +711,7 @@
 								"showPassword": false
 							}
 						},
-						"url": "http://localhost:8080/api-dev/menu/0",
+						"url": "http://localhost:8080/api/menu/0",
 						"method": "GET",
 						"header": [
 							{
@@ -640,7 +734,7 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/api-dev/menu/0/restaurant",
+					"name": "http://localhost:8080/api/menu/0/restaurant",
 					"request": {
 						"auth": {
 							"type": "basic",
@@ -651,7 +745,7 @@
 								"showPassword": false
 							}
 						},
-						"url": "http://localhost:8080/api-dev/menu/0/restaurant",
+						"url": "http://localhost:8080/api/menu/0/restaurant",
 						"method": "GET",
 						"header": [
 							{
@@ -674,7 +768,7 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/api-dev/menu/search/by-date?date=2018-05-23",
+					"name": "http://localhost:8080/api/menu/search/by-date?date=2018-05-23",
 					"request": {
 						"auth": {
 							"type": "basic",
@@ -686,14 +780,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api-dev/menu/search/by-date?date=2018-05-23",
+							"raw": "http://localhost:8080/api/menu/search/by-date?date=2018-05-23",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"api-dev",
+								"api",
 								"menu",
 								"search",
 								"by-date"
@@ -730,7 +824,7 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/api-dev/menu/search/by-restaurant?restaurant=http://localhost:8080/api-dev/restaurant/0",
+					"name": "http://localhost:8080/api/menu/search/by-restaurant?restaurant=http://localhost:8080/api/restaurant/0",
 					"request": {
 						"auth": {
 							"type": "basic",
@@ -742,14 +836,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api-dev/menu/search/by-restaurant?restaurant=http://localhost:8080/api-dev/restaurant/0",
+							"raw": "http://localhost:8080/api/menu/search/by-restaurant?restaurant=http://localhost:8080/api/restaurant/0",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"api-dev",
+								"api",
 								"menu",
 								"search",
 								"by-restaurant"
@@ -757,7 +851,7 @@
 							"query": [
 								{
 									"key": "restaurant",
-									"value": "http://localhost:8080/api-dev/restaurant/0",
+									"value": "http://localhost:8080/api/restaurant/0",
 									"equals": true,
 									"description": ""
 								}
@@ -786,7 +880,7 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/api-dev/menu",
+					"name": "http://localhost:8080/api/menu",
 					"request": {
 						"auth": {
 							"type": "basic",
@@ -797,7 +891,7 @@
 								"showPassword": false
 							}
 						},
-						"url": "http://localhost:8080/api-dev/menu",
+						"url": "http://localhost:8080/api/menu",
 						"method": "POST",
 						"header": [
 							{
@@ -813,14 +907,14 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"date\": \"2018-06-01\",\n  \"restaurant\": \"http://localhost:8080/api-dev/restaurants/0\"\n}"
+							"raw": "{\n  \"date\": \"2018-06-01\",\n  \"restaurant\": \"http://localhost:8080/api/restaurants/0\"\n}"
 						},
 						"description": "create menu"
 					},
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/api-dev/menu/0",
+					"name": "http://localhost:8080/api/menu/0",
 					"request": {
 						"auth": {
 							"type": "basic",
@@ -831,7 +925,7 @@
 								"showPassword": false
 							}
 						},
-						"url": "http://localhost:8080/api-dev/menu/0",
+						"url": "http://localhost:8080/api/menu/0",
 						"method": "PUT",
 						"header": [
 							{
@@ -854,7 +948,7 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/api-dev/menu/6",
+					"name": "http://localhost:8080/api/menu/6",
 					"request": {
 						"auth": {
 							"type": "basic",
@@ -865,7 +959,7 @@
 								"showPassword": false
 							}
 						},
-						"url": "http://localhost:8080/api-dev/menu/6",
+						"url": "http://localhost:8080/api/menu/6",
 						"method": "DELETE",
 						"header": [
 							{
@@ -894,7 +988,7 @@
 			"description": "",
 			"item": [
 				{
-					"name": "http://localhost:8080/api-dev/dishes",
+					"name": "http://localhost:8080/api/dishes",
 					"request": {
 						"auth": {
 							"type": "basic",
@@ -905,7 +999,7 @@
 								"showPassword": false
 							}
 						},
-						"url": "http://localhost:8080/api-dev/dishes",
+						"url": "http://localhost:8080/api/dishes",
 						"method": "GET",
 						"header": [
 							{
@@ -928,7 +1022,7 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/api-dev/dishes/0",
+					"name": "http://localhost:8080/api/dishes/0",
 					"request": {
 						"auth": {
 							"type": "basic",
@@ -939,7 +1033,7 @@
 								"showPassword": false
 							}
 						},
-						"url": "http://localhost:8080/api-dev/dishes/0",
+						"url": "http://localhost:8080/api/dishes/0",
 						"method": "GET",
 						"header": [
 							{
@@ -962,7 +1056,7 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/api-dev/dishes/0/menu",
+					"name": "http://localhost:8080/api/dishes/0/menu",
 					"request": {
 						"auth": {
 							"type": "basic",
@@ -973,7 +1067,7 @@
 								"showPassword": false
 							}
 						},
-						"url": "http://localhost:8080/api-dev/dishes/0/menu",
+						"url": "http://localhost:8080/api/dishes/0/menu",
 						"method": "GET",
 						"header": [
 							{
@@ -996,7 +1090,7 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/api-dev/dishes",
+					"name": "http://localhost:8080/api/dishes",
 					"request": {
 						"auth": {
 							"type": "basic",
@@ -1007,7 +1101,7 @@
 								"showPassword": false
 							}
 						},
-						"url": "http://localhost:8080/api-dev/dishes",
+						"url": "http://localhost:8080/api/dishes",
 						"method": "POST",
 						"header": [
 							{
@@ -1023,14 +1117,14 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"Гамбургер\",\n    \"price\": 80,\n    \"menu\": \"http://localhost:8080/api-dev/menu/0\"\n}"
+							"raw": "{\n  \"name\": \"Гамбургер\",\n    \"price\": 80,\n    \"menu\": \"http://localhost:8080/api/menu/0\"\n}"
 						},
 						"description": "create dishes"
 					},
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/api-dev/dishes/0",
+					"name": "http://localhost:8080/api/dishes/0",
 					"request": {
 						"auth": {
 							"type": "basic",
@@ -1041,7 +1135,7 @@
 								"showPassword": false
 							}
 						},
-						"url": "http://localhost:8080/api-dev/dishes/0",
+						"url": "http://localhost:8080/api/dishes/0",
 						"method": "PUT",
 						"header": [
 							{
@@ -1064,7 +1158,7 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/api-dev/dishes/0",
+					"name": "http://localhost:8080/api/dishes/0",
 					"request": {
 						"auth": {
 							"type": "basic",
@@ -1075,7 +1169,7 @@
 								"showPassword": false
 							}
 						},
-						"url": "http://localhost:8080/api-dev/dishes/12",
+						"url": "http://localhost:8080/api/dishes/12",
 						"method": "DELETE",
 						"header": [
 							{
@@ -1098,7 +1192,7 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/api-dev/dishes/search/by-menu?menu=http://localhost:8080/api-dev/menu/0",
+					"name": "http://localhost:8080/api/dishes/search/by-menu?menu=http://localhost:8080/api/menu/0",
 					"request": {
 						"auth": {
 							"type": "basic",
@@ -1110,14 +1204,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api-dev/dishes/search/by-menu?menu=http://localhost:8080/api-dev/menu/0",
+							"raw": "http://localhost:8080/api/dishes/search/by-menu?menu=http://localhost:8080/api/menu/0",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"api-dev",
+								"api",
 								"dishes",
 								"search",
 								"by-menu"
@@ -1125,7 +1219,7 @@
 							"query": [
 								{
 									"key": "menu",
-									"value": "http://localhost:8080/api-dev/menu/0",
+									"value": "http://localhost:8080/api/menu/0",
 									"equals": true,
 									"description": ""
 								}
@@ -1154,7 +1248,7 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/api-dev/dishes/search/by-date?date=2018-06-03",
+					"name": "http://localhost:8080/api/dishes/search/by-date?date=2018-06-03",
 					"request": {
 						"auth": {
 							"type": "basic",
@@ -1166,14 +1260,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api-dev/dishes/search/by-date?date=2018-06-03",
+							"raw": "http://localhost:8080/api/dishes/search/by-date?date=2018-06-03",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"api-dev",
+								"api",
 								"dishes",
 								"search",
 								"by-date"
