@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.vladmeh</groupId>
-    <artifactId>graduation-topjava</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <artifactId>choose-restaurant</artifactId>
+    <version>1.0</version>
     <packaging>jar</packaging>
 
-    <name>graduation-topjava</name>
+    <name>choose-restaurant</name>
     <description>Restaurant system of choice, something to eat lunch (REST only)</description>
 
     <parent>
@@ -67,7 +67,7 @@
 
 
     <build>
-        <finalName>graduation-topjava</finalName>
+        <finalName>choose-restaurant</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

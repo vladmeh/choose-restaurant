@@ -16,7 +16,7 @@ Restaurant system of choice, something to eat lunch (REST only)
 Installation
 ------------
 ```console
-$ git clone https://github.com/vladmeh/graduation-topjava.git
+$ git clone https://github.com/vladmeh/choose-restaurant.git
 ```
 Introduction
 ------------
@@ -27,7 +27,7 @@ $ mvn spring-boot:run -Dspring-boot.run.profiles=dev
 or
 ```console
 $ mvn clean package
-$ java -Dspring.profiles.active=dev -Dfile.encoding=UTF8 -jar target/graduation-topjava.jar
+$ java -Dspring.profiles.active=dev -Dfile.encoding=UTF8 -jar target/choose-restaurant.jar
 ```
 
 ##### H2 database
@@ -47,7 +47,7 @@ $ mvn spring-boot:run -Dspring-boot.run.profiles=prod -Dspring-boot.run.jvmArgum
 or
 ```console
 $ mvn clean package
-$ java -Dspring.profiles.active=prod -Dfile.encoding=UTF8 -jar target/graduation-topjava.jar
+$ java -Dspring.profiles.active=prod -Dfile.encoding=UTF8 -jar target/choose-restaurant.jar
 ```
 
 ##### H2 database
