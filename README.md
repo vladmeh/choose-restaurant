@@ -130,4 +130,7 @@ Check current choice:
 $ curl -si 'http://localhost:8080/api/choice' -H 'Authorization:Basic dXNlckB5YW5kZXgucnU6dXNlcg==
 ```
 
+## Testing
+* Postman - `./choose-restaurant.postman_collection.json`
+
 
