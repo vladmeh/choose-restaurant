@@ -56,14 +56,16 @@ $ java -Dspring.profiles.active=prod -Dfile.encoding=UTF8 -jar target/choose-res
 * password: WdyHMa4G
 
 #### Authentication
-* Admin login: "admin@gmail.com"
-* Password: "admin"
-* Request Headers: "Authorization:Basic YWRtaW5AZ21haWwuY29tOmFkbWlu"
+* Admin 
+    * login: "admin@gmail.com"
+    * Password: "admin"
+    * Request Headers: "Authorization:Basic YWRtaW5AZ21haWwuY29tOmFkbWlu"
 
 
-* User login: "user@yandex.ru"
-* Password: "user"
-* Request Headers: "Authorization:Basic dXNlckB5YW5kZXgucnU6dXNlcg=="
+- User 
+    - login: "user@yandex.ru"
+    - Password: "user"
+    - Request Headers: "Authorization:Basic dXNlckB5YW5kZXgucnU6dXNlcg=="
 
 Run
 ---
