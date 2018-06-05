@@ -1,6 +1,6 @@
 Restaurant system of choice, something to eat lunch (REST only)
 ===============================================================
-### [Testing task](https://github.com/vladmeh/graduation-topjava/blob/master/test_task.md)
+### [Testing task](https://github.com/vladmeh/choose-restaurant/blob/master/test_task.md)
 
 #### Implementation Stack:
 
@@ -31,7 +31,7 @@ $ java -Dspring.profiles.active=dev -Dfile.encoding=UTF8 -jar target/graduation-
 ##### H2 database
 * [console](http://localhost:8080/console) - `http://localhost:8080/console`
 * driver class: org.h2.Driver
-* JDBC URL: jdbc:h2:mem:graduation
+* JDBC URL: jdbc:h2:mem:choosing
 * user name: sa
 * password: no password
 
@@ -49,7 +49,7 @@ $ java -Dspring.profiles.active=prod -Dfile.encoding=UTF8 -jar target/graduation
 ```
 
 ##### H2 database
-* JDBC URL: jdbc:h2:file:~/graduation
+* JDBC URL: jdbc:h2:file:~/choosing
 * user name: sa
 * password: WdyHMa4G
 

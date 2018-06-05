@@ -6,3 +6,4 @@ gen
 log
 target
 *.mv.db
+data
