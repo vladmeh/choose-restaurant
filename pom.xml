@@ -10,7 +10,7 @@
     <packaging>jar</packaging>
 
     <name>graduation-topjava</name>
-    <description>REST API with Hibernate/Spring/SpringMVC (or Spring-Boot) without frontend</description>
+    <description>Restaurant system of choice, something to eat lunch (REST only)</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -73,7 +73,10 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <profiles>dev</profiles>
+                    <profiles>
+                        <profile>dev</profile>
+                        <profile>prod</profile>
+                    </profiles>
                     <jvmArguments>-Dfile.encoding=UTF8</jvmArguments>
                 </configuration>
             </plugin>

@@ -1,5 +1,6 @@
 package com.vladmeh.graduation.config;
 
+import com.vladmeh.graduation.model.Role;
 import com.vladmeh.graduation.service.UserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -32,7 +33,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    //http://www.baeldung.com/spring-security-authentication-with-a-database
     private final UserDetailService userDetailService;
 
     @Autowired
@@ -57,16 +57,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                //.antMatchers("/api-dev/**").hasAuthority(Role.ROLE_USER.getAuthority()).anyRequest().authenticated()
-                .antMatchers("/api**").authenticated()
-                .and()
-                .formLogin().permitAll()
+                .antMatchers("/api/users**").hasAuthority(Role.ROLE_ADMIN.getAuthority())
+                .antMatchers("/api/**").authenticated()
                 .and()
                 .httpBasic()
                 .and().csrf().disable();
 
         http.sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED);
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.headers().frameOptions().disable();
     }
 }

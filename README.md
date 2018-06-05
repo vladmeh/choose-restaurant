@@ -1,64 +1,131 @@
-## Test task for a paid internship
+Restaurant system of choice, something to eat lunch (REST only)
+===============================================================
+### [Testing task](https://github.com/vladmeh/graduation-topjava/blob/master/test_task.md)
 
-Design and implement a REST API using Hibernate/Spring/SpringMVC (or Spring-Boot) **without frontend**.
+#### Implementation Stack:
 
-The task is:
+* Spring Boot 2.0.2
+* Spring Data JPA
+* Spring Data REST
+* Spring HATEOAS
+* Spring Security
+* H2 Database
 
-Build a voting system for deciding where to have lunch.
-
- * 2 types of users: admin and regular users
- * Admin can input a restaurant and it's lunch menu of the day (2-5 items usually, just a dish name and price)
- * Menu changes each day (admins do the updates)
- * Users can vote on which restaurant they want to have lunch at
- * Only one vote counted per user
- * If user votes again the same day:
-    - If it is before 11:00 we asume that he changed his mind.
-    - If it is after 11:00 then it is too late, vote can't be changed
-
-Each restaurant provides new menu each day.
-
-As a result, provide a link to github repository. It should contain the code, README.md with API documentation and couple curl commands to test it.
-
------------------------------
-P.S.: Make sure everything works with latest version that is on github :)
-
-P.P.S.: Asume that your API will be used by a frontend developer to build frontend on top of that.
-
-#### Users
-```bash
-# Get
-curl 'http://localhost:8080/api/users'
-curl 'http://localhost:8080/api/users/0'
-curl 'http://localhost:8080/api/users/search/by-email?email=admin@gmail.com'
-
-# Create
-curl -sid '{"name":"New User","email":"user@local.loc", "password":"12345", "roles" : ["ROLE_USER"]}' -H 'Content-Type:application/json;charset=UTF-8' http://localhost:8080/api/users
-
-# Update
-curl -siX PUT -d '{"name":"User 4","email":"user4@local.loc", "password":"12345", "roles" : ["ROLE_USER"]}' -H 'Content-Type:application/json;charset=UTF-8' http://localhost:8080/api/users/4
-
-# Delete
-curl -siX DELETE http://localhost:8080/api/users/2
+Installation
+------------
+```console
+$ git clone https://github.com/vladmeh/graduation-topjava.git
+```
+Introduction
+------------
+#### Dev environment
+```console
+$ mvn spring-boot:run -Dspring-boot.run.profiles=dev
+``` 
+or
+```console
+$ mvn clean package
+$ java -Dspring.profiles.active=dev -Dfile.encoding=UTF8 -jar target/graduation-topjava.jar
 ```
 
-#### Restaurant
-```bash
-# Get
-curl http://localhost:8080/api/restaurants
-curl http://localhost:8080/api/restaurants/0
-curl http://localhost:8080/api/restaurants/search/by-name?name=McDonalds
+##### H2 database
+* [console](http://localhost:8080/console) - `http://localhost:8080/console`
+* driver class: org.h2.Driver
+* JDBC URL: jdbc:h2:mem:graduation
+* user name: sa
+* password: no password
 
-# Create
-curl -sid '{"id":"","name":"Теремок"}' -H 'Content-Type:application/json;charset=UTF-8' http://localhost:8080/api/restaurants
-curl 'http://localhost:8080/api/restaurants' -i -d '{"name":"Teremok"}' -H 'Content-Type:application/json;charset=UTF-8'
-curl 'http://localhost:8080/api/restaurants' -i -d '{"name":"Теремок"}' -H 'Content-type: application/hal+json;charset=UTF-8'
-curl "http://localhost:8080/api/restaurants" -i -d @data/restaurant.json -H "Content-type:application/json;charset=UTF-8"
+##### HAL browser
+* http://localhost:8080/api
 
-# Update
-curl -siX PUT -d '{\"name\":\"Васаби\"}' -H 'Content-Type:application/json;charset=UTF-8' http://localhost:8080/api/restaurants/3
+#### Production environment
+```console
+$ mvn spring-boot:run -Dspring-boot.run.profiles=prod -Dspring-boot.run.jvmArguments="-Dfile.encoding=UTF8"
+``` 
+or
+```console
+$ mvn clean package
+$ java -Dspring.profiles.active=prod -Dfile.encoding=UTF8 -jar target/graduation-topjava.jar
+```
 
-# Delete
-curl -siX DELETE http://localhost:8080/api/restaurants/4
+##### H2 database
+* JDBC URL: jdbc:h2:file:~/graduation
+* user name: sa
+* password: WdyHMa4G
+
+#### Authentication
+* Admin login: "admin@gmail.com"
+* Password: "admin"
+* Request Headers: "Authorization:Basic YWRtaW5AZ21haWwuY29tOmFkbWlu"
+
+
+* User login: "user@yandex.ru"
+* Password: "user"
+* Request Headers: "Authorization:Basic dXNlckB5YW5kZXgucnU6dXNlcg=="
+
+Run
+---
+### Admin
+##### CURL Users
+```console
+$ curl 'http://localhost:8080/api/users' -H 'Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'
+$ curl 'http://localhost:8080/api/users/0' -H 'Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'
+$ curl 'http://localhost:8080/api/users/search/by-email?email=admin@gmail.com' -H 'Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'
+
+$ curl -si 'http://localhost:8080/api/users' -d '{"name":"New User","email":"user@local.loc", "password":"12345", "roles" : ["ROLE_USER"]}' -H 'Content-Type:application/json;charset=UTF-8' -H 'Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'
+$ curl -si 'http://localhost:8080/api/users/0' -X PUT -d '{"name":"User update","email":"user@yandex.ru", "password":"12345", "roles" : ["ROLE_USER"]}' -H 'Content-Type:application/json;charset=UTF-8' -H 'Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'
+$ curl -si 'http://localhost:8080/api/users/0' -X DELETE -H 'Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'
+```
+
+##### CURL Restaurant
+```console
+$ curl http://localhost:8080/api/restaurants -H 'Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'
+$ curl http://localhost:8080/api/restaurants/0 -H 'Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'
+$ curl http://localhost:8080/api/restaurants/search/by-name?name=McDonalds -H 'Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'
+
+$ curl -si 'http://localhost:8080/api/restaurants' -d '{"name":"Mama Roma"}' -H 'Content-Type:application/json;charset=UTF-8' -H 'Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'
+$ curl -si 'http://localhost:8080/api/restaurants/0' -X PUT -d '{"name":"Teremok"}' -H 'Content-Type:application/json;charset=UTF-8' -H 'Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'
+$ curl -si 'http://localhost:8080/api/restaurants/0' -X DELETE -H 'Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'
+```
+
+##### CURL Menu
+```console
+$ curl http://localhost:8080/api/menu -H 'Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'
+$ curl http://localhost:8080/api/menu/0 -H 'Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'
+$ curl http://localhost:8080/api/menu/search/by-date?date=2018-05-23 -H 'Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'
+$ curl http://localhost:8080/api/menu/search/by-restaurant?restaurant=http://localhost:8080/api/restaurant/0 -H 'Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'
+
+$ curl -si 'http://localhost:8080/api/menu' -d '{"date": "2018-06-05", "restaurant":"http://localhost:8080/api/restaurant/0"}' -H 'Content-Type:application/json;charset=UTF-8' -H 'Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'
+$ curl -si 'http://localhost:8080/api/menu/0' -X PUT -d '{"date": "2018-06-04"}' -H 'Content-Type:application/json;charset=UTF-8' -H 'Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'
+$ curl -si 'http://localhost:8080/api/menu/0' -X DELETE -H 'Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'
+```
+
+##### CURL Dishes
+```console
+$ curl http://localhost:8080/api/dishes -H 'Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'
+$ curl http://localhost:8080/api/dishes/0 -H 'Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'
+$ curl http://localhost:8080/api/dishes/search/by-date?date=2018-05-23 -H 'Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'
+$ curl http://localhost:8080/api/dishes/search/by-menu?menu=http://localhost:8080/api/menu/0 -H 'Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'
+
+$ curl -si 'http://localhost:8080/api/dishes' -d '{"name": "Kebab", "price":"200", "menu":"http://localhost:8080/api/menu/0"}' -H 'Content-Type:application/json;charset=UTF-8' -H 'Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'
+$ curl -si 'http://localhost:8080/api/dishes/0' -X PUT -d '{"name": "Big lunch", "price" : 300}' -H 'Content-Type:application/json;charset=UTF-8' -H 'Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'
+$ curl -si 'http://localhost:8080/api/dishes/0' -X DELETE -H 'Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'
+```
+
+## Choosing
+Choice for menu 0:
+```console
+$ curl -si 'http://localhost:8080/api/choice/0' -X POST -H 'Authorization:Basic dXNlckB5YW5kZXgucnU6dXNlcg=='
+```
+
+Choice for menu 2:
+```console
+$ curl -si 'http://localhost:8080/api/choice/2' -X POST -H 'Authorization:Basic dXNlckB5YW5kZXgucnU6dXNlcg=='
+```
+
+Check current choice:
+```console
+$ curl -si 'http://localhost:8080/api/choice' -H 'Authorization:Basic dXNlckB5YW5kZXgucnU6dXNlcg==
 ```
 
 
