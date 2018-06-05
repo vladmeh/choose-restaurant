@@ -7,7 +7,6 @@ import org.springframework.security.core.GrantedAuthority;
  * @link https://github.com/vladmeh/graduation-topjava
  */
 
-
 public enum Role implements GrantedAuthority {
     ROLE_USER,
     ROLE_ADMIN;

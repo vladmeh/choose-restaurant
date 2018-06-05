@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * @author Vladimir Mikhaylov <vladmeh@gmail.com> on 24.05.2018.
  * @link https://github.com/vladmeh/graduation-topjava
- *
+ * @link http://www.baeldung.com/spring-security-authentication-with-a-database
  * @link https://github.com/eugenp/tutorials/blob/master/spring-security-mvc-boot/src/main/java/org/baeldung/custom/security/MyUserPrincipal.java
  */
 public class UserPrincipal implements UserDetails {

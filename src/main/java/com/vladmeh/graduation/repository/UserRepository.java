@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 /**
  * @author Vladimir Mikhaylov <vladmeh@gmail.com> on 24.05.2018.
  * @link https://github.com/vladmeh/graduation-topjava
- *
  */
 
 @RepositoryRestResource(collectionResourceRel = "user", path = "users")

@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
 /**
  * @author Vladimir Mikhaylov <vladmeh@gmail.com> on 24.05.2018.
  * @link https://github.com/vladmeh/graduation-topjava
- *
  * @link http://www.baeldung.com/spring-security-authentication-with-a-database
  */
 

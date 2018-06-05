@@ -17,9 +17,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 /**
  * @author Vladimir Mikhaylov <vladmeh@gmail.com> on 24.05.2018.
  * @link https://github.com/vladmeh/graduation-topjava
- *
  * http://www.baeldung.com/spring-security-authentication-with-a-database
- *
  * http://www.baeldung.com/spring-security-session
  * <ul>
  * <li>ALWAYS – a session will always be created if one doesn’t already exist</li>
