@@ -7,7 +7,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 @WebAppConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)
-public class GraduationTopjavaApplicationTest {
+public class ApplicationTest {
     @Test
     public void contextLoads() {
     }
