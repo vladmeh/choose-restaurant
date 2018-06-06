@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/vladmeh/choose-restaurant.svg?branch=master)](https://travis-ci.org/vladmeh/choose-restaurant)
+[![Build Status](https://travis-ci.org/vladmeh/choose-restaurant.svg?branch=test)](https://travis-ci.org/vladmeh/choose-restaurant)
 
 Restaurant system of choice, something to eat lunch (REST only)
 ===============================================================
