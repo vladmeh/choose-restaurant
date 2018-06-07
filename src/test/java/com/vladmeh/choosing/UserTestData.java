@@ -5,7 +5,7 @@ import com.vladmeh.choosing.model.User;
 
 /**
  * @autor Vladimir Mikhaylov <vladmeh@gmail.com> on 06.06.2018.
- * @link https://github.com/vladmeh/graduation-topjava
+ * @link https://github.com/vladmeh/choose-restaurant
  */
 
 
