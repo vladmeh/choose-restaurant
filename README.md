@@ -20,6 +20,21 @@ $ git clone https://github.com/vladmeh/choose-restaurant.git
 ```
 Introduction
 ------------
+#### Production environment
+```console
+$ mvn spring-boot:run
+``` 
+or
+```console
+$ mvn clean package
+$ java -Dfile.encoding=UTF8 -jar target/choose-restaurant.jar
+```
+
+##### H2 database
+* JDBC URL: jdbc:h2:file:~/choosing
+* user name: sa
+* password: WdyHMa4G
+
 #### Dev environment
 ```console
 $ mvn spring-boot:run -Dspring-boot.run.profiles=dev
@@ -39,21 +54,6 @@ $ java -Dspring.profiles.active=dev -Dfile.encoding=UTF8 -jar target/choose-rest
 
 ##### HAL browser
 * http://localhost:8080/api
-
-#### Production environment
-```console
-$ mvn spring-boot:run -Dspring-boot.run.profiles=prod -Dspring-boot.run.jvmArguments="-Dfile.encoding=UTF8"
-``` 
-or
-```console
-$ mvn clean package
-$ java -Dspring.profiles.active=prod -Dfile.encoding=UTF8 -jar target/choose-restaurant.jar
-```
-
-##### H2 database
-* JDBC URL: jdbc:h2:file:~/choosing
-* user name: sa
-* password: WdyHMa4G
 
 #### Authentication
 * Admin 
