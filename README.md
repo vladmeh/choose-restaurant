@@ -52,9 +52,6 @@ $ java -Dspring.profiles.active=dev -Dfile.encoding=UTF8 -jar target/choose-rest
 * user name: sa
 * password: no password
 
-##### HAL browser
-* http://localhost:8080/api
-
 #### Authentication
 * Admin 
     * login: "admin@gmail.com"
@@ -72,9 +69,9 @@ Run
 ### Admin
 ##### CURL Users
 ```console
-$ curl 'http://localhost:8080/api/users' -H 'Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'
-$ curl 'http://localhost:8080/api/users/0' -H 'Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'
-$ curl 'http://localhost:8080/api/users/search/by-email?email=admin@gmail.com' -H 'Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'
+$ curl -si 'http://localhost:8080/api/users' -H 'Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'
+$ curl -si 'http://localhost:8080/api/users/0' -H 'Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'
+$ curl -si 'http://localhost:8080/api/users/search/by-email?email=admin@gmail.com' -H 'Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'
 
 $ curl -si 'http://localhost:8080/api/users' -d '{"name":"New User","email":"user@local.loc", "password":"12345", "roles" : ["ROLE_USER"]}' -H 'Content-Type:application/json;charset=UTF-8' -H 'Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'
 $ curl -si 'http://localhost:8080/api/users/0' -X PUT -d '{"name":"User update","email":"user@yandex.ru", "password":"12345", "roles" : ["ROLE_USER"]}' -H 'Content-Type:application/json;charset=UTF-8' -H 'Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'

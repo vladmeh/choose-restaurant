@@ -6,6 +6,7 @@ import com.vladmeh.choosing.service.ChoiceService;
 import com.vladmeh.choosing.userdetails.UserPrincipal;
 import com.vladmeh.choosing.util.ChoiceStatus;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.MediaTypes;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +24,7 @@ import java.time.LocalTime;
  */
 
 @RestController
-@RequestMapping(value = "/api/choice", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/api/choice", produces = MediaTypes.HAL_JSON_UTF8_VALUE)
 public class ChoiceController {
     private static final LocalTime TIME_LIMIT = LocalTime.parse("11:00");
 
