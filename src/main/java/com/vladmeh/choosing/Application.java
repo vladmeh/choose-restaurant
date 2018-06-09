@@ -2,6 +2,7 @@ package com.vladmeh.choosing;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 /**
  * @author Vladimir Mikhaylov <vladmeh@gmail.com> on 24.05.2018.
