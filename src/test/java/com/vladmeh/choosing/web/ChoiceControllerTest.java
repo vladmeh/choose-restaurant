@@ -11,7 +11,6 @@ import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDoc
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.hateoas.MediaTypes;
-import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
@@ -94,7 +93,7 @@ public class ChoiceControllerTest {
 
     @Test
     public void choiceIsNotFound() throws Exception {
-        ResultActions actions =  this.mockMvc.perform(post("/api/choice/3")
+        ResultActions actions = this.mockMvc.perform(post("/api/choice/3")
                 .contentType(MediaTypes.HAL_JSON_UTF8_VALUE)
                 .with(userAuth(USER)))
                 .andDo(print())
@@ -108,7 +107,7 @@ public class ChoiceControllerTest {
         Choice choice = new Choice(USER, RESTAURANT_0, LocalDate.now());
         choiceRepository.save(choice);
 
-        ResultActions actions =  this.mockMvc.perform(get("/api/choice")
+        ResultActions actions = this.mockMvc.perform(get("/api/choice")
                 .with(userAuth(USER)))
                 .andDo(print())
                 .andExpect(status().isOk());
