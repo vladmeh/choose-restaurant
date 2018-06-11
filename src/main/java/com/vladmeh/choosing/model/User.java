@@ -27,7 +27,7 @@ import java.util.Set;
 public class User extends AbstractNamedEntity {
     private static final PasswordEncoder ENCODER = new BCryptPasswordEncoder();
 
-    @Column(name = "email", nullable = false, unique = true)
+    @Column(name = "email", nullable = false)
     @Email
     @NotBlank
     @Size(max = 100)
