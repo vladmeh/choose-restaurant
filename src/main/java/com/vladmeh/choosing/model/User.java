@@ -23,7 +23,7 @@ import java.util.Set;
 
 
 @Entity
-@Table(name = "users")
+@Table(name = "users", uniqueConstraints = {@UniqueConstraint(columnNames = "email", name = "unique_users_email_idx")})
 public class User extends AbstractNamedEntity {
     private static final PasswordEncoder ENCODER = new BCryptPasswordEncoder();
 

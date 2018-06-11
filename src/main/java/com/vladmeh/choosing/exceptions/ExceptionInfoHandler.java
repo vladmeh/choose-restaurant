@@ -28,8 +28,8 @@ import java.util.Optional;
 
 import static com.vladmeh.choosing.exceptions.ErrorType.*;
 
-@RestControllerAdvice(annotations = RepositoryRestController.class)
-@Order(Ordered.HIGHEST_PRECEDENCE + 5)
+//@RestControllerAdvice(annotations = RepositoryRestController.class)
+//@Order(Ordered.HIGHEST_PRECEDENCE + 5)
 public class ExceptionInfoHandler {
     private static final String EXCEPTION_DUPLICATE_EMAIL = "exception.user.duplicateEmail";
     private static final String EXCEPTION_DUPLICATE_DATETIME = "exception.meal.duplicateDateTime";
@@ -105,7 +105,9 @@ public class ExceptionInfoHandler {
         } else {
             log.warn("{} at request  {}: {}", errorType, req.getRequestURL(), rootCause.toString());
         }
-        return new ErrorInfo(req.getRequestURL(), errorType,
+        return new ErrorInfo(
+                req.getRequestURL(),
+                errorType,
                 messageUtil.getMessage(errorType.getErrorCode()),
                 details.length != 0 ? details : new String[]{ValidationUtil.getMessage(rootCause)});
     }
