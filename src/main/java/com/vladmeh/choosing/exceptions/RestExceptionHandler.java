@@ -7,31 +7,32 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.*;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 
 @RestControllerAdvice
 public class RestExceptionHandler {
 
     private static final String EXCEPTION_DUPLICATE_EMAIL = "exception.user.duplicateEmail";
-    private static final String EXCEPTION_DUPLICATE_DATETIME = "exception.meal.duplicateDateTime";
+    private static final String EXCEPTION_DUPLICATE_NAME = "exception.restaurant.duplicateName";
 
     private static final Map<String, String> CONSTRAINS_I18N_MAP = Collections.unmodifiableMap(
             new HashMap<String, String>() {
                 {
-                    put("users_unique_email_idx", EXCEPTION_DUPLICATE_EMAIL);
-                    put("uk_6dotkott2kjsp8vw4d0m25fb7", EXCEPTION_DUPLICATE_EMAIL);
-                    put("meals_unique_user_datetime_idx", EXCEPTION_DUPLICATE_DATETIME);
+                    put("unique_users_email_idx", EXCEPTION_DUPLICATE_EMAIL);
+                    put("unique_restaurant_name_idx", EXCEPTION_DUPLICATE_NAME);
                 }
             });
 
-    private static Logger log = LoggerFactory.getLogger(ExceptionInfoHandler.class);
+    private static Logger log = LoggerFactory.getLogger(RestExceptionHandler.class);
 
     private final MessageUtil messageUtil;
 
@@ -45,6 +46,7 @@ public class RestExceptionHandler {
             DataIntegrityViolationException ex,
             HttpServletRequest request) {
 
+        ExceptionResponse exceptionResponse = new ExceptionResponse(HttpStatus.CONFLICT);
         String rootMsg = ValidationUtil.getRootCause(ex).getMessage();
 
         if (rootMsg != null) {
@@ -52,16 +54,19 @@ public class RestExceptionHandler {
             Optional<Map.Entry<String, String>> entry = CONSTRAINS_I18N_MAP.entrySet().stream()
                     .filter(it -> lowerCaseMsg.contains(it.getKey()))
                     .findAny();
-            if (entry.isPresent()){
-                return handleExceptionInternal(request, ex, false, ErrorType.VALIDATION_ERROR, messageUtil.getMessage(entry.get().getValue()));
+            if (entry.isPresent()) {
+                exceptionResponse.setMessage(messageUtil.getMessage(ErrorType.VALIDATION_ERROR.getErrorCode()));
+                exceptionResponse.setDetails(new String[]{messageUtil.getMessage(entry.get().getValue())});
+                return buildResponseEntity(exceptionResponse, request, ex, false, ErrorType.VALIDATION_ERROR);
             }
         }
 
-        return handleExceptionInternal(request, ex, true, ErrorType.DATA_ERROR);
+        exceptionResponse.setMessage(ErrorType.DATA_ERROR.getErrorCode());
+        return buildResponseEntity(exceptionResponse, request, ex, true, ErrorType.DATA_ERROR);
     }
 
 
-    private ResponseEntity<Object> handleExceptionInternal(HttpServletRequest req, Exception ex, boolean logException, ErrorType errorType, String... details){
+    private ResponseEntity<Object> buildResponseEntity(ExceptionResponse exceptionResponse, HttpServletRequest req, Exception ex, boolean logException, ErrorType errorType) {
         Throwable rootCause = ValidationUtil.getRootCause(ex);
 
         if (logException) {
@@ -70,14 +75,10 @@ public class RestExceptionHandler {
             log.warn("{} at request  {}: {}", errorType, req.getRequestURL(), rootCause.toString());
         }
 
-        ExceptionResponse exceptionResponse = new ExceptionResponse(
-                new Date(),
-                HttpStatus.CONFLICT,
-                messageUtil.getMessage(errorType.getErrorCode()),
-                details.length !=0 ? details : new String[]{ValidationUtil.getMessage(rootCause)}
-        );
+        if (exceptionResponse.getDetails().length == 0)
+            exceptionResponse.setDetails(new String[]{ValidationUtil.getMessage(rootCause)});
 
-        return new ResponseEntity<>(exceptionResponse, new HttpHeaders(), exceptionResponse.getStatus());
+        return new ResponseEntity<>(exceptionResponse, exceptionResponse.getStatus());
     }
 
 }
