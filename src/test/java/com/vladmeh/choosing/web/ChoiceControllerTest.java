@@ -19,7 +19,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 import static com.vladmeh.choosing.RestaurantTestData.RESTAURANT_0;
-import static com.vladmeh.choosing.TestUtil.userAuth;
+import static com.vladmeh.choosing.TestUtil.*;
 import static com.vladmeh.choosing.UserTestData.USER;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -57,7 +57,7 @@ public class ChoiceControllerTest {
     @Test
     public void currentIsNotFount() throws Exception {
         ResultActions actions = mockMvc.perform(get("/api/choice")
-                .with(userAuth(USER)))
+                .with(userHttpBasic(USER)))
                 .andDo(print())
                 .andExpect(status().isNotFound());
 
@@ -68,7 +68,7 @@ public class ChoiceControllerTest {
     public void choiceCreate() throws Exception {
         ResultActions actions = this.mockMvc.perform(post("/api/choice/0")
                 .contentType(MediaTypes.HAL_JSON_UTF8_VALUE)
-                .with(userAuth(USER)))
+                .with(userHttpBasic(USER)))
                 .andDo(print())
                 .andExpect(status().isCreated());
 
@@ -84,7 +84,7 @@ public class ChoiceControllerTest {
 
         ResultActions actions = this.mockMvc.perform(post("/api/choice/2")
                 .contentType(MediaTypes.HAL_JSON_UTF8_VALUE)
-                .with(userAuth(USER)))
+                .with(userHttpBasic(USER)))
                 .andDo(print())
                 .andExpect(limit ? status().isConflict() : status().isOk());
 
@@ -95,7 +95,7 @@ public class ChoiceControllerTest {
     public void choiceIsNotFound() throws Exception {
         ResultActions actions = this.mockMvc.perform(post("/api/choice/3")
                 .contentType(MediaTypes.HAL_JSON_UTF8_VALUE)
-                .with(userAuth(USER)))
+                .with(userHttpBasic(USER)))
                 .andDo(print())
                 .andExpect(status().isNotFound());
 
@@ -108,7 +108,7 @@ public class ChoiceControllerTest {
         choiceRepository.save(choice);
 
         ResultActions actions = this.mockMvc.perform(get("/api/choice")
-                .with(userAuth(USER)))
+                .with(userHttpBasic(USER)))
                 .andDo(print())
                 .andExpect(status().isOk());
 
