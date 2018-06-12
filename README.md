@@ -77,7 +77,8 @@ $ curl -si 'http://localhost:8080/api/users' -d '{"name":"New User","email":"use
 $ curl -si 'http://localhost:8080/api/users/0' -X PUT -d '{"name":"User update","email":"user@yandex.ru", "password":"12345", "roles" : ["ROLE_USER"]}' -H 'Content-Type:application/json;charset=UTF-8' -H 'Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'
 $ curl -si 'http://localhost:8080/api/users/0' -X DELETE -H 'Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'
 
-curl -si 'http://localhost:8080/api/users' -d '{"name":"New User","email":"user@yandex.ru, "password":"12345", "roles" : ["ROLE_USER"]}' -H 'Content-Type:application/json;charset=UTF-8' -H 'Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'
+## handle exception 409 Conflict
+$ curl -si 'http://localhost:8080/api/users' -d '{"name":"New User","email":"user@yandex.ru, "password":"12345", "roles" : ["ROLE_USER"]}' -H 'Content-Type:application/json;charset=UTF-8' -H 'Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'
 ```
 
 ##### CURL Restaurant
@@ -100,8 +101,10 @@ $ curl http://localhost:8080/api/menu/search/by-restaurant?restaurant=http://loc
 
 $ curl -si 'http://localhost:8080/api/menu' -d '{"date": "2018-06-05", "restaurant":"http://localhost:8080/api/restaurant/0"}' -H 'Content-Type:application/json;charset=UTF-8' -H 'Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'
 $ curl -si 'http://localhost:8080/api/menu/0' -X PUT -d '{"date": "2018-06-04"}' -H 'Content-Type:application/json;charset=UTF-8' -H 'Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'
-$ curl -si 'http://localhost:8080/api/menu/0' -X PATCH -d '{"restaurant": "http://localhost:8080/api/restaurant/3"}' -H 'Content-Type:application/json;charset=UTF-8' -H 'Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'
 $ curl -si 'http://localhost:8080/api/menu/0' -X DELETE -H 'Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'
+
+## handle exception 409 Conflict
+$ curl -si 'http://localhost:8080/api/menu/0' -X PATCH -d '{"restaurant": "http://localhost:8080/api/restaurant/3"}' -H 'Content-Type:application/json;charset=UTF-8' -H 'Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'
 ```
 
 ##### CURL Dishes
