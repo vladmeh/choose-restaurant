@@ -1,5 +1,8 @@
 package com.vladmeh.choosing.model;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
 import javax.persistence.*;
 
 /**
@@ -7,7 +10,8 @@ import javax.persistence.*;
  * @link https://github.com/vladmeh/choosing-topjava
  */
 
-
+@EqualsAndHashCode(callSuper = true)
+@Data
 @Entity
 @Table(name = "restaurant", uniqueConstraints = {@UniqueConstraint(columnNames = "name", name = "unique_restaurant_name_idx")})
 public class Restaurant extends AbstractNamedEntity {
@@ -17,13 +21,5 @@ public class Restaurant extends AbstractNamedEntity {
 
     public Restaurant(Long id, String name) {
         super(id, name);
-    }
-
-    @Override
-    public String toString() {
-        return "Restaurant{" +
-                "name='" + name + '\'' +
-                ", id=" + getId() +
-                '}';
     }
 }

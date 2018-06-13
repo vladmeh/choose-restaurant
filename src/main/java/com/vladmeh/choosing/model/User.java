@@ -1,6 +1,8 @@
 package com.vladmeh.choosing.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.BatchSize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -21,7 +23,8 @@ import java.util.Set;
  * @Link https://stackoverflow.com/questions/12505141/only-using-jsonignore-during-serialization-but-not-deserialization
  */
 
-
+@EqualsAndHashCode(callSuper = true)
+@Data
 @Entity
 @Table(name = "users", uniqueConstraints = {@UniqueConstraint(columnNames = "email", name = "unique_users_email_idx")})
 public class User extends AbstractNamedEntity {
@@ -74,56 +77,11 @@ public class User extends AbstractNamedEntity {
         this.roles = roles;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
     public void setPassword(String password) {
         this.password = ENCODER.encode(password);
     }
 
-    public boolean isEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
-    }
-
-    public Date getRegistered() {
-        return registered;
-    }
-
-    public void setRegistered(Date registered) {
-        this.registered = registered;
-    }
-
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
     public void setRoles(Collection<Role> roles) {
         this.roles = EnumSet.copyOf(roles);
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + getId() +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", enabled=" + enabled +
-                ", registered=" + registered +
-                ", roles=" + roles +
-                ", name='" + name + '\'' +
-                '}';
     }
 }

@@ -1,5 +1,7 @@
 package com.vladmeh.choosing.model;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -13,6 +15,8 @@ import java.time.LocalDate;
  * @link https://github.com/vladmeh/choosing-topjava
  */
 
+@EqualsAndHashCode(callSuper = true)
+@Data
 @Entity
 @Table(name = "menu")
 public class Menu extends AbstractBaseEntity {
@@ -39,29 +43,5 @@ public class Menu extends AbstractBaseEntity {
         super(id);
         this.restaurant = restaurant;
         this.date = date;
-    }
-
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
-    public Restaurant getRestaurant() {
-        return restaurant;
-    }
-
-    public void setRestaurant(Restaurant restaurant) {
-        this.restaurant = restaurant;
-    }
-
-    @Override
-    public String toString() {
-        return "Menu{" +
-                "date=" + date +
-                ", id=" + getId() +
-                '}';
     }
 }

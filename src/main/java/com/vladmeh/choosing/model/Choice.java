@@ -1,5 +1,7 @@
 package com.vladmeh.choosing.model;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -12,6 +14,8 @@ import java.time.LocalDate;
  * @link https://github.com/vladmeh/choosing-topjava
  */
 
+@EqualsAndHashCode(callSuper = true)
+@Data
 @Entity
 @Table(name = "choice_restaurant", uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "choice_date"}, name = "unique_user_choice_date_idx")})
 public class Choice extends AbstractBaseEntity {
@@ -39,39 +43,5 @@ public class Choice extends AbstractBaseEntity {
         this.user = user;
         this.restaurant = restaurant;
         this.date = date;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Restaurant getRestaurant() {
-        return restaurant;
-    }
-
-    public void setRestaurant(Restaurant restaurant) {
-        this.restaurant = restaurant;
-    }
-
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
-    @Override
-    public String toString() {
-        return "Choice{" +
-                "id=" + getId() +
-                ", user=" + user +
-                ", restaurant=" + restaurant +
-                ", date=" + date +
-                '}';
     }
 }

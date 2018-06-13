@@ -1,6 +1,7 @@
 package com.vladmeh.choosing.exceptions.error;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Data;
 import org.springframework.http.HttpStatus;
 
 import java.time.LocalDateTime;
@@ -10,7 +11,7 @@ import java.time.LocalDateTime;
  * @link https://github.com/vladmeh/choose-restaurant
  */
 
-
+@Data
 public class ExceptionResponse {
 
     private HttpStatus status;
@@ -28,42 +29,24 @@ public class ExceptionResponse {
         this.status = status;
     }
 
+    public ExceptionResponse(HttpStatus status, Throwable ex) {
+        this();
+        this.status = status;
+        this.message = "Unexpected error";
+        this.details = new String[]{ex.getLocalizedMessage()};
+    }
+
+    public ExceptionResponse(HttpStatus status, String message, Throwable ex) {
+        this();
+        this.status = status;
+        this.message = message;
+        this.details = new String[]{ex.getLocalizedMessage()};
+    }
+
     public ExceptionResponse(HttpStatus status, String message, String... details) {
         this();
         this.status = status;
         this.message = message;
-        this.details = details;
-    }
-
-    public HttpStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(HttpStatus status) {
-        this.status = status;
-    }
-
-    public LocalDateTime getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(LocalDateTime timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public String[] getDetails() {
-        return details;
-    }
-
-    public void setDetails(String[] details) {
         this.details = details;
     }
 }
