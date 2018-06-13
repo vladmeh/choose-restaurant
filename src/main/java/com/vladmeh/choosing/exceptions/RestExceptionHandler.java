@@ -1,6 +1,9 @@
 package com.vladmeh.choosing.exceptions;
 
 
+import com.vladmeh.choosing.exceptions.error.ApplicationException;
+import com.vladmeh.choosing.exceptions.error.ErrorType;
+import com.vladmeh.choosing.exceptions.error.ExceptionResponse;
 import com.vladmeh.choosing.util.MessageUtil;
 import com.vladmeh.choosing.util.ValidationUtil;
 import org.slf4j.Logger;
@@ -22,8 +25,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-@RestControllerAdvice
-@Order(Ordered.HIGHEST_PRECEDENCE + 5)
+//@RestControllerAdvice
+//@Order(Ordered.HIGHEST_PRECEDENCE + 5)
 public class RestExceptionHandler {
 
     private static final String EXCEPTION_DUPLICATE_EMAIL = "exception.user.duplicateEmail";

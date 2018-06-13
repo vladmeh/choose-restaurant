@@ -1,4 +1,4 @@
-package com.vladmeh.choosing.exceptions;
+package com.vladmeh.choosing.exceptions.error;
 
 import org.springframework.lang.NonNull;
 

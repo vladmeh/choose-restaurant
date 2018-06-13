@@ -1,6 +1,6 @@
 package com.vladmeh.choosing.util;
 
-import com.vladmeh.choosing.exceptions.ApplicationException;
+import com.vladmeh.choosing.exceptions.error.ApplicationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.MessageSourceResolvable;

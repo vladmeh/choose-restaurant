@@ -1,14 +1,15 @@
 package com.vladmeh.choosing.exceptions;
 
+import com.vladmeh.choosing.exceptions.error.ApplicationException;
+import com.vladmeh.choosing.exceptions.error.ErrorInfo;
+import com.vladmeh.choosing.exceptions.error.ErrorType;
+import com.vladmeh.choosing.exceptions.error.IllegalRequestDataException;
 import com.vladmeh.choosing.util.MessageUtil;
 import com.vladmeh.choosing.util.ValidationUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.Ordered;
-import org.springframework.core.annotation.Order;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.data.rest.webmvc.RepositoryRestController;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -17,7 +18,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,7 +26,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-import static com.vladmeh.choosing.exceptions.ErrorType.*;
+import static com.vladmeh.choosing.exceptions.error.ErrorType.*;
 
 //@RestControllerAdvice(annotations = RepositoryRestController.class)
 //@Order(Ordered.HIGHEST_PRECEDENCE + 5)

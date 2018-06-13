@@ -1,4 +1,4 @@
-package com.vladmeh.choosing.exceptions;
+package com.vladmeh.choosing.exceptions.error;
 
 public enum ErrorType {
     APP_ERROR("error.appError"),

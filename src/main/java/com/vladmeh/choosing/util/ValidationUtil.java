@@ -1,6 +1,6 @@
 package com.vladmeh.choosing.util;
 
-import com.vladmeh.choosing.exceptions.NotFoundException;
+import com.vladmeh.choosing.exceptions.error.NotFoundException;
 
 /**
  * @autor Vladimir Mikhaylov <vladmeh@gmail.com> on 09.06.2018.

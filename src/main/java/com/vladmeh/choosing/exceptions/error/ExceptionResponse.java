@@ -1,4 +1,4 @@
-package com.vladmeh.choosing.exceptions;
+package com.vladmeh.choosing.exceptions.error;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.http.HttpStatus;
@@ -23,12 +23,12 @@ public class ExceptionResponse {
         timestamp = LocalDateTime.now();
     }
 
-    ExceptionResponse(HttpStatus status) {
+    public ExceptionResponse(HttpStatus status) {
         this();
         this.status = status;
     }
 
-    ExceptionResponse(HttpStatus status, String message, String... details) {
+    public ExceptionResponse(HttpStatus status, String message, String... details) {
         this();
         this.status = status;
         this.message = message;

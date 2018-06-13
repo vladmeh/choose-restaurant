@@ -1,4 +1,4 @@
-package com.vladmeh.choosing.exceptions;
+package com.vladmeh.choosing.exceptions.error;
 
 public class ErrorInfo {
     private final String url;
