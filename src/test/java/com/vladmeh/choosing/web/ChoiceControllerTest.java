@@ -32,10 +32,17 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @link https://github.com/vladmeh/choosing-topjava
  * AutoConfigureRestDocs - https://habr.com/post/341636/
  */
-
-public class ChoiceControllerTest extends AbstractControllerTest {
+@RunWith(SpringRunner.class)
+@SpringBootTest
+@AutoConfigureMockMvc
+@AutoConfigureTestDatabase
+@AutoConfigureRestDocs(outputDir = "target/generated-snippets")
+public class ChoiceControllerTest {
 
     private static final LocalTime TIME_LIMIT = LocalTime.parse("11:00");
+
+    @Autowired
+    protected MockMvc mockMvc;
 
     @Autowired
     private ChoiceRepository choiceRepository;

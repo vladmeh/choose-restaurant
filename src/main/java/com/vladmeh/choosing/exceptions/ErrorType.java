@@ -2,6 +2,7 @@ package com.vladmeh.choosing.exceptions;
 
 public enum ErrorType {
     APP_ERROR("error.appError"),
+    ACCESS_DENIED("error.accessDenied"),
     DATA_NOT_FOUND("error.dataNotFound"),
     DATA_ERROR("error.dataError"),
     VALIDATION_ERROR("error.validationError"),

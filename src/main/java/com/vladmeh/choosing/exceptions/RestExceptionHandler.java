@@ -9,8 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -44,6 +46,18 @@ public class RestExceptionHandler {
         this.messageUtil = messageUtil;
     }
 
+    @ExceptionHandler(ApplicationException.class)
+    public final ResponseEntity<Object> handleApplicationException(ApplicationException ex, HttpServletRequest request) {
+        ExceptionResponse exceptionResponse = new ExceptionResponse(ex.getHttpStatus());
+        return buildResponseEntity(exceptionResponse, request, ex, false, ex.getType(), messageUtil.getMessage(ex));
+    }
+
+    @ExceptionHandler(AccessDeniedException.class) //403
+    public final ResponseEntity<Object> handleAccessDeniedException(AccessDeniedException ex, HttpServletRequest request){
+        ExceptionResponse exceptionResponse = new ExceptionResponse(HttpStatus.FORBIDDEN, "Access denied message here", ex.getLocalizedMessage());
+        return buildResponseEntity(exceptionResponse, request, ex, true, ErrorType.ACCESS_DENIED);
+    }
+
     @ExceptionHandler(DataIntegrityViolationException.class) //409
     public final ResponseEntity<Object> handleDataIntegrityViolationException(DataIntegrityViolationException ex, HttpServletRequest request) {
         ExceptionResponse exceptionResponse = new ExceptionResponse(HttpStatus.CONFLICT);
@@ -60,7 +74,6 @@ public class RestExceptionHandler {
         }
         return buildResponseEntity(exceptionResponse, request, ex, true, ErrorType.DATA_ERROR);
     }
-
 
     @ExceptionHandler(Exception.class) //500
     public final ResponseEntity<Object> handleErrorException(Exception ex, HttpServletRequest request) {
@@ -80,7 +93,7 @@ public class RestExceptionHandler {
         exceptionResponse.setMessage(messageUtil.getMessage(errorType.getErrorCode()));
         exceptionResponse.setDetails(details.length != 0 ? details : new String[]{ValidationUtil.getMessage(rootCause)});
 
-        return new ResponseEntity<>(exceptionResponse, exceptionResponse.getStatus());
+        return new ResponseEntity<>(exceptionResponse, new HttpHeaders(), exceptionResponse.getStatus());
     }
 
 }
