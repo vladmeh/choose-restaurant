@@ -18,9 +18,9 @@ import org.springframework.test.web.servlet.ResultActions;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-import static com.vladmeh.choosing.RestaurantTestData.RESTAURANT_0;
-import static com.vladmeh.choosing.TestUtil.*;
-import static com.vladmeh.choosing.UserTestData.USER;
+import static com.vladmeh.choosing.testdata.RestaurantTestData.RESTAURANT_0;
+import static com.vladmeh.choosing.utils.TestUtil.*;
+import static com.vladmeh.choosing.testdata.UserTestData.USER;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -33,18 +33,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * AutoConfigureRestDocs - https://habr.com/post/341636/
  */
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
-@AutoConfigureMockMvc
-// @TestPropertySource(locations = "classpath:application-integrationtest.properties")
-@AutoConfigureTestDatabase
-@AutoConfigureRestDocs(outputDir = "target/generated-snippets")
-public class ChoiceControllerTest {
+public class ChoiceControllerTest extends AbstractControllerTest {
 
     private static final LocalTime TIME_LIMIT = LocalTime.parse("11:00");
-
-    @Autowired
-    private MockMvc mockMvc;
 
     @Autowired
     private ChoiceRepository choiceRepository;

@@ -6,6 +6,8 @@ import com.vladmeh.choosing.util.ValidationUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +21,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @RestControllerAdvice
+@Order(Ordered.HIGHEST_PRECEDENCE + 5)
 public class RestExceptionHandler {
 
     private static final String EXCEPTION_DUPLICATE_EMAIL = "exception.user.duplicateEmail";
@@ -41,11 +44,8 @@ public class RestExceptionHandler {
         this.messageUtil = messageUtil;
     }
 
-    @ExceptionHandler(DataIntegrityViolationException.class)
-    public final ResponseEntity<Object> handleDataIntegrityViolationException(
-            DataIntegrityViolationException ex,
-            HttpServletRequest request) {
-
+    @ExceptionHandler(DataIntegrityViolationException.class) //409
+    public final ResponseEntity<Object> handleDataIntegrityViolationException(DataIntegrityViolationException ex, HttpServletRequest request) {
         ExceptionResponse exceptionResponse = new ExceptionResponse(HttpStatus.CONFLICT);
         String rootMsg = ValidationUtil.getRootCause(ex).getMessage();
 
@@ -55,18 +55,20 @@ public class RestExceptionHandler {
                     .filter(it -> lowerCaseMsg.contains(it.getKey()))
                     .findAny();
             if (entry.isPresent()) {
-                exceptionResponse.setMessage(messageUtil.getMessage(ErrorType.VALIDATION_ERROR.getErrorCode()));
-                exceptionResponse.setDetails(new String[]{messageUtil.getMessage(entry.get().getValue())});
-                return buildResponseEntity(exceptionResponse, request, ex, false, ErrorType.VALIDATION_ERROR);
+                return buildResponseEntity(exceptionResponse, request, ex, false, ErrorType.VALIDATION_ERROR, messageUtil.getMessage(entry.get().getValue()));
             }
         }
-
-        exceptionResponse.setMessage(ErrorType.DATA_ERROR.getErrorCode());
         return buildResponseEntity(exceptionResponse, request, ex, true, ErrorType.DATA_ERROR);
     }
 
 
-    private ResponseEntity<Object> buildResponseEntity(ExceptionResponse exceptionResponse, HttpServletRequest req, Exception ex, boolean logException, ErrorType errorType) {
+    @ExceptionHandler(Exception.class) //500
+    public final ResponseEntity<Object> handleErrorException(Exception ex, HttpServletRequest request) {
+        ExceptionResponse exceptionResponse = new ExceptionResponse(HttpStatus.BAD_REQUEST);
+        return buildResponseEntity(exceptionResponse, request, ex, true, ErrorType.APP_ERROR);
+    }
+
+    private ResponseEntity<Object> buildResponseEntity(ExceptionResponse exceptionResponse, HttpServletRequest req, Exception ex, boolean logException, ErrorType errorType, String... details) {
         Throwable rootCause = ValidationUtil.getRootCause(ex);
 
         if (logException) {
@@ -75,8 +77,8 @@ public class RestExceptionHandler {
             log.warn("{} at request  {}: {}", errorType, req.getRequestURL(), rootCause.toString());
         }
 
-        if (exceptionResponse.getDetails().length == 0)
-            exceptionResponse.setDetails(new String[]{ValidationUtil.getMessage(rootCause)});
+        exceptionResponse.setMessage(messageUtil.getMessage(errorType.getErrorCode()));
+        exceptionResponse.setDetails(details.length != 0 ? details : new String[]{ValidationUtil.getMessage(rootCause)});
 
         return new ResponseEntity<>(exceptionResponse, exceptionResponse.getStatus());
     }
