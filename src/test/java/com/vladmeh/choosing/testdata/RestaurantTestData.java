@@ -1,4 +1,4 @@
-package com.vladmeh.choosing;
+package com.vladmeh.choosing.testdata;
 
 import com.vladmeh.choosing.model.Restaurant;
 

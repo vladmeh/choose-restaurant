@@ -1,4 +1,4 @@
-package com.vladmeh.choosing;
+package com.vladmeh.choosing.utils;
 
 import com.vladmeh.choosing.model.User;
 import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors;

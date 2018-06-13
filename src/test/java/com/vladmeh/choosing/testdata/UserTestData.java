@@ -1,4 +1,4 @@
-package com.vladmeh.choosing;
+package com.vladmeh.choosing.testdata;
 
 import com.vladmeh.choosing.model.Role;
 import com.vladmeh.choosing.model.User;
@@ -22,15 +22,15 @@ public class UserTestData {
     public static final User USER = new User(USER_ID, "User", "user@yandex.ru", "user", Role.ROLE_USER);
     public static final User ADMIN = new User(ADMIN_ID, "Admin", "admin@gmail.com", "admin", Role.ROLE_ADMIN, Role.ROLE_USER);
 
-    public static Map<String, Object> getCreated() {
-        return getStringObjectMap("New user", "user@local.loc", "password", "ROLE_USER", "ROLE_ADMIN");
+    public static Map<String, Object> getCreatedUser() {
+        return getStringObjectMapUser("New user", "user@local.loc", "password", "ROLE_USER", "ROLE_ADMIN");
     }
 
-    public static Map<String, Object> getUpdate() {
-        return getStringObjectMap("Update user", "user@yandex.ru", "user", "ROLE_USER");
+    public static Map<String, Object> getUpdateUser() {
+        return getStringObjectMapUser("Update user", "user@yandex.ru", "user", "ROLE_USER");
     }
 
-    private static Map<String, Object> getStringObjectMap(String name, String email, String password, @NotNull String... roles) {
+    private static Map<String, Object> getStringObjectMapUser(String name, String email, String password, @NotNull String... roles) {
         Map<String, Object> user = new HashMap<>();
         user.put("name", name);
         user.put("email", email);
