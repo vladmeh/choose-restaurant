@@ -103,7 +103,7 @@ $ curl -si 'http://localhost:8080/api/menu' -d '{"date": "2018-06-05", "restaura
 $ curl -si 'http://localhost:8080/api/menu/0' -X PUT -d '{"date": "2018-06-04"}' -H 'Content-Type:application/json;charset=UTF-8' -H 'Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'
 $ curl -si 'http://localhost:8080/api/menu/0' -X DELETE -H 'Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'
 
-## handle exception 409 Conflict
+## handle exception 400 Bad Request
 $ curl -si 'http://localhost:8080/api/menu/0' -X PATCH -d '{"restaurant": "http://localhost:8080/api/restaurant/3"}' -H 'Content-Type:application/json;charset=UTF-8' -H 'Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'
 ```
 
