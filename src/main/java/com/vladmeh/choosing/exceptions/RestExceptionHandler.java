@@ -20,10 +20,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 //@RestControllerAdvice
 //@Order(Ordered.HIGHEST_PRECEDENCE + 5)
@@ -94,7 +91,7 @@ public class RestExceptionHandler {
         }
 
         exceptionResponse.setMessage(messageUtil.getMessage(errorType.getErrorCode()));
-        exceptionResponse.setDetails(details.length != 0 ? details : new String[]{ValidationUtil.getMessage(rootCause)});
+        exceptionResponse.setDetails(details.length != 0 ? Arrays.toString(details) : ValidationUtil.getMessage(rootCause));
 
         return new ResponseEntity<>(exceptionResponse, new HttpHeaders(), exceptionResponse.getStatus());
     }
