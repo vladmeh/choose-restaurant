@@ -9,15 +9,12 @@ import com.vladmeh.choosing.util.ValidationUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.Ordered;
-import org.springframework.core.annotation.Order;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
@@ -91,7 +88,7 @@ public class RestExceptionHandler {
         }
 
         exceptionResponse.setMessage(messageUtil.getMessage(errorType.getErrorCode()));
-        exceptionResponse.setDetails(details.length != 0 ? Arrays.toString(details) : ValidationUtil.getMessage(rootCause));
+        exceptionResponse.setDebug(details.length != 0 ? Arrays.toString(details) : ValidationUtil.getMessage(rootCause));
 
         return new ResponseEntity<>(exceptionResponse, new HttpHeaders(), exceptionResponse.getStatus());
     }

@@ -27,8 +27,8 @@ public class ExceptionResponse {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
     private LocalDateTime timestamp;
     private String message;
-    private String details;
-    private List<ApiSubError> subErrors;
+    private String debug;
+    private List<DetailsError> details;
 
     private ExceptionResponse() {
         timestamp = LocalDateTime.now();
@@ -43,36 +43,36 @@ public class ExceptionResponse {
         this();
         this.status = status;
         this.message = "Unexpected error";
-        this.details = ex.getLocalizedMessage();
+        this.debug = ex.getLocalizedMessage();
     }
 
     public ExceptionResponse(HttpStatus status, String message, Throwable ex) {
         this();
         this.status = status;
         this.message = message;
-        this.details = ex.getLocalizedMessage();
+        this.debug = ex.getLocalizedMessage();
     }
 
-    public ExceptionResponse(HttpStatus status, String message, String details) {
+    public ExceptionResponse(HttpStatus status, String message, String debug) {
         this();
         this.status = status;
         this.message = message;
-        this.details = details;
+        this.debug = debug;
     }
 
-    private void addSubError(ApiSubError subError) {
-        if (subErrors == null) {
-            subErrors = new ArrayList<>();
+    private void addSubError(DetailsError subError) {
+        if (details == null) {
+            details = new ArrayList<>();
         }
-        subErrors.add(subError);
+        details.add(subError);
     }
 
     private void addValidationError(String object, String field, Object rejectedValue, String message) {
-        addSubError(new ApiValidationError(object, field, rejectedValue, message));
+        addSubError(new DetailsValidationError(object, field, rejectedValue, message));
     }
 
     private void addValidationError(String object, String message) {
-        addSubError(new ApiValidationError(object, message));
+        addSubError(new DetailsValidationError(object, message));
     }
 
     private void addValidationError(FieldError fieldError) {
@@ -113,19 +113,19 @@ public class ExceptionResponse {
         constraintViolations.forEach(this::addValidationError);
     }
 
-    abstract class ApiSubError {
+    abstract class DetailsError {
     }
 
     @Data
     @EqualsAndHashCode(callSuper = false)
     @AllArgsConstructor
-    class ApiValidationError extends ApiSubError {
+    class DetailsValidationError extends DetailsError {
         private String object;
         private String field;
         private Object rejectedValue;
         private String message;
 
-        ApiValidationError(String object, String message) {
+        DetailsValidationError(String object, String message) {
             this.object = object;
             this.message = message;
         }
