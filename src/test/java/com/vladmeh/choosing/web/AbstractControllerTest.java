@@ -35,6 +35,9 @@ abstract public class AbstractControllerTest {
     @Autowired
     protected ObjectMapper objectMapper;
 
+    /**
+     * GET
+     */
     public ResultActions testGetAll(String url, User authUser) throws Exception {
         return this.mockMvc.perform(get(url)
                 .with(userHttpBasic(authUser)))
@@ -66,6 +69,9 @@ abstract public class AbstractControllerTest {
                 .andExpect(status().isNotFound());
     }
 
+    /**
+     * CREATE
+     */
     public ResultActions testCreate(String url, User authUser, String body) throws Exception {
         return mockMvc.perform(post(url)
                 .with(userHttpBasic(authUser))
@@ -93,8 +99,13 @@ abstract public class AbstractControllerTest {
                 .andExpect(status().isForbidden());
     }
 
+
+    /**
+     * UPDATE
+     * with patch (put issue https://jira.spring.io/projects/DATAREST/issues/DATAREST-1241?filter=allopenissues)
+     */
     public ResultActions testUpdate(String url, User authUser, String body) throws Exception {
-        return mockMvc.perform(put(url)
+        return mockMvc.perform(patch(url)
                 .with(userHttpBasic(authUser))
                 .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
                 .content(body))
@@ -112,7 +123,7 @@ abstract public class AbstractControllerTest {
     }
 
     public ResultActions testUpdateIsForbidden(String url, User authUser, String body) throws Exception {
-        return mockMvc.perform(put(url)
+        return mockMvc.perform(patch(url)
                 .with(userHttpBasic(authUser))
                 .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
                 .content(body))
@@ -120,6 +131,9 @@ abstract public class AbstractControllerTest {
                 .andExpect(status().isForbidden());
     }
 
+    /**
+     * DELETE
+     */
     public ResultActions testDelete(String url, User authUser) throws Exception {
         return mockMvc.perform(delete(url)
                 .with(userHttpBasic(authUser)))
