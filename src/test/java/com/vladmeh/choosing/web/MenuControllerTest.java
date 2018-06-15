@@ -1,87 +1,96 @@
 package com.vladmeh.choosing.web;
 
 import org.junit.Test;
-import org.springframework.test.web.servlet.ResultActions;
 
 import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.Map;
 
-import static com.vladmeh.choosing.testdata.MenuTestData.MENU_0;
-import static com.vladmeh.choosing.testdata.MenuTestData.getStringObjectMapMenu;
-import static com.vladmeh.choosing.testdata.RestaurantTestData.RESTAURANT_0;
-import static com.vladmeh.choosing.testdata.RestaurantTestData.RESTAURANT_2;
+import static com.vladmeh.choosing.testdata.MenuTestData.*;
+import static com.vladmeh.choosing.testdata.RestaurantTestData.*;
 import static com.vladmeh.choosing.testdata.UserTestData.ADMIN;
 import static com.vladmeh.choosing.testdata.UserTestData.USER;
+import static com.vladmeh.choosing.utils.TestUtil.userHttpBasic;
+import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
 public class MenuControllerTest extends AbstractControllerTest {
-    private static final String MENU_URL = REST_URL + "/menu/";
-
     @Override
     public void getAll() throws Exception {
-        ResultActions resultActions = testGetAll(MENU_URL, USER);
+        testGetAll(MENU_URL, USER);
     }
 
     @Override
     public void getById() throws Exception {
-        ResultActions resultActions = testGetById(MENU_URL + MENU_0.getId(), USER);
+        testGetById(MENU_URL + MENU_0.getId(), USER);
     }
 
     @Override
     public void getIsNotFound() throws Exception {
-        ResultActions resultActions = testGetIsNotFound(MENU_URL + 100, USER);
+        testGetIsNotFound(MENU_URL + 100, USER);
+    }
+
+    @Test
+    public void getMenuByDate() throws Exception {
+        mockMvc.perform(get(MENU_URL + "search/by-date")
+                .param("date", "2018-05-23")
+                .with(userHttpBasic(USER)))
+                .andDo(print())
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void getMenuByRestaurant() throws Exception {
+        mockMvc.perform(get(MENU_URL + "search/by-restaurant")
+                .param("restaurant", RESTAURANT_URL + RESTAURANT_0.getId())
+                .with(userHttpBasic(USER)))
+                .andDo(print())
+                .andExpect(status().isOk());
     }
 
     @Override
     public void create() throws Exception {
-        ResultActions resultActions = testCreate(MENU_URL, ADMIN,
+        testCreate(MENU_URL, ADMIN,
                 objectMapper.writeValueAsString(getStringObjectMapMenu(RESTAURANT_0, LocalDate.now())));
     }
 
     @Test
     public void createIsConflict() throws Exception {
-        Map<String, Object> created = new HashMap<>();
-        created.put("date", LocalDate.now());
-        created.put("restaurant", "http://localhost:8080/api/restaurants/3");
-        ResultActions resultActions = testCreateIsConflict(MENU_URL, ADMIN, objectMapper.writeValueAsString(created));
+        testCreateIsConflict(MENU_URL, ADMIN, objectMapper.writeValueAsString(getStringObjectMapMenu(3)));
     }
 
     @Override
     public void createIsForbidden() throws Exception {
-        ResultActions resultActions = testCreateIsForbidden(MENU_URL, USER,
+        testCreateIsForbidden(MENU_URL, USER,
                 objectMapper.writeValueAsString(getStringObjectMapMenu(RESTAURANT_0, LocalDate.now())));
     }
 
     @Override
     public void update() throws Exception {
-        ResultActions resultActions = testUpdate(MENU_URL + MENU_0.getId(), ADMIN,
+        testUpdate(MENU_URL + MENU_0.getId(), ADMIN,
                 objectMapper.writeValueAsString(getStringObjectMapMenu(RESTAURANT_2, LocalDate.now())));
     }
 
     @Test
     public void updatedIsConflict() throws Exception {
-        Map<String, Object> updated = new HashMap<>();
-        updated.put("restaurant", "http://localhost:8080/api/restaurants/3");
-
-        ResultActions resultActions = testUpdateIsConflict(
+        testUpdateIsConflict(
                 MENU_URL + MENU_0.getId(),
-                ADMIN, objectMapper.writeValueAsString(updated));
+                ADMIN, objectMapper.writeValueAsString(getStringObjectMapMenu(3)));
     }
 
     @Override
     public void updateIsForbidden() throws Exception {
-        ResultActions resultActions = testUpdateIsForbidden(MENU_URL + MENU_0.getId(), USER,
+        testUpdateIsForbidden(MENU_URL + MENU_0.getId(), USER,
                 objectMapper.writeValueAsString(getStringObjectMapMenu(RESTAURANT_2, LocalDate.now())));
     }
 
     @Override
     public void deleted() throws Exception {
-        ResultActions resultActions = testDelete(MENU_URL + MENU_0.getId(), ADMIN);
+        testDelete(MENU_URL + MENU_0.getId(), ADMIN);
     }
 
     @Override
     public void deletedIsForbidden() throws Exception {
-        ResultActions resultActions = testDeleteIsForbidden(MENU_URL + MENU_0.getId(), USER);
+        testDeleteIsForbidden(MENU_URL + MENU_0.getId(), USER);
     }
 }

@@ -7,6 +7,8 @@ import javax.validation.constraints.NotNull;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.vladmeh.choosing.web.AbstractControllerTest.REST_URL;
+
 /**
  * @autor Vladimir Mikhaylov <vladmeh@gmail.com> on 06.06.2018.
  * @link https://github.com/vladmeh/choose-restaurant
@@ -14,6 +16,7 @@ import java.util.Map;
 
 
 public class UserTestData {
+    public static final String USERS_URL = REST_URL + "/users/";
 
     public static final Long START_SEQ = 0L;
     public static final Long USER_ID = START_SEQ;
@@ -31,13 +34,12 @@ public class UserTestData {
     }
 
     private static Map<String, Object> getStringObjectMapUser(String name, String email, String password, @NotNull String... roles) {
-        Map<String, Object> user = new HashMap<>();
-        user.put("name", name);
-        user.put("email", email);
-        user.put("password", password);
-        user.put("roles", roles);
-
-        return user;
+        return new HashMap<String, Object>() {{
+            put("name", name);
+            put("email", email);
+            put("password", password);
+            put("roles", roles);
+        }};
     }
 
 
