@@ -1,8 +1,18 @@
 package com.vladmeh.choosing.testdata;
 
 import com.vladmeh.choosing.model.Dishes;
+import com.vladmeh.choosing.model.Menu;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import static com.vladmeh.choosing.testdata.MenuTestData.MENU_0;
+import static com.vladmeh.choosing.testdata.MenuTestData.MENU_URL;
+import static com.vladmeh.choosing.web.AbstractControllerTest.REST_URL;
 
 public class DishesTestData {
+    public static final String DISHES_URL = REST_URL + "/dishes/";
+
     //RESTAURANT_0
     //MENU_0
     public static final Dishes DISHES_0 = new Dishes(0L, "Макчикен", 100);
@@ -27,4 +37,18 @@ public class DishesTestData {
     public static final Dishes DISHES_10 = new Dishes(10L, "БоксМастер", 149);
     public static final Dishes DISHES_11 = new Dishes(11L, "Терияки", 129);
 
+    public static Map<String, Object> getStringObjectMapDishes(String name, Integer price) {
+        return new HashMap<String, Object>() {{
+            put("name", name);
+            put("price", price);
+        }};
+    }
+
+    public static Map<String, Object> getStringObjectMapDishes(String name, Integer price, Menu menu) {
+        return new HashMap<String, Object>() {{
+            put("name", name);
+            put("price", price);
+            put("menu", MENU_URL + MENU_0.getId());
+        }};
+    }
 }
