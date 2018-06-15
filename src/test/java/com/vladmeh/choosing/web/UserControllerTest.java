@@ -61,8 +61,7 @@ public class UserControllerTest extends AbstractControllerTest {
         ResultActions resultActions = testCreate(USERS_URL, ADMIN, objectMapper.writeValueAsString(getCreatedUser()));
     }
 
-    @Test
-    @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
+    @Override
     public void createIsConflict() throws Exception {
         Map<String, Object> created = getCreatedUser();
         created.put("email", "user@yandex.ru");
@@ -80,8 +79,8 @@ public class UserControllerTest extends AbstractControllerTest {
         ResultActions resultActions = testUpdate(USERS_URL + USER_ID, ADMIN, objectMapper.writeValueAsString(getUpdateUser()));
     }
 
-    @Test
-    public void updateIsConflict() throws Exception {
+    @Override
+    public void updatedIsConflict() throws Exception {
         Map<String, Object> update = getUpdateUser();
         update.put("email", "admin@gmail.com");
 

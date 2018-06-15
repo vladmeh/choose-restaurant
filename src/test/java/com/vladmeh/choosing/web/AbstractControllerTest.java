@@ -165,11 +165,17 @@ abstract public class AbstractControllerTest {
     abstract public void create() throws Exception;
 
     @Test
+    abstract public void createIsConflict() throws Exception;
+
+    @Test
     abstract public void createIsForbidden() throws Exception;
 
     @Test
     @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
     abstract public void update() throws Exception;
+
+    @Test
+    abstract public void updatedIsConflict() throws Exception;
 
     @Test
     abstract public void updateIsForbidden() throws Exception;

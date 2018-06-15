@@ -1,7 +1,9 @@
 package com.vladmeh.choosing.web;
 
 import org.junit.Test;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.HashMap;
@@ -39,11 +41,12 @@ public class MenuControllerTest extends AbstractControllerTest {
                 objectMapper.writeValueAsString(getStringObjectMapMenu(RESTAURANT_0, LocalDate.now())));
     }
 
-    @Test
-    public void createIsBadRequest() throws Exception {
-        Map<String, Object> created = getStringObjectMapMenu(RESTAURANT_0, LocalDate.now());
+    @Override
+    public void createIsConflict() throws Exception {
+        Map<String, Object> created = new HashMap<>();
+        created.put("date", LocalDate.now());
         created.put("restaurant", "http://api/restaurant/3");
-        ResultActions resultActions = testCreateIsBadRequest(MENU_URL, ADMIN, objectMapper.writeValueAsString(created));
+        ResultActions resultActions = testCreateIsConflict(MENU_URL, ADMIN, objectMapper.writeValueAsString(created));
     }
 
     @Override
@@ -59,11 +62,12 @@ public class MenuControllerTest extends AbstractControllerTest {
     }
 
     @Test
-    public void updateIsBadRequest() throws Exception {
+    @DirtiesContext(methodMode = DirtiesContext.MethodMode.BEFORE_METHOD)
+    public void updatedIsConflict() throws Exception {
         Map<String, Object> updated = new HashMap<>();
         updated.put("restaurant", "http://api/restaurant/3");
 
-        ResultActions resultActions = testUpdateIsBadRequest(
+        ResultActions resultActions = testUpdateIsConflict(
                 MENU_URL + MENU_0.getId(),
                 ADMIN, objectMapper.writeValueAsString(updated));
     }
