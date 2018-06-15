@@ -14,7 +14,6 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
-import org.springframework.web.context.WebApplicationContext;
 
 import static com.vladmeh.choosing.utils.TestUtil.userHttpBasic;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.*;

@@ -3,7 +3,9 @@ package com.vladmeh.choosing.model;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 /**
  * @author Vladimir Mikhaylov <vladmeh@gmail.com> on 24.05.2018.

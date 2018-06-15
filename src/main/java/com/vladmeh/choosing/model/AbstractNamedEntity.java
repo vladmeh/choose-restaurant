@@ -16,7 +16,7 @@ import javax.validation.constraints.Size;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @MappedSuperclass
-abstract class AbstractNamedEntity extends AbstractBaseEntity{
+abstract class AbstractNamedEntity extends AbstractBaseEntity {
 
     @NotBlank
     @Size(min = 2, max = 100)

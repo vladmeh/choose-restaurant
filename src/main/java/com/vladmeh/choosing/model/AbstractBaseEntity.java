@@ -3,7 +3,9 @@ package com.vladmeh.choosing.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
-import javax.persistence.*;
+import javax.persistence.Access;
+import javax.persistence.AccessType;
+import javax.persistence.MappedSuperclass;
 
 /**
  * @author Vladimir Mikhaylov <vladmeh@gmail.com> on 24.05.2018.

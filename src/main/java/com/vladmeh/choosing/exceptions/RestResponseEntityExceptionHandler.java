@@ -1,6 +1,5 @@
 package com.vladmeh.choosing.exceptions;
 
-import com.vladmeh.choosing.exceptions.error.ExceptionResponse;
 import com.vladmeh.choosing.util.ValidationUtil;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
@@ -92,7 +91,7 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
      * @return a {@code ResponseEntity} instance
      */
     @ExceptionHandler(AccessDeniedException.class) //403
-    public final ResponseEntity<Object> handleAccessDeniedException(AccessDeniedException ex){
+    public final ResponseEntity<Object> handleAccessDeniedException(AccessDeniedException ex) {
         ExceptionResponse exceptionResponse = new ExceptionResponse(HttpStatus.FORBIDDEN, "Access denied", ex);
         return buildResponseEntity(exceptionResponse);
     }

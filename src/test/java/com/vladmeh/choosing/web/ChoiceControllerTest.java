@@ -19,8 +19,8 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 import static com.vladmeh.choosing.testdata.RestaurantTestData.RESTAURANT_0;
-import static com.vladmeh.choosing.utils.TestUtil.*;
 import static com.vladmeh.choosing.testdata.UserTestData.USER;
+import static com.vladmeh.choosing.utils.TestUtil.userHttpBasic;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;

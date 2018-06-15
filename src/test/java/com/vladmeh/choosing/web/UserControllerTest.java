@@ -2,7 +2,6 @@ package com.vladmeh.choosing.web;
 
 
 import org.junit.Test;
-import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.ResultActions;
 
 import java.util.Map;

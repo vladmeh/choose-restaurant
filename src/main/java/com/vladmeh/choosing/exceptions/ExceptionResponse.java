@@ -1,4 +1,4 @@
-package com.vladmeh.choosing.exceptions.error;
+package com.vladmeh.choosing.exceptions;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
@@ -99,6 +99,7 @@ public class ExceptionResponse {
 
     /**
      * Utility method for adding error of ConstraintViolation. Usually when a @Validated validation fails.
+     *
      * @param cv the ConstraintViolation
      */
     private void addValidationError(ConstraintViolation<?> cv) {
