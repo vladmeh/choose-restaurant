@@ -41,11 +41,11 @@ public class MenuControllerTest extends AbstractControllerTest {
                 objectMapper.writeValueAsString(getStringObjectMapMenu(RESTAURANT_0, LocalDate.now())));
     }
 
-    @Override
+    @Test
     public void createIsConflict() throws Exception {
         Map<String, Object> created = new HashMap<>();
         created.put("date", LocalDate.now());
-        created.put("restaurant", "http://api/restaurant/3");
+        created.put("restaurant", "http://localhost:8080/api/restaurants/3");
         ResultActions resultActions = testCreateIsConflict(MENU_URL, ADMIN, objectMapper.writeValueAsString(created));
     }
 
@@ -62,10 +62,9 @@ public class MenuControllerTest extends AbstractControllerTest {
     }
 
     @Test
-    @DirtiesContext(methodMode = DirtiesContext.MethodMode.BEFORE_METHOD)
     public void updatedIsConflict() throws Exception {
         Map<String, Object> updated = new HashMap<>();
-        updated.put("restaurant", "http://api/restaurant/3");
+        updated.put("restaurant", "http://localhost:8080/api/restaurants/3");
 
         ResultActions resultActions = testUpdateIsConflict(
                 MENU_URL + MENU_0.getId(),

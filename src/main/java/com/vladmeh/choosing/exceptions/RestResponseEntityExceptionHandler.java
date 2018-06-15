@@ -28,7 +28,7 @@ import java.util.Optional;
 import static org.springframework.http.HttpStatus.*;
 
 @RestControllerAdvice
-@Order(Ordered.HIGHEST_PRECEDENCE)
+@Order(Ordered.HIGHEST_PRECEDENCE + 5)
 public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
     private static final String EXCEPTION_DUPLICATE_EMAIL = "User with this email already exists";
     private static final String EXCEPTION_DUPLICATE_NAME = "Restaurant with this name already exist";
@@ -178,11 +178,13 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
      * @param ex the Exception
      * @return a {@code ResponseEntity} instance
      */
-    @ExceptionHandler(Exception.class) //500
+    @ExceptionHandler(Exception.class)
     public final ResponseEntity<Object> handleErrorException(Exception ex) {
-        if (ex.getCause() instanceof ConstraintViolationException) {
+        Throwable rootCause = ValidationUtil.getRootCause(ex);
+
+        if (rootCause instanceof ConstraintViolationException) {
             ExceptionResponse exceptionResponse = new ExceptionResponse(CONFLICT, "Validation error", ex.getCause());
-            exceptionResponse.addValidationErrors(((ConstraintViolationException) ex.getCause()).getConstraintViolations());
+            exceptionResponse.addValidationErrors(((ConstraintViolationException) rootCause).getConstraintViolations());
             return buildResponseEntity(exceptionResponse);
         }
 

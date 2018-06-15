@@ -14,6 +14,7 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.web.context.WebApplicationContext;
 
 import static com.vladmeh.choosing.utils.TestUtil.userHttpBasic;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.*;
@@ -83,15 +84,6 @@ abstract public class AbstractControllerTest {
                 .andExpect(status().isConflict());
     }
 
-    public ResultActions testCreateIsBadRequest(String url, User authUser, String body) throws Exception {
-        return mockMvc.perform(post(url)
-                .with(userHttpBasic(authUser))
-                .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
-                .content(body))
-                .andDo(print())
-                .andExpect(status().isBadRequest());
-    }
-
     public ResultActions testCreateIsForbidden(String url, User authUser, String body) throws Exception {
         return mockMvc.perform(post(url)
                 .with(userHttpBasic(authUser))
@@ -111,21 +103,12 @@ abstract public class AbstractControllerTest {
     }
 
     public ResultActions testUpdateIsConflict(String url, User authUser, String body) throws Exception {
-        return mockMvc.perform(put(url)
+        return mockMvc.perform(patch(url)
                 .with(userHttpBasic(authUser))
                 .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
                 .content(body))
                 .andDo(print())
                 .andExpect(status().isConflict());
-    }
-
-    public ResultActions testUpdateIsBadRequest(String url, User authUser, String body) throws Exception {
-        return mockMvc.perform(put(url)
-                .with(userHttpBasic(authUser))
-                .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
-                .content(body))
-                .andDo(print())
-                .andExpect(status().isBadRequest());
     }
 
     public ResultActions testUpdateIsForbidden(String url, User authUser, String body) throws Exception {
