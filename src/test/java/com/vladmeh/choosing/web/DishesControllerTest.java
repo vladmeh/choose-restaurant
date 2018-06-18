@@ -1,6 +1,5 @@
 package com.vladmeh.choosing.web;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import static com.vladmeh.choosing.testdata.DishesTestData.*;
@@ -12,6 +11,9 @@ import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuild
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+/**
+ * The type Dishes controller test.
+ */
 public class DishesControllerTest extends AbstractControllerTest {
     @Override
     public void getAll() throws Exception {
@@ -52,11 +54,11 @@ public class DishesControllerTest extends AbstractControllerTest {
                 objectMapper.writeValueAsString(getStringObjectMapDishes("Завтрак", 200, MENU_1)));
     }
 
-    @Test
-    @Ignore
+
+    @Override
     public void createIsConflict() throws Exception {
         testCreateIsConflict(DISHES_URL, ADMIN,
-                objectMapper.writeValueAsString(getStringObjectMapDishes(DISHES_2.getName(), 200, MENU_1)));
+                objectMapper.writeValueAsString(getStringObjectMapDishes(DISHES_10.getName(), 200, MENU_5)));
     }
 
     @Override
@@ -71,12 +73,10 @@ public class DishesControllerTest extends AbstractControllerTest {
                 objectMapper.writeValueAsString(getStringObjectMapDishes("Завтрак", 200)));
     }
 
-    @Test
-    @Ignore
+    @Override
     public void updatedIsConflict() throws Exception {
-        testUpdateIsConflict(DISHES_URL + DISHES_0.getId(), ADMIN,
-                objectMapper.writeValueAsString(getStringObjectMapDishes(DISHES_1.getName(), 100)));
-
+        testUpdateIsConflict(DISHES_URL + DISHES_11.getId(), ADMIN,
+                objectMapper.writeValueAsString(getStringObjectMapDishes(DISHES_10.getName(), 100)));
     }
 
     @Override

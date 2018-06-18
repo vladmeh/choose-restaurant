@@ -32,9 +32,9 @@ public class DishesTestData {
     //RESTAURANT_2
     //MENU_4
     public static final Dishes DISHES_8 = new Dishes(8L, "Брейкер", 99);
-    public static final Dishes DISHES_9 = new Dishes(9L, "Твистер", 129);
+    public static final Dishes DISHES_9 = new Dishes(9L, "Twister", 129);
     //MENU_5
-    public static final Dishes DISHES_10 = new Dishes(10L, "БоксМастер", 149);
+    public static final Dishes DISHES_10 = new Dishes(10L, "BoxMaster", 149);
     public static final Dishes DISHES_11 = new Dishes(11L, "Терияки", 129);
 
     public static Map<String, Object> getStringObjectMapDishes(String name, Integer price) {
@@ -48,7 +48,7 @@ public class DishesTestData {
         return new HashMap<String, Object>() {{
             put("name", name);
             put("price", price);
-            put("menu", MENU_URL + MENU_0.getId());
+            put("menu", MENU_URL + menu.getId());
         }};
     }
 }
