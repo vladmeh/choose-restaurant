@@ -1,7 +1,9 @@
 package com.vladmeh.choosing.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -15,6 +17,7 @@ import javax.validation.constraints.NotNull;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
+@NoArgsConstructor
 @Entity
 @Table(name = "menu_dishes", uniqueConstraints = {@UniqueConstraint(columnNames = {"menu_id", "name"}, name = "unique_menu_name_idx")})
 public class Dishes extends AbstractNamedEntity {
@@ -28,9 +31,6 @@ public class Dishes extends AbstractNamedEntity {
     @NotNull
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Menu menu;
-
-    public Dishes() {
-    }
 
     public Dishes(Long id, String name, @NotNull Integer price) {
         super(id, name);

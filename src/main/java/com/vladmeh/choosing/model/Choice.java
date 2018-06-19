@@ -1,7 +1,9 @@
 package com.vladmeh.choosing.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -16,6 +18,8 @@ import java.time.LocalDate;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "choice_restaurant", uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "choice_date"}, name = "unique_user_choice_date_idx")})
 public class Choice extends AbstractBaseEntity {
@@ -35,13 +39,4 @@ public class Choice extends AbstractBaseEntity {
     @Column(name = "choice_date", nullable = false)
     @NotNull
     private LocalDate date;
-
-    public Choice() {
-    }
-
-    public Choice(@NotNull User user, @NotNull Restaurant restaurant, @NotNull LocalDate date) {
-        this.user = user;
-        this.restaurant = restaurant;
-        this.date = date;
-    }
 }

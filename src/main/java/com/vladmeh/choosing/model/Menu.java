@@ -2,6 +2,7 @@ package com.vladmeh.choosing.model;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -17,6 +18,7 @@ import java.time.LocalDate;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
+@NoArgsConstructor
 @Entity
 @Table(name = "menu")
 public class Menu extends AbstractBaseEntity {
@@ -31,9 +33,6 @@ public class Menu extends AbstractBaseEntity {
     @JoinColumn(name = "restaurant_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Restaurant restaurant;
-
-    public Menu() {
-    }
 
     public Menu(Menu menu) {
         this(menu.getId(), menu.getRestaurant(), menu.getDate());
