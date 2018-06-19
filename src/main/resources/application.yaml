@@ -1,0 +1,44 @@
+spring:
+  jpa:
+    hibernate:
+      use-new-id-generator-mappings: false
+    open-in-view: false
+  datasource:
+    # H2 file remote client: jdbc:h2:tcp://localhost:9092/~/choosing
+    url: jdbc:h2:file:~/choosing
+    data-username: sa
+    data-password: WdyHMa4G
+  data:
+    rest:
+      base-path: api
+      return-body-on-update: true
+  jackson:
+    serialization:
+      indent-output: true
+logging:
+  level:
+    com.vladmeh.choosing: DEBUG
+---
+spring:
+  profiles: dev
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  datasource:
+    # H2 inMemory remote client: tcp://localhost:9092/mem:choosing
+    url: jdbc:h2:mem:choosing
+    data-username: sa
+    data-password:
+  h2:
+    console:
+      enabled: true
+      path: /console
+logging:
+  level:
+    com.vladmeh.choosing: ERROR
+    org.springframework.boot.SpringBootExceptionHandler: DEBUG
+    org.hibernate.type: TRACE
+    org.springframework.transaction.interceptor: DEBUG
+
