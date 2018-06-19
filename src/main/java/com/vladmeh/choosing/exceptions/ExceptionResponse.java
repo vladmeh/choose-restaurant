@@ -25,13 +25,12 @@ public class ExceptionResponse {
 
     private HttpStatus status;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
-    private LocalDateTime timestamp;
+    private LocalDateTime timestamp = LocalDateTime.now();
     private String message;
     private String debug;
     private List<DetailsError> details;
 
     private ExceptionResponse() {
-        timestamp = LocalDateTime.now();
     }
 
     public ExceptionResponse(HttpStatus status) {
