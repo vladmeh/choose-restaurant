@@ -3,9 +3,12 @@ package com.vladmeh.choosing.config;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
+import org.h2.tools.Server;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
+
+import java.sql.SQLException;
 
 /**
  * @autor Vladimir Mikhaylov <vladmeh@gmail.com> on 08.06.2018.
@@ -25,5 +28,10 @@ public class AppConfig {
                 setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
 
         return mapperBuilder;
+    }
+
+    @Bean(initMethod = "start", destroyMethod = "stop")
+    public Server h2Server() throws SQLException {
+        return Server.createTcpServer("-tcp", "-tcpAllowOthers", "-tcpPort", "9092");
     }
 }
