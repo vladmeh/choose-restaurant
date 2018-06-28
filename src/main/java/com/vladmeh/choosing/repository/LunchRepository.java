@@ -29,6 +29,9 @@ public interface LunchRepository extends JpaRepository<Lunch, Long> {
     @Transactional(readOnly = true)
     List<Lunch> findAllByRestaurant(@Param("restaurant") Restaurant restaurant);
 
+    @Transactional(readOnly = true)
+    List<Lunch> findAllByRestaurantAndDate(@Param("restaurant") Restaurant restaurant, @Param("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date);
+
     @Override
     @Secured("ROLE_ADMIN")
     Lunch save(Lunch entity);
@@ -36,5 +39,4 @@ public interface LunchRepository extends JpaRepository<Lunch, Long> {
     @Override
     @Secured("ROLE_ADMIN")
     void delete(Lunch entity);
-
 }

@@ -1,6 +1,5 @@
 package com.vladmeh.choosing.web;
 
-import com.vladmeh.choosing.model.Menu;
 import com.vladmeh.choosing.model.Restaurant;
 import com.vladmeh.choosing.service.ChoiceService;
 import com.vladmeh.choosing.userdetails.UserPrincipal;
@@ -26,6 +25,7 @@ import java.time.LocalTime;
 @RequestMapping(value = "/api/choice", produces = MediaTypes.HAL_JSON_UTF8_VALUE)
 public class ChoiceController {
     private static final LocalTime TIME_LIMIT = LocalTime.parse("11:00");
+    private static final LocalDate TODAY =LocalDate.now();
 
     private final ChoiceService choiceService;
 
@@ -37,23 +37,22 @@ public class ChoiceController {
     @GetMapping
     public ResponseEntity<Restaurant> current(@AuthenticationPrincipal UserPrincipal userPrincipal) {
 
-        return choiceService.getForUserAndDate(userPrincipal.getUser().getId(), LocalDate.now())
+        return choiceService.getForUserAndDate(userPrincipal.getUser().getId(), TODAY)
                 .map(choice -> new ResponseEntity<>(choice.getRestaurant(), HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PostMapping("/{id}")
-    public ResponseEntity<Restaurant> choice(@AuthenticationPrincipal UserPrincipal userPrincipal, @PathVariable("id") Menu menu) {
-        LocalDate today = LocalDate.now();
+    public ResponseEntity<Restaurant> choice(@AuthenticationPrincipal UserPrincipal userPrincipal, @PathVariable("id") Restaurant restaurant) {
 
-        if (menu == null || !menu.getDate().equals(today)) {
+        if (restaurant == null || choiceService.getForRestaurantAndDate(restaurant, TODAY).isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
         boolean limit = LocalTime.now().isAfter(TIME_LIMIT);
         ChoiceStatus choiceStatus = limit
-                ? choiceService.saveAfterLimitTime(userPrincipal.getUser(), menu)
-                : choiceService.save(userPrincipal.getUser(), menu);
+                ? choiceService.saveAfterLimitTime(userPrincipal.getUser(), restaurant)
+                : choiceService.save(userPrincipal.getUser(), restaurant);
 
         return new ResponseEntity<>(choiceStatus.getChoice().getRestaurant(), choiceStatus.isCreated() ? HttpStatus.CREATED : (limit ? HttpStatus.CONFLICT : HttpStatus.OK));
     }
