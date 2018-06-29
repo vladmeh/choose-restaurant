@@ -84,6 +84,9 @@ $ curl http://localhost:8080/api/restaurants -H 'Authorization: Basic YWRtaW5AZ2
 $ curl http://localhost:8080/api/restaurants/0 -H 'Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'
 $ curl http://localhost:8080/api/restaurants/search/by-name?name=McDonalds -H 'Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'
 
+## get restaurant with lunch current date
+$ curl http://localhost:8080/api/restaurants/0/lunch -H 'Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'
+
 $ curl -si 'http://localhost:8080/api/restaurants' -d '{"name":"Mama Roma"}' -H 'Content-Type:application/json;charset=UTF-8' -H 'Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'
 $ curl -si 'http://localhost:8080/api/restaurants/0' -X PUT -d '{"name":"Teremok"}' -H 'Content-Type:application/json;charset=UTF-8' -H 'Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'
 $ curl -si 'http://localhost:8080/api/restaurants/0' -X DELETE -H 'Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'
