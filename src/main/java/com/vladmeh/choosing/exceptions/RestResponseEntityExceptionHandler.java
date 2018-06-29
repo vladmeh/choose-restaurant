@@ -31,14 +31,14 @@ import static org.springframework.http.HttpStatus.*;
 public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
     private static final String EXCEPTION_DUPLICATE_EMAIL = "User with this email already exists";
     private static final String EXCEPTION_DUPLICATE_RESTAURANT = "Restaurant with this name already exist";
-    private static final String EXCEPTION_DUPLICATE_DISHES = "In the selected menu a dish with this name already exists";
+    private static final String EXCEPTION_DUPLICATE_LUNCH = "In the selected restaurant a lunch with this name already exists";
 
     private static final Map<String, String> CONSTRAINS_I18N_MAP = Collections.unmodifiableMap(
             new HashMap<String, String>() {
                 {
                     put("unique_users_email_idx", EXCEPTION_DUPLICATE_EMAIL);
                     put("unique_restaurant_name_idx", EXCEPTION_DUPLICATE_RESTAURANT);
-                    put("unique_menu_name_idx", EXCEPTION_DUPLICATE_DISHES);
+                    put("unique_lunch_name_idx", EXCEPTION_DUPLICATE_LUNCH);
                 }
             });
 

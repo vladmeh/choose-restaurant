@@ -29,6 +29,7 @@ public interface LunchRepository extends JpaRepository<Lunch, Long> {
     @Transactional(readOnly = true)
     List<Lunch> findAllByRestaurant(@Param("restaurant") Restaurant restaurant);
 
+    @RestResource(path = "by-restaurant-and-date")
     @Transactional(readOnly = true)
     List<Lunch> findAllByRestaurantAndDate(@Param("restaurant") Restaurant restaurant, @Param("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date);
 
