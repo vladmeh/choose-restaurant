@@ -15,6 +15,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 
+import java.time.LocalDate;
+
 import static com.vladmeh.choosing.utils.TestUtil.userHttpBasic;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -33,6 +35,9 @@ abstract public class AbstractControllerTest {
      * The constant REST_URL.
      */
     public static final String REST_URL = "/api";
+
+    static final LocalDate LOCAL_DATE = LocalDate.now();
+
 
     /**
      * The Mock mvc.

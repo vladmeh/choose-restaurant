@@ -76,9 +76,6 @@ $ curl -si 'http://localhost:8080/api/users/search/by-email?email=admin@gmail.co
 $ curl -si 'http://localhost:8080/api/users' -d '{"name":"New User","email":"user@local.loc", "password":"12345", "roles" : ["ROLE_USER"]}' -H 'Content-Type:application/json;charset=UTF-8' -H 'Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'
 $ curl -si 'http://localhost:8080/api/users/0' -X PUT -d '{"name":"User update","email":"user@yandex.ru", "password":"12345", "roles" : ["ROLE_USER"]}' -H 'Content-Type:application/json;charset=UTF-8' -H 'Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'
 $ curl -si 'http://localhost:8080/api/users/0' -X DELETE -H 'Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'
-
-## handle exception 409 Conflict
-$ curl -si 'http://localhost:8080/api/users' -d '{"name":"New User","email":"user@yandex.ru, "password":"12345", "roles" : ["ROLE_USER"]}' -H 'Content-Type:application/json;charset=UTF-8' -H 'Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'
 ```
 
 ##### CURL Restaurant
@@ -103,19 +100,20 @@ $ curl http://localhost:8080/api/lunch/search/by-restaurant-and-date?restaurant=
 $ curl -si 'http://localhost:8080/api/lunch' -d '{"date": "2018-06-05", "restaurant":"http://localhost:8080/api/restaurant/0", "name": "New lunch", "price" : 200}' -H 'Content-Type:application/json;charset=UTF-8' -H 'Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'
 $ curl -si 'http://localhost:8080/api/lunch/0' -X PUT -d '{"date": "2018-06-04", "name": "Put lunch", "price" : 300}' -H 'Content-Type:application/json;charset=UTF-8' -H 'Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'
 $ curl -si 'http://localhost:8080/api/lunch/0' -X DELETE -H 'Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'
-
-## handle exception 409 Conflict
-$ curl -si 'http://localhost:8080/api/lunch/0' -X PATCH -d '{"restaurant": "http://localhost:8080/api/restaurant/3"}' -H 'Content-Type:application/json;charset=UTF-8' -H 'Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'
-$ curl -si 'http://localhost:8080/api/lunch/0' -X PATCH -d '{"name": "Kebab", "price" : 300}' -H 'Content-Type:application/json;charset=UTF-8' -H 'Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'
 ```
 
+>###### WARNINIG! Restaurant change at lunch
+>```console
+>$ curl -si 'http://localhost:8080/api/lunch/0' -X PATCH -d '{"restaurant": "http://localhost:8080/api/restaurant/1"}' -H 'Content-Type:application/json;charset=UTF-8' -H 'Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu'
+>```
+
 ## Choosing
-Choice for menu 0:
+Choice for restaurant 0:
 ```console
 $ curl -si 'http://localhost:8080/api/choice/0' -X POST -H 'Authorization:Basic dXNlckB5YW5kZXgucnU6dXNlcg=='
 ```
 
-Choice for menu 2:
+Choice for restaurant 2:
 ```console
 $ curl -si 'http://localhost:8080/api/choice/2' -X POST -H 'Authorization:Basic dXNlckB5YW5kZXgucnU6dXNlcg=='
 ```
