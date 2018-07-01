@@ -34,7 +34,7 @@ public class ChoiceController {
     }
 
     @PostMapping("/{id}")
-    public ResponseEntity<Restaurant> choice(@AuthenticationPrincipal UserPrincipal userPrincipal, @PathVariable("id") Restaurant restaurant) throws Exception {
-        return new ResponseEntity<>(choiceService.setChoice(userPrincipal.getUser(), restaurant), HttpStatus.OK);
+    public ResponseEntity<Restaurant> choice(@AuthenticationPrincipal UserPrincipal userPrincipal, @PathVariable("id") Restaurant restaurant) {
+        return new ResponseEntity<>(choiceService.setChoice(userPrincipal.getUser(), restaurant), HttpStatus.CREATED);
     }
 }

@@ -84,7 +84,7 @@ public class ChoiceControllerTest {
                 .contentType(MediaTypes.HAL_JSON_UTF8_VALUE)
                 .with(userHttpBasic(USER)))
                 .andDo(print())
-                .andExpect(limit ? status().isConflict() : status().isOk());
+                .andExpect(limit ? status().isConflict() : status().isCreated());
 
         actions.andDo(document("{class-name}/{method-name}"));
     }
