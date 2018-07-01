@@ -116,6 +116,36 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
     }
 
     /**
+     * Handle RestaurantNotFoundException
+     * HTTP 404 Not Found
+     *
+     * @param ex the com.vladmeh.choosing.RestaurantNotFoundException
+     * @param request the current request
+     * @return a {@code ResponseEntity} instance
+     */
+    @ExceptionHandler(RestaurantNotFoundException.class)
+    public final ResponseEntity<Object> handleRestaurantNotFoundException(RestaurantNotFoundException ex, WebRequest request) {
+        ExceptionResponse exceptionResponse = new ExceptionResponse(NOT_FOUND, ex.getMessage(),
+                request.getDescription(false));
+        return buildResponseEntity(exceptionResponse);
+    }
+
+    /**
+     * Handle ResourceNotFoundException
+     * HTTP 404 Not Found
+     *
+     * @param ex the com.vladmeh.choosing.ResourceNotFoundException
+     * @param request the current request
+     * @return a {@code ResponseEntity} instance
+     */
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public final ResponseEntity<Object> handleResourceNotFoundException(ResourceNotFoundException ex, WebRequest request) {
+        ExceptionResponse exceptionResponse = new ExceptionResponse(NOT_FOUND, ex.getMessage(),
+                request.getDescription(false));
+        return buildResponseEntity(exceptionResponse);
+    }
+
+    /**
      * Handle javax.persistence.EntityNotFoundException
      * HTTP 404 Not Found
      *
@@ -125,6 +155,34 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
     @ExceptionHandler(EntityNotFoundException.class)
     public final ResponseEntity<Object> handleEntityNotFound(EntityNotFoundException ex) {
         return buildResponseEntity(new ExceptionResponse(NOT_FOUND, ex));
+    }
+
+    /**
+     * Handle DataNotFoundException.
+     * HTTP 409 Conflict.
+     *
+     * @param ex the DataNotFoundException
+     * @return a {@code ResponseEntity} instance
+     */
+    @ExceptionHandler(DataNotFoundException.class)
+    public final ResponseEntity<Object> handleDataNotFound(DataNotFoundException ex, WebRequest request) {
+        ExceptionResponse exceptionResponse = new ExceptionResponse(CONFLICT, ex.getMessage(),
+                request.getDescription(false));
+        return buildResponseEntity(exceptionResponse);
+    }
+
+    /**
+     * Handle ValidationLimitException.
+     * HTTP 409 Conflict.
+     *
+     * @param ex the ValidationLimitException
+     * @return a {@code ResponseEntity} instance
+     */
+    @ExceptionHandler(ValidationLimitException.class)
+    public final ResponseEntity<Object> handleValidationLimit(ValidationLimitException ex, WebRequest request) {
+        ExceptionResponse exceptionResponse = new ExceptionResponse(CONFLICT, ex.getMessage(),
+                request.getDescription(false));
+        return buildResponseEntity(exceptionResponse);
     }
 
     /**

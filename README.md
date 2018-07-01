@@ -123,7 +123,7 @@ $ curl -si 'http://localhost:8080/api/choice/2' -X POST -H 'Authorization:Basic 
 
 Check current choice:
 ```console
-$ curl -si 'http://localhost:8080/api/choice' -H 'Authorization:Basic dXNlckB5YW5kZXgucnU6dXNlcg==
+$ curl -si 'http://localhost:8080/api/choice' -H 'Authorization:Basic dXNlckB5YW5kZXgucnU6dXNlcg=='
 ```
 
 ## Testing

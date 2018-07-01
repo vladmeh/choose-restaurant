@@ -1,5 +1,6 @@
 package com.vladmeh.choosing.service;
 
+import com.vladmeh.choosing.exceptions.RestaurantNotFoundException;
 import com.vladmeh.choosing.model.Choice;
 import com.vladmeh.choosing.model.Lunch;
 import com.vladmeh.choosing.model.Restaurant;
@@ -24,4 +25,8 @@ public interface ChoiceService {
     ChoiceStatus saveAfterLimitTime(User user, Restaurant restaurant);
 
     List<Lunch> getForRestaurantAndDate(Restaurant restaurant, LocalDate date);
+
+    Restaurant getCurrent(User user) throws RestaurantNotFoundException;
+
+    Restaurant setChoice(User user, Restaurant restaurant);
 }

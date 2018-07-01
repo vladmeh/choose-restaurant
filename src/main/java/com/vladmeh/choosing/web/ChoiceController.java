@@ -1,18 +1,15 @@
 package com.vladmeh.choosing.web;
 
+import com.vladmeh.choosing.exceptions.RestaurantNotFoundException;
 import com.vladmeh.choosing.model.Restaurant;
 import com.vladmeh.choosing.service.ChoiceService;
 import com.vladmeh.choosing.userdetails.UserPrincipal;
-import com.vladmeh.choosing.util.ChoiceStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.MediaTypes;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
-
-import java.time.LocalDate;
-import java.time.LocalTime;
 
 
 /**
@@ -24,9 +21,6 @@ import java.time.LocalTime;
 @RestController
 @RequestMapping(value = "/api/choice", produces = MediaTypes.HAL_JSON_UTF8_VALUE)
 public class ChoiceController {
-    private static final LocalTime TIME_LIMIT = LocalTime.parse("11:00");
-    private static final LocalDate TODAY =LocalDate.now();
-
     private final ChoiceService choiceService;
 
     @Autowired
@@ -35,25 +29,12 @@ public class ChoiceController {
     }
 
     @GetMapping
-    public ResponseEntity<Restaurant> current(@AuthenticationPrincipal UserPrincipal userPrincipal) {
-
-        return choiceService.getForUserAndDate(userPrincipal.getUser().getId(), TODAY)
-                .map(choice -> new ResponseEntity<>(choice.getRestaurant(), HttpStatus.OK))
-                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    public ResponseEntity<Restaurant> current(@AuthenticationPrincipal UserPrincipal userPrincipal) throws RestaurantNotFoundException {
+        return new ResponseEntity<>(choiceService.getCurrent(userPrincipal.getUser()), HttpStatus.OK);
     }
 
     @PostMapping("/{id}")
-    public ResponseEntity<Restaurant> choice(@AuthenticationPrincipal UserPrincipal userPrincipal, @PathVariable("id") Restaurant restaurant) {
-
-        if (restaurant == null || choiceService.getForRestaurantAndDate(restaurant, TODAY).isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-
-        boolean limit = LocalTime.now().isAfter(TIME_LIMIT);
-        ChoiceStatus choiceStatus = limit
-                ? choiceService.saveAfterLimitTime(userPrincipal.getUser(), restaurant)
-                : choiceService.save(userPrincipal.getUser(), restaurant);
-
-        return new ResponseEntity<>(choiceStatus.getChoice().getRestaurant(), choiceStatus.isCreated() ? HttpStatus.CREATED : (limit ? HttpStatus.CONFLICT : HttpStatus.OK));
+    public ResponseEntity<Restaurant> choice(@AuthenticationPrincipal UserPrincipal userPrincipal, @PathVariable("id") Restaurant restaurant) throws Exception {
+        return new ResponseEntity<>(choiceService.setChoice(userPrincipal.getUser(), restaurant), HttpStatus.OK);
     }
 }
