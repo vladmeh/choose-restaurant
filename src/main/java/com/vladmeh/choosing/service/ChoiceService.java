@@ -28,5 +28,5 @@ public interface ChoiceService {
 
     Restaurant getCurrent(User user) throws RestaurantNotFoundException;
 
-    Restaurant setChoice(User user, Restaurant restaurant);
+    ChoiceStatus choiceStatus(User user, Restaurant restaurant);
 }

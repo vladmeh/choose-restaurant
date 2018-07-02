@@ -83,13 +83,15 @@ public class ChoiceServiceImpl implements ChoiceService {
     }
 
     @Override
-    public Restaurant setChoice(User user, Restaurant restaurant) {
+    public ChoiceStatus choiceStatus(User user, Restaurant restaurant) {
 
         if (restaurant == null) {
+            log.info("Restaurant not fount");
             throw new ResourceNotFoundException("Restaurant not found");
         }
 
         if (getForRestaurantAndDate(restaurant, TODAY).isEmpty()) {
+            log.info("The restaurant {} does not have lunch for choice", restaurant.getId());
             throw new DataNotFoundException("The restaurant does not have lunch for choice");
         }
 
@@ -98,8 +100,11 @@ public class ChoiceServiceImpl implements ChoiceService {
                 ? saveAfterLimitTime(user, restaurant)
                 : save(user, restaurant);
 
-        if (!choiceStatus.isCreated() && limit) throw new ValidationLimitException("Choices time expired");
+        if (!choiceStatus.isCreated() && limit){
+            log.info("Choices time expired. Current time is {}", LocalTime.now().toString());
+            throw new ValidationLimitException("Choices time expired");
+        }
 
-        return choiceStatus.getChoice().getRestaurant();
+        return choiceStatus;
     }
 }

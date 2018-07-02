@@ -4,6 +4,7 @@ import com.vladmeh.choosing.exceptions.RestaurantNotFoundException;
 import com.vladmeh.choosing.model.Restaurant;
 import com.vladmeh.choosing.service.ChoiceService;
 import com.vladmeh.choosing.userdetails.UserPrincipal;
+import com.vladmeh.choosing.util.ChoiceStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.MediaTypes;
 import org.springframework.http.HttpStatus;
@@ -35,6 +36,7 @@ public class ChoiceController {
 
     @PostMapping("/{id}")
     public ResponseEntity<Restaurant> choice(@AuthenticationPrincipal UserPrincipal userPrincipal, @PathVariable("id") Restaurant restaurant) {
-        return new ResponseEntity<>(choiceService.setChoice(userPrincipal.getUser(), restaurant), HttpStatus.CREATED);
+        ChoiceStatus choiceStatus = choiceService.choiceStatus(userPrincipal.getUser(), restaurant);
+        return new ResponseEntity<>(choiceStatus.getChoice().getRestaurant(), choiceStatus.isCreated() ? HttpStatus.CREATED : HttpStatus.OK);
     }
 }
