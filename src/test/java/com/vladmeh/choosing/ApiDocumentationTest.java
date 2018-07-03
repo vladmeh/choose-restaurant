@@ -16,10 +16,13 @@ import static com.vladmeh.choosing.testdata.UserTestData.ADMIN;
 import static com.vladmeh.choosing.utils.TestUtil.userHttpBasic;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
+import static org.springframework.restdocs.hypermedia.HypermediaDocumentation.linkWithRel;
+import static org.springframework.restdocs.hypermedia.HypermediaDocumentation.links;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
 import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
 import static org.springframework.restdocs.payload.PayloadDocumentation.responseFields;
+import static org.springframework.restdocs.payload.PayloadDocumentation.subsectionWithPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -60,6 +63,21 @@ public class ApiDocumentationTest {
                                 fieldWithPath("path").description("The path to which the request was made"),
                                 fieldWithPath("status").description("The HTTP status code, e.g. `400`"),
                                 fieldWithPath("timestamp").description("The time, in milliseconds, at which the error occurred"))));
+    }
+
+    @Test
+    public void indexExample() throws Exception {
+        this.mockMvc.perform(get("/api").with(userHttpBasic(ADMIN)))
+                .andExpect(status().isOk())
+                .andDo(document("index-example",
+                        links(
+                                linkWithRel("user").description("The <<resources-notes,Notes resource>>"),
+                                linkWithRel("restaurant").description("The <<resources-tags,Tags resource>>"),
+                                linkWithRel("lunch").description("The <<resources-tags,Tags resource>>"),
+                                linkWithRel("profile").description("The ALPS profile for the service")),
+                        responseFields(
+                                subsectionWithPath("_links").description("<<resources-index-links,Links>> to other resources"))));
+
     }
 
     @Test

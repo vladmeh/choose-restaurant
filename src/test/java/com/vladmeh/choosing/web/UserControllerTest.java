@@ -2,12 +2,14 @@ package com.vladmeh.choosing.web;
 
 
 import org.junit.Test;
+import org.springframework.test.web.servlet.ResultActions;
 
 import java.util.Map;
 
 import static com.vladmeh.choosing.testdata.UserTestData.*;
 import static com.vladmeh.choosing.utils.TestUtil.userHttpBasic;
 import static org.hamcrest.Matchers.is;
+import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -18,14 +20,16 @@ public class UserControllerTest extends AbstractControllerTest {
 
     @Override
     public void getAll() throws Exception {
-        testGetAll(USERS_URL, ADMIN);
+        testGetAll(USERS_URL, ADMIN)
+                .andDo(document("users-list"));
     }
 
     @Override
     public void getById() throws Exception {
         testGetById(USERS_URL + USER_ID, ADMIN)
                 .andExpect(jsonPath("name", is(USER.getName())))
-                .andExpect(jsonPath("email", is(USER.getEmail())));
+                .andExpect(jsonPath("email", is(USER.getEmail())))
+                .andDo(document("user-get"));
     }
 
     @Test
@@ -37,7 +41,8 @@ public class UserControllerTest extends AbstractControllerTest {
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("name", is(USER.getName())))
-                .andExpect(jsonPath("email", is(USER.getEmail())));
+                .andExpect(jsonPath("email", is(USER.getEmail())))
+                .andDo(document("user-get-by-email"));
     }
 
     @Test
@@ -52,7 +57,8 @@ public class UserControllerTest extends AbstractControllerTest {
 
     @Override
     public void create() throws Exception {
-        testCreate(USERS_URL, ADMIN, objectMapper.writeValueAsString(getCreatedUser()));
+        testCreate(USERS_URL, ADMIN, objectMapper.writeValueAsString(getCreatedUser()))
+                .andDo(document("user-create"));
     }
 
     @Override
@@ -70,7 +76,8 @@ public class UserControllerTest extends AbstractControllerTest {
 
     @Override
     public void update() throws Exception {
-        testUpdate(USERS_URL + USER_ID, ADMIN, objectMapper.writeValueAsString(getUpdateUser()));
+        testUpdate(USERS_URL + USER_ID, ADMIN, objectMapper.writeValueAsString(getUpdateUser()))
+                .andDo(document("user-update"));
     }
 
     @Override
@@ -89,7 +96,7 @@ public class UserControllerTest extends AbstractControllerTest {
 
     @Override
     public void deleted() throws Exception {
-        testDelete(USERS_URL + USER_ID, ADMIN);
+        testDelete(USERS_URL + USER_ID, ADMIN).andDo(document("user-delete"));
     }
 
     @Override

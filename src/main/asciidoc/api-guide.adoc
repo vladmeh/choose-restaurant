@@ -31,6 +31,9 @@ use of HTTP verbs.
 | `PATCH`
 | Used to update an existing resource, including partial updates
 
+| `PUT`
+| Used to update an existing resource, full updates only
+
 | `DELETE`
 | Used to delete an existing resource
 |===
@@ -38,7 +41,7 @@ use of HTTP verbs.
 [[overview-http-status-codes]]
 == HTTP status codes
 
-RESTful notes tries to adhere as closely as possible to standard HTTP and REST conventions in its
+RESTfull notes tries to adhere as closely as possible to standard HTTP and REST conventions in its
 use of HTTP status codes.
 
 |===
@@ -57,9 +60,19 @@ use of HTTP status codes.
 | `400 Bad Request`
 | The request was malformed. The response body will include an error providing further information
 
+| `401 Unauthorized`
+| Although the HTTP standard specifies "unauthorized", semantically this response means "unauthenticated"
+
+| `403 Forbidden`
+| The client does not have access rights to the content
+
 | `404 Not Found`
 | The requested resource did not exist
+
+| `409 Conflict`
+| This response is sent when a request conflicts with the current state of the server
 |===
+
 
 [[overview-errors]]
 == Errors
@@ -74,10 +87,11 @@ For example, a request that attempts to apply a non-existent tag to a note will 
 
 include::{snippets}/error-example/http-response.adoc[]
 
+
 [[overview-hypermedia]]
 == Hypermedia
 
-RESTful Choose Restaurant uses hypermedia and resources include links to other resources in their
+RESTfull Choose Restaurant uses hypermedia and resources include links to other resources in their
 responses. Responses are in http://stateless.co/hal_specification.html[Hypertext Application
 from resource to resource.
 Language (HAL)] format. Links can be found beneath the `_links` key. Users of the API should
@@ -85,3 +99,27 @@ not create URIs themselves, instead they should use the above-described links to
 
 [[resources]]
 = Resources
+
+[[resources-index]]
+== Index
+
+The index provides the entry point into the service.
+
+
+[[resources-index-access]]
+=== Accessing the index
+
+operation::index-example[snippets='curl-request,response-fields,http-response,links']
+
+
+[[resources-users]]
+== Users
+
+The Users resources is used to create and list users.
+Access rights to the resource are only available to users with the role of admin.
+
+
+[[resources-users-list]]
+=== Listing users
+
+operation::users-list[snippets='curl-request,http-response']
