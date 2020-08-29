@@ -6,7 +6,7 @@
 
     <groupId>com.vladmeh</groupId>
     <artifactId>choose-restaurant</artifactId>
-    <version>1.0</version>
+    <version>1.0-RELASE</version>
     <packaging>jar</packaging>
 
     <name>choose-restaurant</name>
