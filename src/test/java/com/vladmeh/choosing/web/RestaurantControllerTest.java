@@ -7,7 +7,7 @@ import static com.vladmeh.choosing.testdata.UserTestData.ADMIN;
 import static com.vladmeh.choosing.testdata.UserTestData.USER;
 import static com.vladmeh.choosing.utils.TestUtil.userHttpBasic;
 import static org.hamcrest.Matchers.is;
-import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;

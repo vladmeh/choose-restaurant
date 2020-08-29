@@ -18,7 +18,7 @@ import org.springframework.test.web.servlet.ResultActions;
 import java.time.LocalDate;
 
 import static com.vladmeh.choosing.utils.TestUtil.userHttpBasic;
-import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -29,7 +29,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @AutoConfigureTestDatabase
-@AutoConfigureRestDocs(outputDir = "target/generated-snippets")
 abstract public class AbstractControllerTest {
     /**
      * The constant REST_URL.
@@ -56,7 +55,6 @@ abstract public class AbstractControllerTest {
      *
      * @param url      the url
      * @param authUser the auth user
-     * @return the result actions
      * @throws Exception the exception
      */
     ResultActions testGetAll(String url, User authUser) throws Exception {
@@ -87,7 +85,6 @@ abstract public class AbstractControllerTest {
      *
      * @param url      the url
      * @param authUser the auth user
-     * @return the result actions
      * @throws Exception the exception
      */
     ResultActions testGetIsForbidden(String url, User authUser) throws Exception {

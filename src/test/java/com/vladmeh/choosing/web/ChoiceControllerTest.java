@@ -13,7 +13,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.hateoas.MediaTypes;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.ResultActions;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -21,7 +20,6 @@ import java.time.LocalTime;
 import static com.vladmeh.choosing.testdata.RestaurantTestData.RESTAURANT_0;
 import static com.vladmeh.choosing.testdata.UserTestData.USER;
 import static com.vladmeh.choosing.utils.TestUtil.userHttpBasic;
-import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -36,7 +34,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @AutoConfigureTestDatabase
-@AutoConfigureRestDocs(outputDir = "target/generated-snippets")
 public class ChoiceControllerTest {
 
     private static final LocalTime TIME_LIMIT = LocalTime.parse("11:00");
@@ -54,23 +51,19 @@ public class ChoiceControllerTest {
 
     @Test
     public void currentIsNotFount() throws Exception {
-        ResultActions actions = mockMvc.perform(get("/api/choice")
+        mockMvc.perform(get("/api/choice")
                 .with(userHttpBasic(USER)))
                 .andDo(print())
                 .andExpect(status().isNotFound());
-
-        actions.andDo(document("{class-name}/{method-name}"));
     }
 
     @Test
     public void choiceCreate() throws Exception {
-        ResultActions actions = this.mockMvc.perform(post("/api/choice/0")
+        mockMvc.perform(post("/api/choice/0")
                 .contentType(MediaTypes.HAL_JSON_UTF8_VALUE)
                 .with(userHttpBasic(USER)))
                 .andDo(print())
                 .andExpect(status().isCreated());
-
-        actions.andDo(document("{class-name}/{method-name}"));
     }
 
     @Test
@@ -80,24 +73,20 @@ public class ChoiceControllerTest {
 
         boolean limit = LocalTime.now().isAfter(TIME_LIMIT);
 
-        ResultActions actions = this.mockMvc.perform(post("/api/choice/2")
+        mockMvc.perform(post("/api/choice/2")
                 .contentType(MediaTypes.HAL_JSON_UTF8_VALUE)
                 .with(userHttpBasic(USER)))
                 .andDo(print())
                 .andExpect(limit ? status().isConflict() : status().isOk());
-
-        actions.andDo(document("{class-name}/{method-name}"));
     }
 
     @Test
     public void choiceIsNotFound() throws Exception {
-        ResultActions actions = this.mockMvc.perform(post("/api/choice/3")
+        mockMvc.perform(post("/api/choice/3")
                 .contentType(MediaTypes.HAL_JSON_UTF8_VALUE)
                 .with(userHttpBasic(USER)))
                 .andDo(print())
                 .andExpect(status().isNotFound());
-
-        actions.andDo(document("{class-name}/{method-name}"));
     }
 
     @Test
@@ -105,12 +94,10 @@ public class ChoiceControllerTest {
         Choice choice = new Choice(USER, RESTAURANT_0, LocalDate.now());
         choiceRepository.save(choice);
 
-        ResultActions actions = this.mockMvc.perform(get("/api/choice")
+        mockMvc.perform(get("/api/choice")
                 .with(userHttpBasic(USER)))
                 .andDo(print())
                 .andExpect(status().isOk());
-
-        actions.andDo(document("{class-name}/{method-name}"));
     }
 
 }
