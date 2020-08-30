@@ -6,7 +6,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
@@ -123,7 +122,7 @@ abstract public class AbstractControllerTest {
     ResultActions testCreate(String url, User authUser, String body) throws Exception {
         return mockMvc.perform(post(url)
                 .with(userHttpBasic(authUser))
-                .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .content(body))
                 .andDo(print())
                 .andExpect(status().isCreated());
@@ -143,7 +142,7 @@ abstract public class AbstractControllerTest {
     ResultActions testCreateIsConflict(String url, User authUser, String body) throws Exception {
         return mockMvc.perform(post(url)
                 .with(userHttpBasic(authUser))
-                .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .content(body))
                 .andDo(print())
                 .andExpect(status().isConflict());
@@ -161,7 +160,7 @@ abstract public class AbstractControllerTest {
     ResultActions testCreateIsForbidden(String url, User authUser, String body) throws Exception {
         return mockMvc.perform(post(url)
                 .with(userHttpBasic(authUser))
-                .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .content(body))
                 .andDo(print())
                 .andExpect(status().isForbidden());
@@ -181,7 +180,7 @@ abstract public class AbstractControllerTest {
     ResultActions testUpdate(String url, User authUser, String body) throws Exception {
         return mockMvc.perform(patch(url)
                 .with(userHttpBasic(authUser))
-                .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .content(body))
                 .andDo(print())
                 .andExpect(status().isOk());
@@ -200,7 +199,7 @@ abstract public class AbstractControllerTest {
     ResultActions testUpdateIsConflict(String url, User authUser, String body) throws Exception {
         return mockMvc.perform(patch(url)
                 .with(userHttpBasic(authUser))
-                .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .content(body))
                 .andDo(print())
                 .andExpect(status().isConflict());
@@ -218,7 +217,7 @@ abstract public class AbstractControllerTest {
     ResultActions testUpdateIsForbidden(String url, User authUser, String body) throws Exception {
         return mockMvc.perform(patch(url)
                 .with(userHttpBasic(authUser))
-                .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .content(body))
                 .andDo(print())
                 .andExpect(status().isForbidden());

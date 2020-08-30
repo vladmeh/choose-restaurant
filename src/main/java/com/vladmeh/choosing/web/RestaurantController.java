@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
-@RequestMapping(value = "/api/restaurants", produces = MediaTypes.HAL_JSON_UTF8_VALUE)
+@RequestMapping(value = "/api/restaurants", produces = MediaTypes.HAL_JSON_VALUE)
 public class RestaurantController {
 
     private final RestaurantService restaurantService;

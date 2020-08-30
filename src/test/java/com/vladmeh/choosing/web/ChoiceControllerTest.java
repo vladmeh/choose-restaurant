@@ -7,7 +7,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.hateoas.MediaTypes;
@@ -60,7 +59,7 @@ public class ChoiceControllerTest {
     @Test
     public void choiceCreate() throws Exception {
         mockMvc.perform(post("/api/choice/0")
-                .contentType(MediaTypes.HAL_JSON_UTF8_VALUE)
+                .contentType(MediaTypes.HAL_JSON_VALUE)
                 .with(userHttpBasic(USER)))
                 .andDo(print())
                 .andExpect(status().isCreated());
@@ -74,7 +73,7 @@ public class ChoiceControllerTest {
         boolean limit = LocalTime.now().isAfter(TIME_LIMIT);
 
         mockMvc.perform(post("/api/choice/2")
-                .contentType(MediaTypes.HAL_JSON_UTF8_VALUE)
+                .contentType(MediaTypes.HAL_JSON_VALUE)
                 .with(userHttpBasic(USER)))
                 .andDo(print())
                 .andExpect(limit ? status().isConflict() : status().isOk());
@@ -83,7 +82,7 @@ public class ChoiceControllerTest {
     @Test
     public void choiceIsNotFound() throws Exception {
         mockMvc.perform(post("/api/choice/3")
-                .contentType(MediaTypes.HAL_JSON_UTF8_VALUE)
+                .contentType(MediaTypes.HAL_JSON_VALUE)
                 .with(userHttpBasic(USER)))
                 .andDo(print())
                 .andExpect(status().isNotFound());

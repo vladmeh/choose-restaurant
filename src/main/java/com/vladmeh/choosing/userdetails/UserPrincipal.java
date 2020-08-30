@@ -1,14 +1,10 @@
 package com.vladmeh.choosing.userdetails;
 
-import com.vladmeh.choosing.model.Role;
 import com.vladmeh.choosing.model.User;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 /**
  * @author Vladimir Mikhaylov <vladmeh@gmail.com> on 24.05.2018.
@@ -20,7 +16,7 @@ public class UserPrincipal implements UserDetails {
 
     private static final long serialVersionUID = 1L;
 
-    private User user;
+    private final User user;
 
     public UserPrincipal(User user) {
         this.user = user;

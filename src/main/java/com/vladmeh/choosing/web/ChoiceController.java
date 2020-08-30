@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
  */
 
 @RestController
-@RequestMapping(value = "/api/choice", produces = MediaTypes.HAL_JSON_UTF8_VALUE)
+@RequestMapping(value = "/api/choice", produces = MediaTypes.HAL_JSON_VALUE)
 public class ChoiceController {
     private final ChoiceService choiceService;
 
