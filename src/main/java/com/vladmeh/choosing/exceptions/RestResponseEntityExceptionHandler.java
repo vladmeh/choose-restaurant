@@ -11,6 +11,7 @@ import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.NoHandlerFoundException;
@@ -19,28 +20,23 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import javax.persistence.EntityNotFoundException;
 import javax.validation.ConstraintViolationException;
 import javax.validation.ValidationException;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
 import static org.springframework.http.HttpStatus.*;
 
-@RestControllerAdvice
+@RestControllerAdvice(annotations = RestController.class)
 @Order(Ordered.HIGHEST_PRECEDENCE + 5)
 public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
     private static final String EXCEPTION_DUPLICATE_EMAIL = "User with this email already exists";
     private static final String EXCEPTION_DUPLICATE_RESTAURANT = "Restaurant with this name already exist";
     private static final String EXCEPTION_DUPLICATE_LUNCH = "In the selected restaurant a lunch with this name already exists";
 
-    private static final Map<String, String> CONSTRAINS_I18N_MAP = Collections.unmodifiableMap(
-            new HashMap<String, String>() {
-                {
-                    put("unique_users_email_idx", EXCEPTION_DUPLICATE_EMAIL);
-                    put("unique_restaurant_name_idx", EXCEPTION_DUPLICATE_RESTAURANT);
-                    put("unique_lunch_name_idx", EXCEPTION_DUPLICATE_LUNCH);
-                }
-            });
+    private static final Map<String, String> CONSTRAINS_I18N_MAP = Map.of(
+            "unique_users_email_idx", EXCEPTION_DUPLICATE_EMAIL,
+            "unique_restaurant_name_idx", EXCEPTION_DUPLICATE_RESTAURANT,
+            "unique_lunch_name_idx", EXCEPTION_DUPLICATE_LUNCH
+    );
 
     /**
      * Handle MissingServletRequestParameterException.
@@ -119,7 +115,7 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
      * Handle RestaurantNotFoundException
      * HTTP 404 Not Found
      *
-     * @param ex the com.vladmeh.choosing.RestaurantNotFoundException
+     * @param ex      the com.vladmeh.choosing.RestaurantNotFoundException
      * @param request the current request
      * @return a {@code ResponseEntity} instance
      */
@@ -134,7 +130,7 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
      * Handle ResourceNotFoundException
      * HTTP 404 Not Found
      *
-     * @param ex the com.vladmeh.choosing.ResourceNotFoundException
+     * @param ex      the com.vladmeh.choosing.ResourceNotFoundException
      * @param request the current request
      * @return a {@code ResponseEntity} instance
      */
