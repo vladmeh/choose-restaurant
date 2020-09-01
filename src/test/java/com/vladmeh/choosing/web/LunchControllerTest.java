@@ -11,32 +11,32 @@ import static com.vladmeh.choosing.testdata.UserTestData.USER;
  * @link https://github.com/vladmeh/choose-restaurant
  */
 
-public class LunchControllerTest extends AbstractControllerTest {
+class LunchControllerTest extends AbstractControllerTest {
 
     @Override
-    public void getAll() throws Exception {
+    void getAll() throws Exception {
         testGetAll(LUNCH_URL, USER);
     }
 
     @Override
-    public void getById() throws Exception {
+    void getById() throws Exception {
         testGetById(LUNCH_URL + LUNCH_0.getId(), USER);
     }
 
     @Override
-    public void getIsNotFound() throws Exception {
+    void getIsNotFound() throws Exception {
         testGetIsNotFound(LUNCH_URL + 100, USER);
     }
 
     @Override
-    public void create() throws Exception {
+    void create() throws Exception {
         testCreate(LUNCH_URL, ADMIN,
                 objectMapper.writeValueAsString(
                         getStringObjectMapLunch(RESTAURANT_0, LOCAL_DATE, "New lunch", 200)));
     }
 
     @Override
-    public void createIsConflict() throws Exception {
+    void createIsConflict() throws Exception {
         testCreateIsConflict(LUNCH_URL, ADMIN,
                 objectMapper.writeValueAsString(
                         getStringObjectMapLunch(RESTAURANT_0, LOCAL_DATE, "Kebab", 200)
@@ -44,14 +44,14 @@ public class LunchControllerTest extends AbstractControllerTest {
     }
 
     @Override
-    public void createIsForbidden() throws Exception {
+    void createIsForbidden() throws Exception {
         testCreateIsForbidden(LUNCH_URL, USER,
                 objectMapper.writeValueAsString(
                         getStringObjectMapLunch(RESTAURANT_0, LOCAL_DATE, "New lunch", 200)));
     }
 
     @Override
-    public void update() throws Exception {
+    void update() throws Exception {
         testUpdate(LUNCH_URL + LUNCH_0.getId(), ADMIN,
                 objectMapper.writeValueAsString(
                         getStringObjectMapLunch(RESTAURANT_2, LOCAL_DATE, "Update lunch", 100)
@@ -59,7 +59,7 @@ public class LunchControllerTest extends AbstractControllerTest {
     }
 
     @Override
-    public void updatedIsConflict() throws Exception {
+    void updatedIsConflict() throws Exception {
         testUpdateIsConflict(LUNCH_URL + LUNCH_0.getId(), ADMIN,
                 objectMapper.writeValueAsString(
                         getStringObjectMapLunch(RESTAURANT_0, LOCAL_DATE, "Kebab", 100)
@@ -67,7 +67,7 @@ public class LunchControllerTest extends AbstractControllerTest {
     }
 
     @Override
-    public void updateIsForbidden() throws Exception {
+    void updateIsForbidden() throws Exception {
         testUpdateIsForbidden(LUNCH_URL + LUNCH_0.getId(), USER,
                 objectMapper.writeValueAsString(
                         getStringObjectMapLunch(RESTAURANT_2, LOCAL_DATE, "Kebab", 100)
@@ -75,12 +75,12 @@ public class LunchControllerTest extends AbstractControllerTest {
     }
 
     @Override
-    public void deleted() throws Exception {
+    void deleted() throws Exception {
         testDelete(LUNCH_URL + LUNCH_0.getId(), ADMIN);
     }
 
     @Override
-    public void deletedIsForbidden() throws Exception {
+    void deletedIsForbidden() throws Exception {
         testDeleteIsForbidden(LUNCH_URL + LUNCH_0.getId(), USER);
     }
 }

@@ -21,7 +21,7 @@ public class RestaurantTestData {
     public static final Restaurant RESTAURANT_2 = new Restaurant(2L, "KFC");
 
     public static Map<String, Object> getStringObjectMapRestaurant(String name) {
-        return new HashMap<String, Object>() {{
+        return new HashMap<>() {{
             put("name", name);
         }};
     }

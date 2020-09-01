@@ -18,6 +18,7 @@ Installation
 ```console
 $ git clone https://github.com/vladmeh/choose-restaurant.git
 ```
+
 Introduction
 ------------
 #### Production environment

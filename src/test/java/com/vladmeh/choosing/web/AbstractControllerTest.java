@@ -2,15 +2,15 @@ package com.vladmeh.choosing.web;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vladmeh.choosing.model.User;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 
@@ -24,7 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 /**
  * The type Abstract controller test.
  */
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest
 @AutoConfigureMockMvc
 @AutoConfigureTestDatabase
@@ -111,7 +111,7 @@ abstract public class AbstractControllerTest {
     }
 
     /**
-     * CREATE
+     * Create
      *
      * @param url      the url
      * @param authUser the auth user
@@ -137,7 +137,6 @@ abstract public class AbstractControllerTest {
      * @param body     the body
      * @return the result actions
      * @throws Exception the exception
-     * @Todo Only latin, non cyrillic (is mvn test)???
      */
     ResultActions testCreateIsConflict(String url, User authUser, String body) throws Exception {
         return mockMvc.perform(post(url)
@@ -194,7 +193,6 @@ abstract public class AbstractControllerTest {
      * @param body     the body
      * @return the result actions
      * @throws Exception the exception
-     * @Todo Only latin, non cyrillic (is mvn test)???
      */
     ResultActions testUpdateIsConflict(String url, User authUser, String body) throws Exception {
         return mockMvc.perform(patch(url)
@@ -259,7 +257,7 @@ abstract public class AbstractControllerTest {
      * @throws Exception the exception
      */
     @Test
-    abstract public void getAll() throws Exception;
+    abstract void getAll() throws Exception;
 
     /**
      * Gets by id.
@@ -267,7 +265,7 @@ abstract public class AbstractControllerTest {
      * @throws Exception the exception
      */
     @Test
-    abstract public void getById() throws Exception;
+    abstract void getById() throws Exception;
 
     /**
      * Gets is not found.
@@ -275,7 +273,7 @@ abstract public class AbstractControllerTest {
      * @throws Exception the exception
      */
     @Test
-    abstract public void getIsNotFound() throws Exception;
+    abstract void getIsNotFound() throws Exception;
 
     /**
      * Create.
@@ -284,7 +282,7 @@ abstract public class AbstractControllerTest {
      */
     @Test
     @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
-    abstract public void create() throws Exception;
+    abstract void create() throws Exception;
 
     /**
      * Create is conflict.
@@ -292,7 +290,7 @@ abstract public class AbstractControllerTest {
      * @throws Exception the exception
      */
     @Test
-    abstract public void createIsConflict() throws Exception;
+    abstract void createIsConflict() throws Exception;
 
     /**
      * Create is forbidden.
@@ -300,7 +298,7 @@ abstract public class AbstractControllerTest {
      * @throws Exception the exception
      */
     @Test
-    abstract public void createIsForbidden() throws Exception;
+    abstract void createIsForbidden() throws Exception;
 
     /**
      * Update.
@@ -309,7 +307,7 @@ abstract public class AbstractControllerTest {
      */
     @Test
     @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
-    abstract public void update() throws Exception;
+    abstract void update() throws Exception;
 
     /**
      * Updated is conflict.
@@ -317,7 +315,7 @@ abstract public class AbstractControllerTest {
      * @throws Exception the exception
      */
     @Test
-    abstract public void updatedIsConflict() throws Exception;
+    abstract void updatedIsConflict() throws Exception;
 
     /**
      * Update is forbidden.
@@ -325,7 +323,7 @@ abstract public class AbstractControllerTest {
      * @throws Exception the exception
      */
     @Test
-    abstract public void updateIsForbidden() throws Exception;
+    abstract void updateIsForbidden() throws Exception;
 
     /**
      * Deleted.
@@ -334,7 +332,7 @@ abstract public class AbstractControllerTest {
      */
     @Test
     @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
-    abstract public void deleted() throws Exception;
+    abstract void deleted() throws Exception;
 
     /**
      * Deleted is forbidden.
@@ -342,5 +340,5 @@ abstract public class AbstractControllerTest {
      * @throws Exception the exception
      */
     @Test
-    abstract public void deletedIsForbidden() throws Exception;
+    abstract void deletedIsForbidden() throws Exception;
 }

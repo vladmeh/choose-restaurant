@@ -34,7 +34,7 @@ public class UserTestData {
     }
 
     private static Map<String, Object> getStringObjectMapUser(String name, String email, String password, @NotNull String... roles) {
-        return new HashMap<String, Object>() {{
+        return new HashMap<>() {{
             put("name", name);
             put("email", email);
             put("password", password);

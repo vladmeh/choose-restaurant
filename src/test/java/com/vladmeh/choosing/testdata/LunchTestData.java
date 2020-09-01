@@ -30,7 +30,7 @@ public class LunchTestData {
     public static final Lunch LUNCH_5 = new Lunch(5L, "Чиззи Чикен Фри", LocalDate.of(2018, 5, 23), 80, RESTAURANT_2);
 
     public static Map<String, Object> getStringObjectMapLunch(Restaurant restaurant, LocalDate date, String name, int price) {
-        return new HashMap<String, Object>() {{
+        return new HashMap<>() {{
             put("restaurant", RESTAURANT_URL + restaurant.getId());
             put("date", date);
             put("name", name);

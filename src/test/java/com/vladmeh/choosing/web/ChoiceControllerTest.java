@@ -2,15 +2,15 @@ package com.vladmeh.choosing.web;
 
 import com.vladmeh.choosing.model.Choice;
 import com.vladmeh.choosing.repository.ChoiceRepository;
-import org.junit.After;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.hateoas.MediaTypes;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.time.LocalDate;
@@ -29,7 +29,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @link https://github.com/vladmeh/choosing-topjava
  * AutoConfigureRestDocs - https://habr.com/post/341636/
  */
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest
 @AutoConfigureMockMvc
 @AutoConfigureTestDatabase
@@ -43,13 +43,13 @@ public class ChoiceControllerTest {
     @Autowired
     private ChoiceRepository choiceRepository;
 
-    @After
-    public void tearDown() {
+    @AfterEach
+    void tearDown() {
         choiceRepository.deleteAll();
     }
 
     @Test
-    public void currentIsNotFount() throws Exception {
+    void currentIsNotFount() throws Exception {
         mockMvc.perform(get("/api/choice")
                 .with(userHttpBasic(USER)))
                 .andDo(print())
@@ -66,7 +66,7 @@ public class ChoiceControllerTest {
     }
 
     @Test
-    public void choiceUpdate() throws Exception {
+    void choiceUpdate() throws Exception {
         Choice choice = new Choice(USER, RESTAURANT_0, LocalDate.now());
         choiceRepository.save(choice);
 
@@ -80,7 +80,7 @@ public class ChoiceControllerTest {
     }
 
     @Test
-    public void choiceIsNotFound() throws Exception {
+    void choiceIsNotFound() throws Exception {
         mockMvc.perform(post("/api/choice/3")
                 .contentType(MediaTypes.HAL_JSON_VALUE)
                 .with(userHttpBasic(USER)))
@@ -89,7 +89,7 @@ public class ChoiceControllerTest {
     }
 
     @Test
-    public void currentChoice() throws Exception {
+    void currentChoice() throws Exception {
         Choice choice = new Choice(USER, RESTAURANT_0, LocalDate.now());
         choiceRepository.save(choice);
 
