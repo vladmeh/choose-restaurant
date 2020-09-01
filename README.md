@@ -1,3 +1,4 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/5d67509cb5184a468d92af9b3f3ae35b)](https://app.codacy.com/manual/vladmeh/choose-restaurant?utm_source=github.com&utm_medium=referral&utm_content=vladmeh/choose-restaurant&utm_campaign=Badge_Grade_Dashboard)
 [![Build Status](https://travis-ci.org/vladmeh/choose-restaurant.svg?branch=master)](https://travis-ci.org/vladmeh/choose-restaurant)
 
 Restaurant system of choice, something to eat lunch (REST only)
