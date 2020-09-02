@@ -21,7 +21,7 @@ import java.util.Set;
 /**
  * @author Vladimir Mikhaylov <vladmeh@gmail.com> on 24.05.2018.
  * @link https://github.com/vladmeh/choosing-topjava
- * @Link https://stackoverflow.com/questions/12505141/only-using-jsonignore-during-serialization-but-not-deserialization
+ * @link https://stackoverflow.com/questions/12505141/only-using-jsonignore-during-serialization-but-not-deserialization
  */
 
 @EqualsAndHashCode(callSuper = true)

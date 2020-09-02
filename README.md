@@ -14,6 +14,8 @@ Restaurant system of choice, something to eat lunch (REST only)
 * Spring HATEOAS
 * Spring Security
 * H2 Database
+* JUnit 5
+* Lombok
 
 Installation
 ------------
