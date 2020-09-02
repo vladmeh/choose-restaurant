@@ -14,16 +14,19 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 class RestaurantControllerTest extends AbstractControllerTest {
     @Override
+    @Test
     void getAll() throws Exception {
         testGetAll(RESTAURANT_URL, USER);
     }
 
     @Override
+    @Test
     void getById() throws Exception {
         testGetById(RESTAURANT_URL + RESTAURANT_0.getId(), USER);
     }
 
     @Override
+    @Test
     void getIsNotFound() throws Exception {
         testGetIsNotFound(RESTAURANT_URL + 100, USER);
     }
@@ -39,30 +42,35 @@ class RestaurantControllerTest extends AbstractControllerTest {
     }
 
     @Override
+    @Test
     void create() throws Exception {
         testCreate(RESTAURANT_URL, ADMIN,
                 objectMapper.writeValueAsString(getStringObjectMapRestaurant("Теремок")));
     }
 
     @Override
+    @Test
     void createIsConflict() throws Exception {
         testCreateIsConflict(RESTAURANT_URL, ADMIN,
                 objectMapper.writeValueAsString(getStringObjectMapRestaurant(RESTAURANT_2.getName())));
     }
 
     @Override
+    @Test
     void createIsForbidden() throws Exception {
         testCreateIsForbidden(RESTAURANT_URL, USER,
                 objectMapper.writeValueAsString(getStringObjectMapRestaurant("Теремок")));
     }
 
     @Override
+    @Test
     void update() throws Exception {
         testUpdate(RESTAURANT_URL + RESTAURANT_0.getId(), ADMIN,
                 objectMapper.writeValueAsString(getStringObjectMapRestaurant("Теремок")));
     }
 
     @Override
+    @Test
     void updatedIsConflict() throws Exception {
         testUpdateIsConflict(RESTAURANT_URL + RESTAURANT_0.getId(), ADMIN,
                 objectMapper.writeValueAsString(getStringObjectMapRestaurant(RESTAURANT_2.getName())));
@@ -70,17 +78,20 @@ class RestaurantControllerTest extends AbstractControllerTest {
     }
 
     @Override
+    @Test
     void updateIsForbidden() throws Exception {
         testUpdateIsForbidden(RESTAURANT_URL + RESTAURANT_0.getId(), USER,
                 objectMapper.writeValueAsString(getStringObjectMapRestaurant("Теремок")));
     }
 
     @Override
+    @Test
     void deleted() throws Exception {
         testDelete(RESTAURANT_URL + RESTAURANT_1.getId(), ADMIN);
     }
 
     @Override
+    @Test
     void deletedIsForbidden() throws Exception {
         testDeleteIsForbidden(RESTAURANT_URL + RESTAURANT_1.getId(), USER);
     }

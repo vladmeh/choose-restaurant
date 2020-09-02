@@ -17,11 +17,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class UserControllerTest extends AbstractControllerTest {
 
     @Override
+    @Test
     void getAll() throws Exception {
         testGetAll(USERS_URL, ADMIN);
     }
 
     @Override
+    @Test
     void getById() throws Exception {
         testGetById(USERS_URL + USER_ID, ADMIN)
                 .andExpect(jsonPath("name", is(USER.getName())))
@@ -46,16 +48,19 @@ class UserControllerTest extends AbstractControllerTest {
     }
 
     @Override
+    @Test
     void getIsNotFound() throws Exception {
         testGetIsNotFound(USERS_URL + 2, ADMIN);
     }
 
     @Override
+    @Test
     void create() throws Exception {
         testCreate(USERS_URL, ADMIN, objectMapper.writeValueAsString(getCreatedUser()));
     }
 
     @Override
+    @Test
     void createIsConflict() throws Exception {
         Map<String, Object> created = getCreatedUser();
         created.put("email", "user@yandex.ru");
@@ -64,11 +69,13 @@ class UserControllerTest extends AbstractControllerTest {
     }
 
     @Override
+    @Test
     void createIsForbidden() throws Exception {
         testCreateIsForbidden(USERS_URL, USER, objectMapper.writeValueAsString(getCreatedUser()));
     }
 
     @Override
+    @Test
     void update() throws Exception {
         testUpdate(USERS_URL + USER_ID, ADMIN, objectMapper.writeValueAsString(getUpdateUser()));
     }
@@ -83,16 +90,19 @@ class UserControllerTest extends AbstractControllerTest {
     }
 
     @Override
+    @Test
     void updateIsForbidden() throws Exception {
         testUpdateIsForbidden(USERS_URL + USER_ID, USER, objectMapper.writeValueAsString(getUpdateUser()));
     }
 
     @Override
+    @Test
     void deleted() throws Exception {
         testDelete(USERS_URL + USER_ID, ADMIN);
     }
 
     @Override
+    @Test
     void deletedIsForbidden() throws Exception {
         testDeleteIsForbidden(USERS_URL + USER_ID, USER);
     }
