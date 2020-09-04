@@ -34,7 +34,7 @@ abstract public class AbstractControllerTest {
      */
     public static final String REST_URL = "/api";
 
-    static final LocalDate LOCAL_DATE = LocalDate.now();
+    protected static final LocalDate LOCAL_DATE = LocalDate.now();
 
 
     /**
