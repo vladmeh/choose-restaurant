@@ -53,6 +53,11 @@ class UserControllerTest extends AbstractControllerTest {
         testGetIsNotFound(USERS_URL + 2, ADMIN);
     }
 
+    @Test
+    void notFound() throws Exception {
+        testGetIsNotFound(REST_URL + "/user", ADMIN);
+    }
+
     @Override
     @Test
     void create() throws Exception {
@@ -81,6 +86,7 @@ class UserControllerTest extends AbstractControllerTest {
     }
 
     @Override
+    @Test
     void updatedIsConflict() throws Exception {
         Map<String, Object> update = getUpdateUser();
         update.put("email", "admin@gmail.com");

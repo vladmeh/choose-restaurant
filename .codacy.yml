@@ -1,4 +1,4 @@
 ---
 exclude_paths:
   - '**/*.sql'
-  - '**/*.md'
+  - '**.md'

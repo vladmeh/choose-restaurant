@@ -4,6 +4,7 @@ import com.vladmeh.choosing.util.ValidationUtil;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +12,6 @@ import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.NoHandlerFoundException;
@@ -25,7 +25,7 @@ import java.util.Optional;
 
 import static org.springframework.http.HttpStatus.*;
 
-@RestControllerAdvice(annotations = RestController.class)
+@RestControllerAdvice
 @Order(Ordered.HIGHEST_PRECEDENCE + 5)
 public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
     private static final String EXCEPTION_DUPLICATE_EMAIL = "User with this email already exists";
@@ -119,7 +119,7 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
      * @param request the current request
      * @return a {@code ResponseEntity} instance
      */
-    @ExceptionHandler(RestaurantNotFoundException.class)
+    @ExceptionHandler(RestaurantNotFoundException.class) //404
     public final ResponseEntity<Object> handleRestaurantNotFoundException(RestaurantNotFoundException ex, WebRequest request) {
         ExceptionResponse exceptionResponse = new ExceptionResponse(NOT_FOUND, ex.getMessage(),
                 request.getDescription(false));
@@ -134,7 +134,7 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
      * @param request the current request
      * @return a {@code ResponseEntity} instance
      */
-    @ExceptionHandler(ResourceNotFoundException.class)
+    @ExceptionHandler(ResourceNotFoundException.class) //404
     public final ResponseEntity<Object> handleResourceNotFoundException(ResourceNotFoundException ex, WebRequest request) {
         ExceptionResponse exceptionResponse = new ExceptionResponse(NOT_FOUND, ex.getMessage(),
                 request.getDescription(false));
@@ -148,7 +148,7 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
      * @param ex the javax.persistence.EntityNotFoundException
      * @return a {@code ResponseEntity} instance
      */
-    @ExceptionHandler(EntityNotFoundException.class)
+    @ExceptionHandler(EntityNotFoundException.class) //404
     public final ResponseEntity<Object> handleEntityNotFound(EntityNotFoundException ex) {
         return buildResponseEntity(new ExceptionResponse(NOT_FOUND, ex));
     }
@@ -160,10 +160,13 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
      * @param ex the DataNotFoundException
      * @return a {@code ResponseEntity} instance
      */
-    @ExceptionHandler(DataNotFoundException.class)
+    @ExceptionHandler(DataNotFoundException.class) //409
     public final ResponseEntity<Object> handleDataNotFound(DataNotFoundException ex, WebRequest request) {
-        ExceptionResponse exceptionResponse = new ExceptionResponse(CONFLICT, ex.getMessage(),
-                request.getDescription(false));
+        ExceptionResponse exceptionResponse = new ExceptionResponse(
+                CONFLICT,
+                ex.getMessage(),
+                request.getDescription(false)
+        );
         return buildResponseEntity(exceptionResponse);
     }
 
@@ -174,7 +177,7 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
      * @param ex the ValidationLimitException
      * @return a {@code ResponseEntity} instance
      */
-    @ExceptionHandler(ValidationLimitException.class)
+    @ExceptionHandler(ValidationLimitException.class) //409
     public final ResponseEntity<Object> handleValidationLimit(ValidationLimitException ex, WebRequest request) {
         ExceptionResponse exceptionResponse = new ExceptionResponse(CONFLICT, ex.getMessage(),
                 request.getDescription(false));

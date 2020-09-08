@@ -7,11 +7,9 @@
 	"item": [
 		{
 			"name": "Users",
-			"description": null,
 			"item": [
 				{
 					"name": "Exception",
-					"description": "",
 					"item": [
 						{
 							"name": "http://localhost:8080/api/users 409 Conflict",
@@ -98,13 +96,12 @@
 							"response": []
 						},
 						{
-							"name": "http://localhost:8080/api/users/2 404 NotFount",
+							"name": "http://localhost:8080/api/users/222 404 NotFount",
 							"event": [
 								{
 									"listen": "test",
 									"script": {
 										"id": "bb2420f6-1071-4dca-926e-c781f8739189",
-										"type": "text/javascript",
 										"exec": [
 											"pm.test(\"Status code is 404\", function () {",
 											"    pm.response.to.have.status(404);",
@@ -114,7 +111,8 @@
 											"    pm.response.to.have.status(\"Not Found\");",
 											"});",
 											""
-										]
+										],
+										"type": "text/javascript"
 									}
 								}
 							],
@@ -155,12 +153,8 @@
 										"value": "Basic YWRtaW5AZ21haWwuY29tOmFkbWlu"
 									}
 								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n  \"firstName\": \"Vasiya\",\n  \"lastName\": \"Sidorov\",\n  \"twitter\": \"Vasid\",\n  \"bio\": \"Lorem ipsum dolor sit amet\"\n}"
-								},
 								"url": {
-									"raw": "http://localhost:8080/api/users/2",
+									"raw": "http://localhost:8080/api/users/222",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -169,7 +163,7 @@
 									"path": [
 										"api",
 										"users",
-										"2"
+										"222"
 									]
 								},
 								"description": "404 Not Found"
@@ -234,10 +228,6 @@
 										"value": "Basic YWRtaW5AZ21haWwuY29tOmFkbWlu"
 									}
 								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n  \"firstName\": \"Vasiya\",\n  \"lastName\": \"Sidorov\",\n  \"twitter\": \"Vasid\",\n  \"bio\": \"Lorem ipsum dolor sit amet\"\n}"
-								},
 								"url": {
 									"raw": "http://localhost:8080/api/user",
 									"protocol": "http",
@@ -314,10 +304,6 @@
 								"value": "Basic YWRtaW5AZ21haWwuY29tOmFkbWlu"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"firstName\": \"Vasiya\",\n  \"lastName\": \"Sidorov\",\n  \"twitter\": \"Vasid\",\n  \"bio\": \"Lorem ipsum dolor sit amet\"\n}"
-						},
 						"url": {
 							"raw": "http://localhost:8080/api/users",
 							"protocol": "http",
@@ -335,13 +321,12 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/api/users/0",
+					"name": "http://localhost:8080/api/users/1",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"id": "70ba35bd-b4d9-45c9-93c6-87610284edac",
-								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -353,9 +338,10 @@
 									"",
 									"pm.test(\"Your test name\", function () {",
 									"    var jsonData = pm.response.json();",
-									"    pm.expect(jsonData.name).to.eql(\"User\");",
+									"    pm.expect(jsonData.name).to.eql(\"Admin\");",
 									"});"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -396,12 +382,8 @@
 								"value": "Basic YWRtaW5AZ21haWwuY29tOmFkbWlu"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"firstName\": \"Vasiya\",\n  \"lastName\": \"Sidorov\",\n  \"twitter\": \"Vasid\",\n  \"bio\": \"Lorem ipsum dolor sit amet\"\n}"
-						},
 						"url": {
-							"raw": "http://localhost:8080/api/users/0",
+							"raw": "http://localhost:8080/api/users/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -410,7 +392,7 @@
 							"path": [
 								"api",
 								"users",
-								"0"
+								"1"
 							]
 						},
 						"description": "getUsers"
@@ -479,10 +461,6 @@
 								"value": "Basic YWRtaW5AZ21haWwuY29tOmFkbWlu"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"firstName\": \"Vasiya\",\n  \"lastName\": \"Sidorov\",\n  \"twitter\": \"Vasid\",\n  \"bio\": \"Lorem ipsum dolor sit amet\"\n}"
-						},
 						"url": {
 							"raw": "http://localhost:8080/api/users/search/by-email?email=user@yandex.ru",
 							"protocol": "http",
@@ -595,13 +573,12 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/api/users/0",
+					"name": "http://localhost:8080/api/users/2",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"id": "994faab4-7247-4d15-a137-b35dad2c57c2",
-								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -615,7 +592,8 @@
 									"    var jsonData = pm.response.json();",
 									"    pm.expect(jsonData.name).to.eql(\"User update\");",
 									"});"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -658,10 +636,10 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"User update\",\n  \"email\": \"user@yandex.ru\",\n  \"password\": \"user\",\n  \"roles\": [\"ROLE_USER\"]\n}"
+							"raw": "{\n  \"name\": \"User update\",\n  \"email\": \"user@test.tt\",\n  \"password\": \"user\",\n  \"roles\": [\"ROLE_USER\"]\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/users/0",
+							"raw": "http://localhost:8080/api/users/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -670,7 +648,7 @@
 							"path": [
 								"api",
 								"users",
-								"0"
+								"2"
 							]
 						},
 						"description": "Update User"
@@ -678,13 +656,12 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/api/users/0",
+					"name": "http://localhost:8080/api/users/2",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"id": "4a5a6e31-1fed-484e-8ee0-8a05afb9f908",
-								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"Status code is 204\", function () {",
 									"    pm.response.to.have.status(204);",
@@ -693,7 +670,8 @@
 									"pm.test(\"Status code name has string\", function () {",
 									"    pm.response.to.have.status(\"No Content\");",
 									"});"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -739,7 +717,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/users/0",
+							"raw": "http://localhost:8080/api/users/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -748,7 +726,7 @@
 							"path": [
 								"api",
 								"users",
-								"0"
+								"2"
 							]
 						},
 						"description": "Delete User"
@@ -759,11 +737,9 @@
 		},
 		{
 			"name": "Restaurant",
-			"description": null,
 			"item": [
 				{
 					"name": "Exception",
-					"description": "",
 					"item": [
 						{
 							"name": "http://localhost:8080/api/restaurants 409 Conflict",
@@ -1177,6 +1153,79 @@
 								"description": "Delete restaurant"
 							},
 							"response": []
+						},
+						{
+							"name": "http://localhost:8080/api/restaurants/222 404 not found",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "da2bc052-0467-44e1-bd19-bf092dc8e71f",
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {",
+											"    pm.response.to.have.status(404);",
+											"});",
+											"",
+											"pm.test(\"Status code name has string\", function () {",
+											"    pm.response.to.have.status(\"Not Found\");",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "admin@gmail.com",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "admin",
+											"type": "string"
+										},
+										{
+											"key": "saveHelperData",
+											"value": true,
+											"type": "boolean"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Basic YWRtaW5AZ21haWwuY29tOmFkbWlu"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/api/restaurants/222",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"restaurants",
+										"222"
+									]
+								}
+							},
+							"response": []
 						}
 					],
 					"event": [
@@ -1260,10 +1309,6 @@
 								"value": "Basic YWRtaW5AZ21haWwuY29tOmFkbWlu"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"firstName\": \"Vasiya\",\n  \"lastName\": \"Sidorov\",\n  \"twitter\": \"Vasid\",\n  \"bio\": \"Lorem ipsum dolor sit amet\"\n}"
-						},
 						"url": {
 							"raw": "http://localhost:8080/api/restaurants",
 							"protocol": "http",
@@ -1280,13 +1325,12 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/api/restaurants/0",
+					"name": "http://localhost:8080/api/restaurants/1",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"id": "da2bc052-0467-44e1-bd19-bf092dc8e71f",
-								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -1298,9 +1342,10 @@
 									"",
 									"pm.test(\"Your test name\", function () {",
 									"    var jsonData = pm.response.json();",
-									"    pm.expect(jsonData.name).to.eql(\"McDonalds\");",
+									"    pm.expect(jsonData.name).to.eql(\"Burger King\");",
 									"});"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -1341,12 +1386,8 @@
 								"value": "Basic YWRtaW5AZ21haWwuY29tOmFkbWlu"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"firstName\": \"Vasiya\",\n  \"lastName\": \"Sidorov\",\n  \"twitter\": \"Vasid\",\n  \"bio\": \"Lorem ipsum dolor sit amet\"\n}"
-						},
 						"url": {
-							"raw": "http://localhost:8080/api/restaurants/0",
+							"raw": "http://localhost:8080/api/restaurants/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1355,20 +1396,19 @@
 							"path": [
 								"api",
 								"restaurants",
-								"0"
+								"1"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/api/restaurants/0/lunch",
+					"name": "http://localhost:8080/api/restaurants/1/lunch",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"id": "da2bc052-0467-44e1-bd19-bf092dc8e71f",
-								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -1380,9 +1420,10 @@
 									"",
 									"pm.test(\"Your test name\", function () {",
 									"    var jsonData = pm.response.json();",
-									"    pm.expect(jsonData.name).to.eql(\"McDonalds\");",
+									"    pm.expect(jsonData.name).to.eql(\"Burger King\");",
 									"});"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -1423,12 +1464,8 @@
 								"value": "Basic YWRtaW5AZ21haWwuY29tOmFkbWlu"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"firstName\": \"Vasiya\",\n  \"lastName\": \"Sidorov\",\n  \"twitter\": \"Vasid\",\n  \"bio\": \"Lorem ipsum dolor sit amet\"\n}"
-						},
 						"url": {
-							"raw": "http://localhost:8080/api/restaurants/0/lunch",
+							"raw": "http://localhost:8080/api/restaurants/1/lunch",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1437,7 +1474,7 @@
 							"path": [
 								"api",
 								"restaurants",
-								"0",
+								"1",
 								"lunch"
 							]
 						}
@@ -1506,10 +1543,6 @@
 								"value": "Basic YWRtaW5AZ21haWwuY29tOmFkbWlu"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"firstName\": \"Vasiya\",\n  \"lastName\": \"Sidorov\",\n  \"twitter\": \"Vasid\",\n  \"bio\": \"Lorem ipsum dolor sit amet\"\n}"
-						},
 						"url": {
 							"raw": "http://localhost:8080/api/restaurants/search/by-name?name=KFC",
 							"protocol": "http",
@@ -1540,8 +1573,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "1e2d8683-bf7c-4897-bdaf-58d8f5ea54b3",
-								"type": "text/javascript",
+								"id": "59f06386-8e73-4964-929b-b681b82b02a6",
 								"exec": [
 									"pm.test(\"Status code is 201\", function () {",
 									"    pm.response.to.have.status(201);",
@@ -1559,7 +1591,8 @@
 									"    var jsonData = pm.response.json();",
 									"    pm.expect(jsonData.name).to.eql(\"Чайкофф\");",
 									"});"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -1621,13 +1654,12 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/api/restaurants/0",
+					"name": "http://localhost:8080/api/restaurants/3",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"id": "f1bb08b3-56fd-4191-8375-41e923c1adb9",
-								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -1641,7 +1673,8 @@
 									"    var jsonData = pm.response.json();",
 									"    pm.expect(jsonData.name).to.eql(\"SubWay\");",
 									"});"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -1687,7 +1720,7 @@
 							"raw": "{\n  \"name\": \"SubWay\"\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/restaurants/0",
+							"raw": "http://localhost:8080/api/restaurants/3",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1696,7 +1729,7 @@
 							"path": [
 								"api",
 								"restaurants",
-								"0"
+								"3"
 							]
 						},
 						"description": "Update restaurant"
@@ -1704,13 +1737,12 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8080/api/restaurants/0",
+					"name": "http://localhost:8080/api/restaurants/3",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"id": "cfda7805-6ca5-4864-b24a-6cd0c7feb219",
-								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"Status code is 204\", function () {",
 									"    pm.response.to.have.status(204);",
@@ -1719,7 +1751,8 @@
 									"pm.test(\"Status code name has string\", function () {",
 									"    pm.response.to.have.status(\"No Content\");",
 									"});"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -1765,7 +1798,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/restaurants/0",
+							"raw": "http://localhost:8080/api/restaurants/3",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1774,7 +1807,7 @@
 							"path": [
 								"api",
 								"restaurants",
-								"0"
+								"3"
 							]
 						},
 						"description": "Delete restaurant"
@@ -1785,7 +1818,6 @@
 		},
 		{
 			"name": "Authorized",
-			"description": null,
 			"item": [
 				{
 					"name": "http://localhost:8080/api 200",
@@ -1845,10 +1877,6 @@
 								"value": "Basic YWRtaW5AZ21haWwuY29tOmFkbWlu"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"firstName\": \"Vasiya\",\n  \"lastName\": \"Sidorov\",\n  \"twitter\": \"Vasid\",\n  \"bio\": \"Lorem ipsum dolor sit amet\"\n}"
-						},
 						"url": {
 							"raw": "http://localhost:8080/api",
 							"protocol": "http",
@@ -1864,7 +1892,6 @@
 					},
 					"response": [
 						{
-							"id": "f2fe3cfb-8fdd-40fb-aaea-81b83d3772c9",
 							"name": "http://localhost:8080/api",
 							"originalRequest": {
 								"method": "GET",
@@ -1878,10 +1905,6 @@
 										"value": "Basic YWRtaW5AZ21haWwuY29tOmFkbWlu"
 									}
 								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n  \"firstName\": \"Vasiya\",\n  \"lastName\": \"Sidorov\",\n  \"twitter\": \"Vasid\",\n  \"bio\": \"Lorem ipsum dolor sit amet\"\n}"
-								},
 								"url": {
 									"raw": "http://localhost:8080/api",
 									"protocol": "http",
@@ -1899,51 +1922,51 @@
 							"_postman_previewlanguage": "json",
 							"header": [
 								{
-									"name": "cache-control",
 									"key": "cache-control",
 									"value": "no-cache, no-store, max-age=0, must-revalidate",
+									"name": "cache-control",
 									"description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
 								},
 								{
-									"name": "content-type",
 									"key": "content-type",
 									"value": "application/hal+json;charset=UTF-8",
+									"name": "content-type",
 									"description": "The mime type of this content"
 								},
 								{
-									"name": "date",
 									"key": "date",
 									"value": "Mon, 04 Jun 2018 23:15:40 GMT",
+									"name": "date",
 									"description": "The date and time that the message was sent"
 								},
 								{
-									"name": "expires",
 									"key": "expires",
 									"value": "0",
+									"name": "expires",
 									"description": "Gives the date/time after which the response is considered stale"
 								},
 								{
-									"name": "pragma",
 									"key": "pragma",
 									"value": "no-cache",
+									"name": "pragma",
 									"description": "Implementation-specific headers that may have various effects anywhere along the request-response chain."
 								},
 								{
-									"name": "transfer-encoding",
 									"key": "transfer-encoding",
 									"value": "chunked",
+									"name": "transfer-encoding",
 									"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
 								},
 								{
-									"name": "x-content-type-options",
 									"key": "x-content-type-options",
 									"value": "nosniff",
+									"name": "x-content-type-options",
 									"description": "The only defined value, \"nosniff\", prevents Internet Explorer from MIME-sniffing a response away from the declared content-type"
 								},
 								{
-									"name": "x-xss-protection",
 									"key": "x-xss-protection",
 									"value": "1; mode=block",
+									"name": "x-xss-protection",
 									"description": "Cross-site scripting (XSS) filter"
 								}
 							],
@@ -2005,10 +2028,6 @@
 								"value": "Basic dXNlckB5YW5kZXgucnU6dXNlcg=="
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"firstName\": \"Vasiya\",\n  \"lastName\": \"Sidorov\",\n  \"twitter\": \"Vasid\",\n  \"bio\": \"Lorem ipsum dolor sit amet\"\n}"
-						},
 						"url": {
 							"raw": "http://localhost:8080/api",
 							"protocol": "http",
@@ -2031,12 +2050,12 @@
 							"listen": "test",
 							"script": {
 								"id": "bf13004e-1137-46bd-bc51-cb2c479fba81",
-								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"Status code is 401\", function () {",
 									"    pm.response.to.have.status(401);",
 									"});"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -2071,16 +2090,8 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"value": "Basic YWRtaW5AZ21haWwuY29tOmFkbWluaW5pc3RyYXRvcg=="
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"firstName\": \"Vasiya\",\n  \"lastName\": \"Sidorov\",\n  \"twitter\": \"Vasid\",\n  \"bio\": \"Lorem ipsum dolor sit amet\"\n}"
-						},
 						"url": {
 							"raw": "http://localhost:8080/api",
 							"protocol": "http",
@@ -2149,10 +2160,6 @@
 								"value": "Basic YWRtaW5AZ21haWwuY29tOmFkbWluaW5pc3RyYXRvcg=="
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"firstName\": \"Vasiya\",\n  \"lastName\": \"Sidorov\",\n  \"twitter\": \"Vasid\",\n  \"bio\": \"Lorem ipsum dolor sit amet\"\n}"
-						},
 						"url": {
 							"raw": "http://localhost:8080/api/users",
 							"protocol": "http",
@@ -2173,11 +2180,9 @@
 		},
 		{
 			"name": "Lunch",
-			"description": null,
 			"item": [
 				{
 					"name": "Exception",
-					"description": "",
 					"item": [
 						{
 							"name": "http://localhost:8080/api/linch 409 Conflict",
@@ -2431,6 +2436,89 @@
 								{
 									"listen": "test",
 									"script": {
+										"id": "1d435ded-70b6-4ede-87e7-8f0e35a44cf5",
+										"type": "text/javascript",
+										"exec": [
+											"pm.test(\"Status code is 409\", function () {",
+											"    pm.response.to.have.status(409);",
+											"});",
+											"",
+											"pm.test(\"Status code name has string\", function () {",
+											"    pm.response.to.have.status(\"Conflict\");",
+											"});",
+											"",
+											"pm.test(\"Your test name\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.message).to.eql(\"Validation error\");",
+											"});"
+										]
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "admin@gmail.com",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "admin",
+											"type": "string"
+										},
+										{
+											"key": "saveHelperData",
+											"value": true,
+											"type": "boolean"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Basic YWRtaW5AZ21haWwuY29tOmFkbWlu"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"restaurant\": \"http://localhost:8080/api/restaurants/3\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/lunch/0",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"lunch",
+										"0"
+									]
+								},
+								"description": "update menu"
+							},
+							"response": []
+						},
+						{
+							"name": "http://localhost:8080/api/lunch/0 409 Conflict",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
 										"id": "798dc4da-fa42-44e7-bc7a-41477de82c84",
 										"type": "text/javascript",
 										"exec": [
@@ -2489,7 +2577,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n\t\"date\":\"2018-06-15\"\n}"
+									"raw": "{\n  \"date\":\"2018-06-15\"\n}"
 								},
 								"url": {
 									"raw": "http://localhost:8080/api/lunch/0",
@@ -2572,90 +2660,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n\t\"date\":\"2018-06-15\"\n}"
-								},
-								"url": {
-									"raw": "http://localhost:8080/api/lunch/0",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"api",
-										"lunch",
-										"0"
-									]
-								},
-								"description": "update menu"
-							},
-							"response": []
-						},
-						{
-							"name": "http://localhost:8080/api/lunch/0 409 Conflict",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "1d435ded-70b6-4ede-87e7-8f0e35a44cf5",
-										"type": "text/javascript",
-										"exec": [
-											"pm.test(\"Status code is 409\", function () {",
-											"    pm.response.to.have.status(409);",
-											"});",
-											"",
-											"pm.test(\"Status code name has string\", function () {",
-											"    pm.response.to.have.status(\"Conflict\");",
-											"});",
-											"",
-											"pm.test(\"Your test name\", function () {",
-											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.message).to.eql(\"Validation error\");",
-											"});"
-										]
-									}
-								}
-							],
-							"request": {
-								"auth": {
-									"type": "basic",
-									"basic": [
-										{
-											"key": "username",
-											"value": "admin@gmail.com",
-											"type": "string"
-										},
-										{
-											"key": "password",
-											"value": "admin",
-											"type": "string"
-										},
-										{
-											"key": "saveHelperData",
-											"value": true,
-											"type": "boolean"
-										},
-										{
-											"key": "showPassword",
-											"value": false,
-											"type": "boolean"
-										}
-									]
-								},
-								"method": "PATCH",
-								"header": [
-									{
-										"key": "Content-Type",
-										"value": "application/json"
-									},
-									{
-										"key": "Authorization",
-										"value": "Basic YWRtaW5AZ21haWwuY29tOmFkbWlu"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n  \"restaurant\": \"http://localhost:8080/api/restaurants/3\"\n}"
+									"raw": "{\n  \"date\":\"2018-06-15\"\n}"
 								},
 								"url": {
 									"raw": "http://localhost:8080/api/lunch/0",
@@ -2817,10 +2822,6 @@
 								"value": "Basic YWRtaW5AZ21haWwuY29tOmFkbWlu"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"firstName\": \"Vasiya\",\n  \"lastName\": \"Sidorov\",\n  \"twitter\": \"Vasid\",\n  \"bio\": \"Lorem ipsum dolor sit amet\"\n}"
-						},
 						"url": {
 							"raw": "http://localhost:8080/api/lunch",
 							"protocol": "http",
@@ -2899,10 +2900,6 @@
 								"value": "Basic YWRtaW5AZ21haWwuY29tOmFkbWlu"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"firstName\": \"Vasiya\",\n  \"lastName\": \"Sidorov\",\n  \"twitter\": \"Vasid\",\n  \"bio\": \"Lorem ipsum dolor sit amet\"\n}"
-						},
 						"url": {
 							"raw": "http://localhost:8080/api/lunch/0",
 							"protocol": "http",
@@ -2982,10 +2979,6 @@
 								"value": "Basic YWRtaW5AZ21haWwuY29tOmFkbWlu"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"firstName\": \"Vasiya\",\n  \"lastName\": \"Sidorov\",\n  \"twitter\": \"Vasid\",\n  \"bio\": \"Lorem ipsum dolor sit amet\"\n}"
-						},
 						"url": {
 							"raw": "http://localhost:8080/api/lunch/0/restaurant",
 							"protocol": "http",
@@ -3062,10 +3055,6 @@
 								"value": "Basic YWRtaW5AZ21haWwuY29tOmFkbWlu"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"firstName\": \"Vasiya\",\n  \"lastName\": \"Sidorov\",\n  \"twitter\": \"Vasid\",\n  \"bio\": \"Lorem ipsum dolor sit amet\"\n}"
-						},
 						"url": {
 							"raw": "http://localhost:8080/api/lunch/search/by-date?date=2018-05-23",
 							"protocol": "http",
@@ -3148,10 +3137,6 @@
 								"value": "Basic YWRtaW5AZ21haWwuY29tOmFkbWlu"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"firstName\": \"Vasiya\",\n  \"lastName\": \"Sidorov\",\n  \"twitter\": \"Vasid\",\n  \"bio\": \"Lorem ipsum dolor sit amet\"\n}"
-						},
 						"url": {
 							"raw": "http://localhost:8080/api/lunch/search/by-restaurant?restaurant=http://localhost:8080/api/restaurant/0",
 							"protocol": "http",
@@ -3234,10 +3219,6 @@
 								"value": "Basic YWRtaW5AZ21haWwuY29tOmFkbWlu"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"firstName\": \"Vasiya\",\n  \"lastName\": \"Sidorov\",\n  \"twitter\": \"Vasid\",\n  \"bio\": \"Lorem ipsum dolor sit amet\"\n}"
-						},
 						"url": {
 							"raw": "http://localhost:8080/api/lunch/search/by-restaurant-and-date?restaurant=http://localhost:8080/api/restaurant/0&date=2018-05-23",
 							"protocol": "http",
@@ -3596,7 +3577,6 @@
 		},
 		{
 			"name": "Choice",
-			"description": null,
 			"item": [
 				{
 					"name": "http://localhost:8080/api/choice",
@@ -3652,10 +3632,6 @@
 								"value": "Basic dXNlckB5YW5kZXgucnU6dXNlcg=="
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"firstName\": \"Vasiya\",\n  \"lastName\": \"Sidorov\",\n  \"twitter\": \"Vasid\",\n  \"bio\": \"Lorem ipsum dolor sit amet\"\n}"
-						},
 						"url": {
 							"raw": "http://localhost:8080/api/choice",
 							"protocol": "http",

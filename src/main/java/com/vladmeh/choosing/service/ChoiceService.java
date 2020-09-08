@@ -1,7 +1,6 @@
 package com.vladmeh.choosing.service;
 
 import com.vladmeh.choosing.exceptions.DataNotFoundException;
-import com.vladmeh.choosing.exceptions.ResourceNotFoundException;
 import com.vladmeh.choosing.exceptions.RestaurantNotFoundException;
 import com.vladmeh.choosing.exceptions.ValidationLimitException;
 import com.vladmeh.choosing.model.Choice;
@@ -14,6 +13,7 @@ import com.vladmeh.choosing.util.ChoiceStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -94,7 +94,7 @@ public class ChoiceService {
                 ? saveAfterLimitTime(user, restaurant)
                 : save(user, restaurant);
 
-        if (!choiceStatus.isCreated() && limit){
+        if (!choiceStatus.isCreated() && limit) {
             log.info("Choices time expired. Current time is {}", LocalTime.now().toString());
             throw new ValidationLimitException("Choices time expired");
         }
